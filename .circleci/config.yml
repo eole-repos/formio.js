@@ -1,24 +1,39 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:8-browsers
-        environment:
-            CHROME_BIN: "/usr/bin/google-chrome"
+    machine: true
+    environment:
+      PJ_NAME: 'formio.js'
+      FORK_URL: 'https://github.com/formio'
+      ORIG_URL: 'https://github.com/eole-repos'
     steps:
+      - add_ssh_keys: 
+          fingerprints:
+                  - '1b:f1:35:82:2f:0f:cc:a1:ba:e0:de:ab:14:ec:cb:01'
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install npm
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Test
-          command: npm test
-      - store_artifacts:
-          path: test-results.xml
-          prefix: tests
+      - run: git clone $FORK_URL/$PJ_NAME
+        #- run: echo "git clone $FORK_URL/$PJ_NAME"
+      - run: cd  $PJ_NAME
+        #- run: echo "cd  $PJ_NAME"
+      - run: git remote add upstream $ORIG_URL/$PJ_NAME
+        #- run: echo "git remote add upstream $ORIG_URL/$PJ_NAME"
+      - run: git checkout master
+      - run: git pull --no-edit upstream master
+      - run: git push origin master
+workflows: 
+  version: 2
+  cron_workflow: 
+    triggers:
+      - schedule:
+          # UTC+0
+          cron: "0 16 * * *"
+          filters:
+            branches:
+              only: 
+                - master
+    jobs: 
+      - build
+  normal_workflow: 
+     jobs: 
+      - build
+
