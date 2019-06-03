@@ -9,7 +9,7 @@ jobs:
     steps:
       - add_ssh_keys: 
           fingerprints:
-                  - '1b:f1:35:82:2f:0f:cc:a1:ba:e0:de:ab:14:ec:cb:01'
+                  - '1b:f1:35:82:2f:0f:cc:a1:ba:e0:de:ab:14:ec:cb:01' 
       - checkout
       - run: git clone $FORK_URL/$PJ_NAME
         #- run: echo "git clone $FORK_URL/$PJ_NAME"
