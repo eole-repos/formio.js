@@ -1469,8 +1469,7 @@ export default class BaseComponent extends Component {
 
   redraw() {
     // Don't bother if we have not built yet.
-    // Don't redraw if it's builder - because component would lose builder buttons
-    if (!this.isBuilt || this.options.builder) {
+    if (!this.isBuilt) {
       return;
     }
     this.build(this.clear());
@@ -1974,6 +1973,26 @@ export default class BaseComponent extends Component {
         if (!element.parentNode) {
           return Promise.reject();
         }
+
+        if (settings.rows && _.isFinite(settings.rows)) {
+          /* eslint-disable no-inner-declarations */
+          function NumRowsPlugin(editor) {
+            this.editor = editor;
+          }
+          NumRowsPlugin.prototype.init = function() {
+            const editorHeight = (settings.rows * 31) + 14;
+            this.editor.ui.view.editable.extendTemplate({
+              attributes: {
+                style: {
+                  minHeight: `${(editorHeight)}px`
+                }
+              }
+            });
+          };
+          /* eslint-enable no-inner-declarations */
+          ClassicEditor.builtinPlugins.push(NumRowsPlugin);
+        }
+
         return ClassicEditor.create(element, settings).then(editor => {
           editor.model.document.on('change', () => onChange(editor.data.get()));
           return editor;
