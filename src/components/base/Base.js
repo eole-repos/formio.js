@@ -1,6 +1,6 @@
 /* globals Quill, ClassicEditor */
 import { conformToMask } from 'vanilla-text-mask';
-import Promise from 'native-promise-only';
+import NativePromise from 'native-promise-only';
 import _ from 'lodash';
 import Tooltip from 'tooltip.js';
 import * as FormioUtils from '../../utils/utils';
@@ -9,7 +9,7 @@ import Validator from '../Validator';
 import Widgets from '../../widgets';
 import Component from '../../Component';
 import dragula from 'dragula';
-const CKEDITOR = 'https://cdn.staticaly.com/gh/formio/ckeditor5-build-classic/master/build/ckeditor.js';
+const CKEDITOR = 'https://cdn.staticaly.com/gh/formio/ckeditor5-build-classic/v12.2.0-formio.1/build/ckeditor.js';
 
 /**
  * This is the BaseComponent class which all elements within the FormioForm derive from.
@@ -483,7 +483,7 @@ export default class BaseComponent extends Component {
    * @return {*}
    */
   beforeNext() {
-    return Promise.resolve(true);
+    return NativePromise.resolve(true);
   }
 
   /**
@@ -493,7 +493,7 @@ export default class BaseComponent extends Component {
    * @return {*}
    */
   beforeSubmit() {
-    return Promise.resolve(true);
+    return NativePromise.resolve(true);
   }
 
   /**
@@ -1467,9 +1467,10 @@ export default class BaseComponent extends Component {
     return widget;
   }
 
-  redraw() {
+  redraw(shouldRedrawInBuilder) {
     // Don't bother if we have not built yet.
-    if (!this.isBuilt) {
+    // Don't redraw if it's builder - because component would lose builder buttons
+    if (!this.isBuilt || (!shouldRedrawInBuilder && this.options.builder)) {
       return;
     }
     this.build(this.clear());
@@ -1971,28 +1972,8 @@ export default class BaseComponent extends Component {
     return Formio.requireLibrary('ckeditor', 'ClassicEditor', CKEDITOR, true)
       .then(() => {
         if (!element.parentNode) {
-          return Promise.reject();
+          return NativePromise.reject();
         }
-
-        if (settings.rows && _.isFinite(settings.rows)) {
-          /* eslint-disable no-inner-declarations */
-          function NumRowsPlugin(editor) {
-            this.editor = editor;
-          }
-          NumRowsPlugin.prototype.init = function() {
-            const editorHeight = (settings.rows * 31) + 14;
-            this.editor.ui.view.editable.extendTemplate({
-              attributes: {
-                style: {
-                  minHeight: `${(editorHeight)}px`
-                }
-              }
-            });
-          };
-          /* eslint-enable no-inner-declarations */
-          ClassicEditor.builtinPlugins.push(NumRowsPlugin);
-        }
-
         return ClassicEditor.create(element, settings).then(editor => {
           editor.model.document.on('change', () => onChange(editor.data.get()));
           return editor;
@@ -2012,7 +1993,7 @@ export default class BaseComponent extends Component {
     return Formio.requireLibrary('quill', 'Quill', 'https://cdn.quilljs.com/1.3.6/quill.min.js', true)
       .then(() => {
         if (!element.parentNode) {
-          return Promise.reject();
+          return NativePromise.reject();
         }
         this.quill = new Quill(element, settings);
 
@@ -2513,7 +2494,7 @@ export default class BaseComponent extends Component {
   }
 
   get dataReady() {
-    return Promise.resolve();
+    return NativePromise.resolve();
   }
 
   /**

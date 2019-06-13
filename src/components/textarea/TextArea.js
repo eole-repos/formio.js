@@ -3,6 +3,7 @@ import TextFieldComponent from '../textfield/TextField';
 import Formio from '../../Formio';
 import _ from 'lodash';
 import { uniqueName } from '../../utils/utils';
+import NativePromise from 'native-promise-only';
 
 export default class TextAreaComponent extends TextFieldComponent {
   static schema(...extend) {
@@ -158,7 +159,7 @@ export default class TextAreaComponent extends TextFieldComponent {
 
     if (this.component.editor === 'ckeditor') {
       const settings = this.component.wysiwyg.hasOwnProperty('toolbar') ? this.component.wysiwyg : {};
-      settings.rows = parseInt(this.component.rows, 10);
+      settings.rows = this.component.rows;
       this.editorReady = this.addCKE(this.input, settings, (newValue) => this.updateEditorValue(newValue))
         .then((editor) => {
           this.editor = editor;
@@ -344,12 +345,12 @@ export default class TextAreaComponent extends TextFieldComponent {
         });
     }
     else {
-      return Promise.resolve(value);
+      return NativePromise.resolve(value);
     }
   }
 
   setImagesUrl(images) {
-    return Promise.all(_.map(images, image => {
+    return NativePromise.all(_.map(images, image => {
       let requestData;
       try {
         requestData = JSON.parse(image.getAttribute('alt'));
