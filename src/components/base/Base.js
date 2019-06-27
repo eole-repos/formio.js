@@ -1295,7 +1295,7 @@ export default class BaseComponent extends Component {
       trigger: 'hover click',
       placement: 'right',
       html: true,
-      title: this.interpolate(component.tooltip).replace(/(?:\r\n|\r|\n)/g, '<br />')
+      title: this.interpolate(this.t(component.tooltip)).replace(/(?:\r\n|\r|\n)/g, '<br />')
     });
   }
 
@@ -1798,7 +1798,7 @@ export default class BaseComponent extends Component {
 
   clearOnHide(show) {
     // clearOnHide defaults to true for old forms (without the value set) so only trigger if the value is false.
-    if (this.component.clearOnHide !== false && !this.options.readOnly) {
+    if (this.component.clearOnHide !== false && !this.options.readOnly && !this.options.showHiddenFields) {
       if (!show) {
         this.deleteValue();
       }
@@ -2071,7 +2071,7 @@ export default class BaseComponent extends Component {
    * @return {*}
    */
   get dataValue() {
-    if (!this.key) {
+    if (!this.key || (!this.visible && this.component.clearOnHide)) {
       return this.emptyValue;
     }
     if (!this.hasValue()) {
@@ -2086,7 +2086,7 @@ export default class BaseComponent extends Component {
    * @param value
    */
   set dataValue(value) {
-    if (!this.key) {
+    if (!this.key || (!this.visible && this.component.clearOnHide)) {
       return value;
     }
     if ((value === null) || (value === undefined)) {
@@ -2276,7 +2276,6 @@ export default class BaseComponent extends Component {
     if (
       allowOverride &&
       (this.calculatedValue !== null) &&
-      (this.calculatedValue !== this.emptyValue) &&
       !_.isEqual(dataValue, this.calculatedValue)
     ) {
       return false;
@@ -2292,7 +2291,7 @@ export default class BaseComponent extends Component {
     if (
       allowOverride &&
       firstPass &&
-      (dataValue !== this.emptyValue) &&
+      !this.isEmpty(dataValue) &&
       !_.isEqual(dataValue, calculatedValue)
     ) {
       // Return that we have a change so it will perform another pass.

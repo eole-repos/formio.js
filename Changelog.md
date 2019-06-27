@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.22.12
+### Fixed
+ - Problems with the content-type header getting set incorrectly which was causing request failures.
+
+## 3.22.11
+### Fixed 
+ - FOR-2409: Sketchpad and Tagpad images not loading
+ - ```Content-type``` and ```Accept``` headers being added to non-formio requests
+
+## 3.22.10
+### Fixed
+ - FOR-2365: Allow override preventing Number component from being calculated
+ - FOR-2375: Add a submit button on forms that are initially created via PDF builder
+ - Fixed textarea does not set isDirty flag.
+ - FOR-2352: Force PDF.setForm to push supplied form to iframe
+ - Radio clear on hide fix
+ - FOR-2377: Fix signature aspect ratio issue
+ 
+### Added
+ - Make tooltips translatable.
+
 ## 3.22.9
 ### Added
  - FOR-2329: Added vertical auto expanding to textarea component.
