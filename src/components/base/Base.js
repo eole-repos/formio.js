@@ -9,7 +9,7 @@ import Validator from '../Validator';
 import Widgets from '../../widgets';
 import Component from '../../Component';
 import dragula from 'dragula';
-const CKEDITOR = 'https://cdn.staticaly.com/gh/formio/ckeditor5-build-classic/v12.2.0-formio.2/build/ckeditor.js';
+const CKEDITOR = 'https://cdn.form.io/ckeditor/12.2.0/ckeditor.js';
 
 /**
  * This is the BaseComponent class which all elements within the FormioForm derive from.
@@ -696,9 +696,11 @@ export default class BaseComponent extends Component {
       this.removeChildFrom(dialog, document.body);
     });
     document.body.appendChild(dialog);
+    document.body.classList.add('modal-open');
     dialog.body = modalBody;
     dialog.bodyContainer = modalBodyContainer;
     dialog.close = () => {
+      document.body.classList.remove('modal-open');
       dialog.dispatchEvent(new CustomEvent('close'));
       this.removeChildFrom(dialog, document.body);
     };
