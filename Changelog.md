@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.24.4
+### Fixed
+ - Issues with TextArea getting into an infinite update loop.
+ - Select component infinite scroll fix
+ - Problem where Checkbox was not checking if input was set in updateValue method.
+ - Potential problems where changed status was not getting returned in setValue for some components.
+ 
+### Added
+ - Add silent:true option on submission errors to fail silently
+
+### Changed
+ - Upgrade i18next@17.0.11, core-js@3.2.1, fast-json-patch@2.2.1, sinon@7.4.1, webpack@4.39.1
+
 ## 3.24.3
 ### Fixed
  - Performance issues with the auto-expanding TextArea components.
