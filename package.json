@@ -1,6 +1,6 @@
 {
   "name": "formiojs",
-  "version": "3.24.4",
+  "version": "3.25.0",
   "description": "Common js library for client side interaction with <form.io>",
   "main": "index.js",
   "files": [
@@ -105,6 +105,7 @@
     "chance": "^1.0.18",
     "cross-env": "^5.2.0",
     "del": "^5.0.0",
+    "ejs-loader": "^0.3.3",
     "escape-string-regexp": "^2.0.0",
     "esdoc": "^1.1.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
