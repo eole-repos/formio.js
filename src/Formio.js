@@ -1,38 +1,19 @@
 /* globals OktaAuth */
-<<<<<<< HEAD
-
-// Keep lodash off the global scope.
-import _ from 'lodash';
-_.noConflict();
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Intentionally use native-promise-only here... Other promise libraries (es6-promise)
 // duck-punch the global Promise definition which messes up Angular 2 since it
 // also duck-punches the global Promise definition. For now, keep native-promise-only.
 import NativePromise from 'native-promise-only';
 import fetchPonyfill from 'fetch-ponyfill';
-<<<<<<< HEAD
-import 'custom-event-polyfill';
-import EventEmitter from './EventEmitter';
-import cookies from 'browser-cookies';
-import copy from 'shallow-copy';
-import * as providers from './providers';
-=======
 import EventEmitter from './EventEmitter';
 import cookies from 'browser-cookies';
 import Providers from './providers';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import _intersection from 'lodash/intersection';
 import _get from 'lodash/get';
 import _cloneDeep from 'lodash/cloneDeep';
 import _defaults from 'lodash/defaults';
-<<<<<<< HEAD
-=======
 import { eachComponent } from './utils/utils';
 import './polyfills';
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 const { fetch, Headers } = fetchPonyfill({
   Promise: NativePromise
 });
@@ -305,30 +286,6 @@ export default class Formio {
     return Formio.makeStaticRequest(`${Formio.baseUrl}/project${query}`, 'GET', null, opts);
   }
 
-  loadFormRevision(vid, query, opts) {
-    if (!this.formUrl && !this.vUrl) {
-      return NativePromise.reject('No form url set.');
-    }
-
-    // Set the version url if not set.
-    if (vid && !this.vUrl) {
-      this.vId = vid;
-      this.vUrl = `${this.formUrl}/v/${vid}`;
-    }
-
-    // If they specified a revision form, load the revised form components.
-    if (query && isObject(query)) {
-      query = Formio.serialize(query.params);
-    }
-    if (query) {
-      query = this.query ? (`${this.query}&${query}`) : (`?${query}`);
-    }
-    else {
-      query = this.query;
-    }
-    return this.makeRequest('form', this.vUrl + query, 'get', null, opts);
-  }
-
   loadForm(query, opts) {
     return this.load('form', query, opts)
       .then((currentForm) => {
@@ -340,7 +297,17 @@ export default class Formio {
         if (currentForm.revisions === 'current' && this.submissionId) {
           return currentForm;
         }
-        return this.loadFormRevision(this.vId, query, opts)
+        // If they specified a revision form, load the revised form components.
+        if (query && isObject(query)) {
+          query = Formio.serialize(query.params);
+        }
+        if (query) {
+          query = this.query ? (`${this.query}&${query}`) : (`?${query}`);
+        }
+        else {
+          query = this.query;
+        }
+        return this.makeRequest('form', this.vUrl + query, 'get', null, opts)
           .then((revisionForm) => {
             currentForm.components = revisionForm.components;
             currentForm.settings = revisionForm.settings;
@@ -525,17 +492,13 @@ export default class Formio {
     });
   }
 
-<<<<<<< HEAD
-  uploadFile(storage, file, fileName, dir, progressCallback, url, options) {
-=======
   uploadFile(storage, file, fileName, dir, progressCallback, url, options, fileKey) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const requestArgs = {
       provider: storage,
       method: 'upload',
-      file,
-      fileName,
-      dir
+      file: file,
+      fileName: fileName,
+      dir: dir
     };
     fileKey = fileKey || 'file';
     const request = Formio.pluginWait('preRequest', requestArgs)
@@ -543,16 +506,10 @@ export default class Formio {
         return Formio.pluginGet('fileRequest', requestArgs)
           .then((result) => {
             if (storage && isNil(result)) {
-<<<<<<< HEAD
-              if (Formio.providers.storage.hasOwnProperty(storage)) {
-                const provider = new Formio.providers.storage[storage](this);
-                return provider.uploadFile(file, fileName, dir, progressCallback, url, options);
-=======
               const Provider = Providers.getProvider('storage', storage);
               if (Provider) {
                 const provider = new Provider(this);
                 return provider.uploadFile(file, fileName, dir, progressCallback, url, options, fileKey);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
               }
               else {
                 throw ('Storage provider not found');
@@ -605,18 +562,12 @@ export default class Formio {
     return NativePromise.all([
       (form !== undefined) ? NativePromise.resolve(form) : this.loadForm(),
       (user !== undefined) ? NativePromise.resolve(user) : this.currentUser(),
-<<<<<<< HEAD
-=======
       (submission !== undefined || !this.submissionId) ? NativePromise.resolve(submission) : this.loadSubmission(),
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       this.accessInfo()
     ]).then((results) => {
       const form = results.shift();
       const user = results.shift() || { _id: false, roles: [] };
-<<<<<<< HEAD
-=======
       const submission = results.shift();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       const access = results.shift();
       const permMap = {
         create: 'create',
@@ -656,8 +607,6 @@ export default class Formio {
           if (['create', 'read', 'update', 'delete'].includes(perm)) {
             if (_intersection(permission.roles, user.roles).length) {
               perms[permMap[perm]] = (scope === 'all') || (!submission || (user._id === submission.owner));
-<<<<<<< HEAD
-=======
             }
           }
         }
@@ -691,7 +640,6 @@ export default class Formio {
                 perms[permMap.update] = true;
                 perms[permMap.delete] = true;
               }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             }
           }
         });
@@ -837,13 +785,8 @@ export default class Formio {
     const cacheKey = btoa(url);
 
     // Get the cached promise to save multiple loads.
-<<<<<<< HEAD
-    if (!Formio.ignoreCache && !opts.ignoreCache && method === 'GET' && Formio.cache.hasOwnProperty(cacheKey)) {
-      return NativePromise.resolve(_cloneDeep(Formio.cache[cacheKey]));
-=======
     if (!opts.ignoreCache && method === 'GET' && Formio.cache.hasOwnProperty(cacheKey)) {
       return NativePromise.resolve(cloneResponse(Formio.cache[cacheKey]));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // Set up and fetch request
@@ -972,32 +915,11 @@ export default class Formio {
         }
 
         // Cache the response.
-<<<<<<< HEAD
-        if (!Formio.ignoreCache && (method === 'GET')) {
-          Formio.cache[cacheKey] = _cloneDeep(result);
-        }
-
-        let resultCopy = {};
-
-        // Shallow copy result so modifications don't end up in cache
-        if (Array.isArray(result)) {
-          resultCopy = result.map(copy);
-          resultCopy.skip = result.skip;
-          resultCopy.limit = result.limit;
-          resultCopy.serverCount = result.serverCount;
-        }
-        else {
-          resultCopy = copy(result);
-        }
-
-        return resultCopy;
-=======
         if (method === 'GET') {
           Formio.cache[cacheKey] = result;
         }
 
         return cloneResponse(result);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       })
       .catch((err) => {
         if (err === 'Bad Token') {
@@ -1017,29 +939,6 @@ export default class Formio {
       });
 
     return result;
-<<<<<<< HEAD
-  }
-
-  // Needed to maintain reverse compatability...
-  static get token() {
-    if (!Formio.tokens) {
-      Formio.tokens = {};
-    }
-
-    return Formio.tokens.formioToken ? Formio.tokens.formioToken : '';
-  }
-
-  // Needed to maintain reverse compatability...
-  static set token(token) {
-    if (!Formio.tokens) {
-      Formio.tokens = {};
-    }
-
-    return Formio.tokens.formioToken = token || '';
-  }
-
-  static setToken(token = '', opts) {
-=======
   }
 
   // Needed to maintain reverse compatability...
@@ -1062,31 +961,22 @@ export default class Formio {
 
   static setToken(token = '', opts) {
     token = token || '';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     opts = (typeof opts === 'string') ? { namespace: opts } : opts || {};
     var tokenName = `${opts.namespace || Formio.namespace || 'formio'}Token`;
     if (!Formio.tokens) {
       Formio.tokens = {};
     }
 
-<<<<<<< HEAD
-    if (Formio.tokens[tokenName] === token) {
-=======
     if (Formio.tokens[tokenName] && Formio.tokens[tokenName] === token) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       return;
     }
 
     Formio.tokens[tokenName] = token;
     if (!token) {
-<<<<<<< HEAD
-      Formio.setUser(null, opts);
-=======
       if (!opts.fromUser) {
         opts.fromToken = true;
         Formio.setUser(null, opts);
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       // iOS in private browse mode will throw an error but we can't detect ahead of time that we are in private mode.
       try {
         return localStorage.removeItem(tokenName);
@@ -1128,14 +1018,10 @@ export default class Formio {
   static setUser(user, opts = {}) {
     var userName = `${opts.namespace || Formio.namespace || 'formio'}User`;
     if (!user) {
-<<<<<<< HEAD
-      Formio.setToken(null, opts);
-=======
       if (!opts.fromToken) {
         opts.fromUser = true;
         Formio.setToken(null, opts);
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       // Emit an event on the cleared user.
       Formio.events.emit('formio.user', null);
@@ -1237,19 +1123,10 @@ export default class Formio {
   }
 
   static registerPlugin(plugin, name) {
-    let found = false;
-    Formio.plugins.forEach((existing) => {
-      if (existing.__name === name) {
-        found = true;
-      }
-    });
-    if (!found) {
-      // Do not register already registered plugins.
-      Formio.plugins.push(plugin);
-      Formio.plugins.sort((a, b) => (b.priority || 0) - (a.priority || 0));
-      plugin.__name = name;
-      (plugin.init || Formio.noop).call(plugin, Formio);
-    }
+    Formio.plugins.push(plugin);
+    Formio.plugins.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+    plugin.__name = name;
+    (plugin.init || Formio.noop).call(plugin, Formio);
   }
 
   static getPlugin(name) {
@@ -1311,10 +1188,7 @@ export default class Formio {
         options
       });
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const token = Formio.getToken(options);
     if ((!options || !options.external) && !token) {
       return Formio.pluginAlter('wrapStaticRequestPromise', NativePromise.resolve(null), {
@@ -1385,27 +1259,13 @@ export default class Formio {
       const retVal = Formio.setToken(query.saml);
       let uri = window.location.toString();
       uri = uri.substring(0, uri.indexOf('?'));
-<<<<<<< HEAD
-=======
       if (window.location.hash) {
         uri += window.location.hash;
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       window.history.replaceState({}, document.title, uri);
       return retVal;
     }
 
-<<<<<<< HEAD
-    if (options.forceAuth) {
-      Formio.setUser(null);
-    }
-    else if (Formio.getToken()) {
-      // If we are not forcing the authentication and we have a token, then return here.
-      return false;
-    }
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     // Set the relay if not provided.
     if (!options.relay) {
       options.relay = window.location.href;
@@ -1413,11 +1273,7 @@ export default class Formio {
 
     // go to the saml sso endpoint for this project.
     const authUrl = Formio.authUrl || Formio.projectUrl;
-<<<<<<< HEAD
-    window.location.href = `${authUrl}/saml/sso?relay=${encodeURIComponent(options.relay)}`;
-=======
     window.location.href = `${authUrl}/saml/sso?relay=${encodeURI(options.relay)}`;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return false;
   }
 
@@ -1435,31 +1291,29 @@ export default class Formio {
     return new NativePromise((resolve, reject) => {
       const Okta = options.OktaAuth;
       delete options.OktaAuth;
-      var authClient = Okta;
-      authClient.tokenManager.get('accessToken')
-        .then(accessToken => {
-          if (accessToken) {
-            resolve(Formio.oAuthCurrentUser(options.formio, accessToken.accessToken));
-          }
-          else if (location.hash) {
-            authClient.token.parseFromUrl()
-              .then(token => {
-                authClient.tokenManager.add('accessToken', token);
-                resolve(Formio.oAuthCurrentUser(options.formio, token.accessToken));
-              })
-              .catch(err => {
-                console.warn(err);
-                reject(err);
-              });
-          }
-          else {
-            authClient.token.getWithRedirect({
-              responseType: 'token',
-              scopes: options.scopes
-            });
-            resolve(false);
-          }
+      var authClient = new Okta(options);
+      var accessToken = authClient.tokenManager.get('accessToken');
+      if (accessToken) {
+        resolve(Formio.oAuthCurrentUser(options.formio, accessToken.accessToken));
+      }
+      else if (location.hash) {
+        authClient.token.parseFromUrl()
+          .then(token => {
+            authClient.tokenManager.add('accessToken', token);
+            resolve(Formio.oAuthCurrentUser(options.formio, token.accessToken));
+          })
+          .catch(err => {
+            console.warn(err);
+            reject(err);
+          });
+      }
+      else {
+        authClient.token.getWithRedirect({
+          responseType: 'token',
+          scopes: options.scopes
         });
+        resolve(false);
+      }
     });
   }
 
@@ -1566,7 +1420,6 @@ export default class Formio {
 }
 
 // Define all the static properties.
-Formio.ignoreCache = false;
 Formio.libraries = {};
 Formio.Promise = NativePromise;
 Formio.fetch = fetch;

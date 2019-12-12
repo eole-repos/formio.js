@@ -34,26 +34,6 @@ export default [
     }
   },
   {
-    type: 'textarea',
-    key: 'options',
-    label: 'Custom request options',
-    tooltip: 'Pass your custom xhr options(optional)',
-    rows: 5,
-    editor: 'ace',
-    input: true,
-    weight: 15,
-    placeholder: `{
-      "withCredentials": true
-    }`,
-    conditional: {
-      json: {
-        '===': [{
-          var: 'data.storage'
-        }, 'url']
-      }
-    }
-  },
-  {
     type: 'textfield',
     input: true,
     key: 'options.indexeddb',
@@ -139,10 +119,7 @@ export default [
     input: true,
     key: 'fileNameTemplate',
     label: 'File Name Template',
-<<<<<<< HEAD
-=======
     placeholder: '(optional) {{{name}}-{{guid}}}}}',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     tooltip: 'Specify template for name of uploaded file(s). Regular template variables are available (`data`, `component`, `user`, `value`, `moment` etc.), also `fileName`, `guid` variables are available. `guid` part must be present, if not found in template, will be added at the end.',
     weight: 25
   },

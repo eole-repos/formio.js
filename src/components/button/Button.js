@@ -16,11 +16,7 @@ export default class ButtonComponent extends Field {
       action: 'submit',
       persistent: false,
       disableOnInvalid: false,
-<<<<<<< HEAD
-      theme: 'default',
-=======
       theme: 'primary',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       dataGridLabel: true
     }, ...extend);
   }
@@ -65,18 +61,8 @@ export default class ButtonComponent extends Field {
     };
   }
 
-<<<<<<< HEAD
-  set disabled(disabled) {
-    // Do not allow a component to be disabled if it should be always...
-    if ((!disabled && this.shouldDisable) || (disabled && !this.shouldDisable)) {
-      return;
-    }
-    super.disabled = disabled;
-    this.setDisabled(this.buttonElement, disabled);
-=======
   set loading(loading) {
     this.setLoading(this.refs.button, loading);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   // No label needed for buttons.
@@ -109,32 +95,9 @@ export default class ButtonComponent extends Field {
     return className;
   }
 
-<<<<<<< HEAD
-  buttonMessage(message) {
-    return this.ce('span', { class: 'help-block' }, this.text(message));
-  }
-
-  /* eslint-disable max-statements */
-  build() {
-    if (this.viewOnly || this.options.hideButtons) {
-      this.component.hidden = true;
-    }
-
-    this.dataValue = false;
-    this.hasError = false;
-    this.createElement();
-    this.createInput(this.element);
-    this.addShortcut(this.buttonElement);
-    if (this.component.leftIcon) {
-      this.buttonElement.appendChild(this.ce('span', {
-        class: this.component.leftIcon
-      }));
-      this.buttonElement.appendChild(this.text(' '));
-=======
   render() {
     if (this.viewOnly || this.options.hideButtons) {
       this._visible = false;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     return super.render(this.renderTemplate('button', {
       component: this.component,
@@ -142,23 +105,8 @@ export default class ButtonComponent extends Field {
     }));
   }
 
-<<<<<<< HEAD
-    if (!this.labelIsHidden()) {
-      this.labelElement = this.text(this.addShortcutToLabel());
-      this.buttonElement.appendChild(this.labelElement);
-      this.createTooltip(this.buttonElement, null, this.iconClass('question-sign'));
-    }
-    if (this.component.rightIcon) {
-      this.buttonElement.appendChild(this.text(' '));
-      this.buttonElement.appendChild(this.ce('span', {
-        class: this.component.rightIcon
-      }));
-    }
-
-=======
   attachButton() {
     this.addShortcut(this.refs.button);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     let onChange = null;
     let onError = null;
     if (this.component.action === 'submit') {
@@ -169,18 +117,6 @@ export default class ButtonComponent extends Field {
       this.on('submitDone', () => {
         this.loading = false;
         this.disabled = false;
-<<<<<<< HEAD
-        this.empty(message);
-        this.addClass(this.buttonElement, 'btn-success submit-success');
-        this.removeClass(this.buttonElement, 'btn-danger submit-fail');
-        this.addClass(message, 'has-success');
-        this.removeClass(message, 'has-error');
-        this.append(message);
-      }, true);
-      onChange = (value, isValid) => {
-        this.removeClass(this.buttonElement, 'btn-success submit-success');
-        this.removeClass(this.buttonElement, 'btn-danger submit-fail');
-=======
         this.addClass(this.refs.button, 'btn-success submit-success');
         this.removeClass(this.refs.button, 'btn-danger submit-fail');
         this.addClass(this.refs.buttonMessageContainer, 'has-success');
@@ -199,7 +135,6 @@ export default class ButtonComponent extends Field {
       onChange = (value, isValid) => {
         this.removeClass(this.refs.button, 'btn-success submit-success');
         this.removeClass(this.refs.button, 'btn-danger submit-fail');
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         if (isValid && this.hasError) {
           this.hasError = false;
           this.setContent(this.refs.buttonMessage, '');
@@ -209,20 +144,11 @@ export default class ButtonComponent extends Field {
       };
       onError = () => {
         this.hasError = true;
-<<<<<<< HEAD
-        this.removeClass(this.buttonElement, 'btn-success submit-success');
-        this.addClass(this.buttonElement, 'btn-danger submit-fail');
-        this.empty(message);
-        this.removeClass(message, 'has-success');
-        this.addClass(message, 'has-error');
-        this.append(message);
-=======
         this.removeClass(this.refs.button, 'btn-success submit-success');
         this.addClass(this.refs.button, 'btn-danger submit-fail');
         this.removeClass(this.refs.buttonMessageContainer, 'has-success');
         this.addClass(this.refs.buttonMessageContainer, 'has-error');
         this.setContent(this.refs.buttonMessage, this.t(this.errorMessage('error')));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
     }
 
@@ -238,90 +164,6 @@ export default class ButtonComponent extends Field {
         this.disabled = false;
       }, true);
     }
-<<<<<<< HEAD
-
-    this.on('change', (value) => {
-      this.loading = false;
-      this.disabled = this.options.readOnly || (this.component.disableOnInvalid && !value.isValid);
-      if (onChange) {
-        onChange(value, value.isValid);
-      }
-    }, true);
-
-    this.on('error', () => {
-      this.loading = false;
-      if (onError) {
-        onError();
-      }
-    }, true);
-
-    this.addEventListener(this.buttonElement, 'click', (event) => {
-      this.triggerReCaptcha();
-      this.dataValue = true;
-      if (this.component.action !== 'submit' && this.component.showValidations) {
-        this.emit('checkValidity', this.data);
-      }
-      switch (this.component.action) {
-        case 'saveState':
-        case 'submit':
-          event.preventDefault();
-          event.stopPropagation();
-          this.emit('submitButton', {
-            state: this.component.state || 'submitted',
-            component: this.component
-          });
-          break;
-        case 'event':
-          this.emit(this.interpolate(this.component.event), this.data);
-          this.events.emit(this.interpolate(this.component.event), this.data);
-          this.emit('customEvent', {
-            type: this.interpolate(this.component.event),
-            component: this.component,
-            data: this.data,
-            event: event
-          });
-          break;
-        case 'custom': {
-          // Get the FormioForm at the root of this component's tree
-          const form = this.getRoot();
-          // Get the form's flattened schema components
-          const flattened = flattenComponents(form.component.components, true);
-          // Create object containing the corresponding HTML element components
-          const components = {};
-          _.each(flattened, (component, key) => {
-            const element = form.getComponent(key);
-            if (element) {
-              components[key] = element;
-            }
-          });
-
-          this.evaluate(this.component.custom, {
-            form,
-            flattened,
-            components
-          });
-          break;
-        }
-        case 'url':
-          this.emit('requestButton');
-          this.emit('requestUrl', {
-            url: this.interpolate(this.component.url),
-            headers: this.component.headers
-          });
-          break;
-        case 'reset':
-          this.emit('resetForm');
-          break;
-        case 'delete':
-          this.emit('deleteSubmission');
-          break;
-        case 'oauth':
-          if (this.root === this) {
-            console.warn('You must add the OAuth button to a form for it to function properly');
-            return;
-          }
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     this.on('change', (value) => {
       this.loading = false;
@@ -342,17 +184,7 @@ export default class ButtonComponent extends Field {
 
     this.addEventListener(this.refs.button, 'click', this.onClick.bind(this));
 
-<<<<<<< HEAD
-          break;
-      }
-    });
-
-    if (this.shouldDisable) {
-      this.disabled = true;
-    }
-=======
     this.disabled = this.shouldDisabled;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     function getUrlParameter(name) {
       name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
@@ -373,10 +205,6 @@ export default class ButtonComponent extends Field {
     }
   }
 
-<<<<<<< HEAD
-    this.autofocus();
-    this.attachLogic();
-=======
   attach(element) {
     this.loadRefs(element, {
       button: 'single',
@@ -387,7 +215,6 @@ export default class ButtonComponent extends Field {
     const superAttach = super.attach(element);
     this.attachButton();
     return superAttach;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
   /* eslint-enable max-statements */
 
@@ -559,31 +386,6 @@ export default class ButtonComponent extends Field {
     }, 100);
   }
 
-<<<<<<< HEAD
-  destroy() {
-    super.destroy();
-    this.removeShortcut(this.buttonElement);
-  }
-
-  focus() {
-    this.buttonElement.focus();
-  }
-
-  triggerReCaptcha() {
-    let recaptchaComponent;
-    this.root.everyComponent((component) => {
-      if (component.component.type === 'recaptcha' &&
-        component.component.eventType === 'buttonClick' &&
-        component.component.buttonKey === this.component.key) {
-        recaptchaComponent = component;
-        return false;
-      }
-    });
-    if (recaptchaComponent) {
-      recaptchaComponent.verify(`${this.component.key}Click`);
-    }
-  }
-=======
   focus() {
     if (this.refs.button) {
       this.refs.button.focus();
@@ -603,5 +405,4 @@ export default class ButtonComponent extends Field {
       recaptchaComponent.verify(`${this.component.key}Click`);
     }
   }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

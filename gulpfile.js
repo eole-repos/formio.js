@@ -10,12 +10,9 @@ const replace = require('gulp-replace');
 const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const eslint = require('gulp-eslint');
-<<<<<<< HEAD
-=======
 const insert = require('gulp-insert');
 const template = require('gulp-template');
 const packageJson = require('./package.json');
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Clean lib folder.
 gulp.task('clean', require('del').bind(null, ['dist', 'lib']));
@@ -30,23 +27,15 @@ gulp.task('eslint', function eslintTask() {
 
 // Run babel on source code.
 gulp.task('babel', gulp.series('eslint', function babelTask() {
-<<<<<<< HEAD
-  return gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
-=======
   const FormioFilter = filter('**/Formio.js', { restore: true });
   return gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
     .pipe(FormioFilter)
     .pipe(replace('---VERSION---', packageJson.version))
     .pipe(FormioFilter.restore)
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 }));
 
-<<<<<<< HEAD
-// Move ejs files into the lib folder.
-gulp.task('ejs', () => gulp.src('./src/**/*.ejs').pipe(gulp.dest('lib')));
-=======
 // Run babel without linting
 gulp.task('babel-nolint', gulp.series(function babelTask() {
   return gulp.src(['./src/**/*.js', '!./src/**/*.spec.js'])
@@ -72,7 +61,6 @@ gulp.task('templates', () =>
     }))
     .pipe(gulp.dest('lib'))
 );
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Move font-awesome fonts into dist folder.
 gulp.task('builder-fonts', function builderFonts() {
@@ -188,11 +176,7 @@ gulp.task('timezones', () => gulp.src('./node_modules/moment-timezone/data/packe
 gulp.task('build', gulp.series(
   'clean',
   'babel',
-<<<<<<< HEAD
-  'ejs',
-=======
   'templates',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   'package-version',
   gulp.parallel(
     'jquery',
@@ -212,10 +196,6 @@ gulp.task('build', gulp.series(
     'scripts-form',
     'scripts-full'
   ),
-<<<<<<< HEAD
-  'dist'
-));
-=======
   'dist',
   'types',
   'readme'
@@ -238,7 +218,6 @@ gulp.task('rebuild-scripts', gulp.series(
 
 // Watch for changes.
 gulp.task('watch-rebuild', () => gulp.watch(['./src/*.js', './src/**/*.js'], gulp.series('rebuild-scripts')));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Default task. Build and watch.
 gulp.task('default', gulp.series('babel', 'scripts-full', 'watch'));

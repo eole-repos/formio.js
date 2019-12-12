@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-import baseEditForm from '../base/Base.form';
-
-import UnknownEditDisplay from './editForm/Unknown.edit.display';
-
-export default function() {
-  return baseEditForm([
-    {
-      key: 'display',
-      components: UnknownEditDisplay
-    },
-    {
-      key: 'data',
-      ignore: true
-    },
-    {
-      key: 'validation',
-      ignore: true
-    },
-    {
-      key: 'api',
-      ignore: true
-    },
-    {
-      key: 'conditional',
-      ignore: true
-    },
-    {
-      key: 'logic',
-      ignore: true
-    }
-  ]);
-=======
 import UnknownEditDisplay from './editForm/Unknown.edit.display';
 export default function() {
   return {
@@ -49,5 +16,4 @@ export default function() {
       }
     ]
   };
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

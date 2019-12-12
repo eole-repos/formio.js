@@ -11,7 +11,7 @@ You can create a form with the simple JSON schema as follows.
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.full.min.css">
 <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
-<div id="formio"></div>
+<div id="formio"></formio>
 ```
 
 ```js
@@ -84,7 +84,6 @@ Formio.createForm(document.getElementById('formio'), {
 <div class="card card-body bg-light">
 <div id="formio"></div>
 <script type="text/javascript">
-Formio.icons = 'fontawesome';
 Formio.createForm(document.getElementById('formio'), {
   components: [
     {

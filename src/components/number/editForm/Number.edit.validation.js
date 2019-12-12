@@ -1,8 +1,5 @@
 export default [
   {
-<<<<<<< HEAD
-    key: 'validate.unique',
-=======
     key: 'unique',
     ignore: true
   },
@@ -24,7 +21,6 @@ export default [
   },
   {
     key: 'validate.pattern',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     ignore: true
   },
   {

@@ -30,15 +30,8 @@ export default [
       type: 'textfield',
       key: 'value',
       label: 'Value',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.api.js
-      defaultValue: 'Value',
-      input: true
-    }
-  }
-=======
       placeholder: 'Value',
       input: true
     }
   },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.api.js
 ];

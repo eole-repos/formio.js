@@ -1,7 +1,5 @@
 export default [
   {
-<<<<<<< HEAD
-=======
     key: 'labelPosition',
     ignore: true
   },
@@ -22,7 +20,6 @@ export default [
     ignore: true
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     key: 'label',
     hidden: true,
     calculateValue(context) {

@@ -121,7 +121,7 @@ export default class StripeCheckoutComponent extends ButtonComponent {
       }
       this.handler = StripeCheckout.configure(handlerConfiguration);
 
-      this.on('customEvent', this.onClickButton.bind(this), true);
+      this.on('customEvent', this.onClickButton.bind(this));
 
       this.addEventListener(window, 'popstate', () => {
         this.handler.close();

@@ -41,15 +41,9 @@ export default [
     data: {
       values: [
         { label: 'None', value: '' },
-<<<<<<< HEAD
-        { label: 'Quill', value: 'quill' },
-        { label: 'CKEditor', value: 'ckeditor' },
-        { label: 'ACE', value: 'ace' }
-=======
         { label: 'CKEditor', value: 'ckeditor' },
         { label: 'ACE', value: 'ace' },
         { label: 'Quill', value: 'quill' }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       ]
     },
     weight: 415
@@ -85,15 +79,6 @@ export default [
               'quill'
             ]
           },
-<<<<<<< HEAD
-          {
-            '==': [
-              { var: 'data.editor' },
-              ''
-            ]
-          }
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         ]
       }
     }
@@ -110,11 +95,7 @@ export default [
     dataSrc: 'custom',
     data: {
       custom() {
-<<<<<<< HEAD
-        return _.map(Formio.providers.storage, (storage, key) => ({
-=======
         return _.map(Formio.Providers.getProviders('storage'), (storage, key) => ({
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           label: storage.title,
           value: key
         }));
@@ -179,8 +160,6 @@ export default [
     }
   },
   {
-<<<<<<< HEAD
-=======
     type: 'textfield',
     key: 'fileKey',
     input: true,
@@ -209,7 +188,6 @@ export default [
     }
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'select',
     input: true,
     key: 'as',
@@ -249,13 +227,8 @@ export default [
     label: 'Editor Settings',
     tooltip: 'Enter the WYSIWYG editor JSON configuration.',
     key: 'wysiwyg',
-    clearOnHide: false,
     customDefaultValue(value, component, row, data, instance) {
-<<<<<<< HEAD
-      return instance.wysiwygDefault;
-=======
       return instance ? instance.wysiwygDefault : '';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     },
     conditional: {
       json: {

@@ -1,19 +1,6 @@
-// Keep lodash off the global scope.
-import _ from 'lodash';
-_.noConflict();
-
 import AllComponents from './components';
 import Builders from './builders/Builders';
 import Components from './components/Components';
-<<<<<<< HEAD
-import Formio from './Formio';
-Components.setComponents(AllComponents);
-Formio.Components = Components;
-export Form from './Form';
-export Utils from './utils';
-export { Components, Formio };
-
-=======
 import Displays from './displays/Displays';
 import Templates from './templates/Templates';
 import Providers from './providers/Providers';
@@ -87,4 +74,3 @@ Formio.use = (...plugins) => {
 export Form from './Form';
 export Utils from './utils';
 export { Builders, Components, Displays, Providers, Templates, Formio };
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

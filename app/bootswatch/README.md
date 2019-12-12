@@ -42,8 +42,6 @@ and `_bootswatch.scss`!
 
 You can install as a package with the command `npm install bootswatch`.
 
-<<<<<<< HEAD
-=======
 #### React Users (`create-react-app`, or similar bundler)
 
 Modern JavaScript bundlers (webpack, parcel, rollup) support `import`ing CSS from JS files. This can make it easier to deploy various 1st and 3rd party assets predictably. Note: _There are tradeoffs to the following method, research your tooling before deploying to production._
@@ -71,7 +69,6 @@ function App() {
 ```
 
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 ### Via Ruby Gem
 
 In your Ruby project, you can access the latest version of each theme by adding
@@ -124,11 +121,7 @@ It's through your contributions that Bootswatch will continue to improve. You ca
 
 **Code:** Make a fix and submit it as a pull request. When making changes, it's important to keep the CSS and SASS versions in sync. To do this, be sure to edit the SASS source files for the particular theme first, then run the  tasks `grunt swatch` to build the CSS.
 
-<<<<<<< HEAD
-**Donation:** Donations are gratefully accepted via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F22JEM3Q78JC2) and Bitcoin at [1EMqwwjqJrfyoPqmxNM7buzU6DmySZnHBK](bitcoin:1EMqwwjqJrfyoPqmxNM7buzU6DmySZnHBK).
-=======
 **Donation:** Donations are gratefully accepted via [GitHub](https://github.com/sponsors/thomaspark/) and [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PU2DH4BMF9MWS&source=url).
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 
 ## Author
@@ -152,10 +145,6 @@ Thomas Park
 
 ## Copyright and License
 
-<<<<<<< HEAD
-Copyright 2014-2018 Thomas Park
-=======
 Copyright 2014-2019 Thomas Park
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 Code released under the MIT License.

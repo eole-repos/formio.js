@@ -1,13 +1,8 @@
 import _ from 'lodash';
-<<<<<<< HEAD
-import BaseComponent from '../base/Base';
-export default class DateTimeComponent extends BaseComponent {
-=======
 import moment from 'moment';
 import Input from '../_classes/input/Input';
 import FormioUtils from '../../utils';
 export default class DateTimeComponent extends Input {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   static schema(...extend) {
     return Input.schema({
       type: 'datetime',
@@ -76,11 +71,7 @@ export default class DateTimeComponent extends Input {
     }
 
     /* eslint-disable camelcase */
-<<<<<<< HEAD
-    this.originalComponent.widget = this.component.widget = {
-=======
     this.component.widget = {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       type: 'calendar',
       timezone,
       displayInTimezone: _.get(this.component, 'displayInTimezone', 'viewer'),
@@ -92,10 +83,6 @@ export default class DateTimeComponent extends Input {
       enableTime: _.get(this.component, 'enableTime', true),
       noCalendar: !_.get(this.component, 'enableDate', true),
       format: this.component.format,
-<<<<<<< HEAD
-      defaultDate: this.component.defaultDate,
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       hourIncrement: _.get(this.component, 'timePicker.hourStep', 1),
       minuteIncrement: _.get(this.component, 'timePicker.minuteStep', 5),
       time_24hr: time24hr,
@@ -104,38 +91,6 @@ export default class DateTimeComponent extends Input {
       maxDate: _.get(this.component, 'datePicker.maxDate')
     };
     /* eslint-enable camelcase */
-<<<<<<< HEAD
-
-    // Add the validators date.
-    this.validators.push('date');
-  }
-
-  performInputMapping(input) {
-    if (input.widget && this.widget.settings) {
-      input.widget.settings.submissionTimezone = this.submissionTimezone;
-    }
-    return input;
-  }
-
-  get defaultSchema() {
-    return DateTimeComponent.schema();
-  }
-
-  get emptyValue() {
-    return '';
-  }
-
-  isEmpty(value) {
-    if (value && (value.toString() === 'Invalid Date')) {
-      return true;
-    }
-    return super.isEmpty(value);
-  }
-
-  // This select component can handle multiple items on its own.
-  createWrapper() {
-    return false;
-=======
 
     // Add the validators date.
     this.validators.push('date');
@@ -205,6 +160,5 @@ export default class DateTimeComponent extends Input {
         sibling.focus();
       }
     }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }

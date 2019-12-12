@@ -64,13 +64,8 @@ const Harness = {
     formBuilderElement = document.createElement('div');
     document.body.appendChild(formBuilderElement);
     formBuilder = new WebformBuilder(formBuilderElement, options);
-<<<<<<< HEAD
-    formBuilder.form = { components: [] };
-    formBuilder.builderReady.then(done);
-=======
     formBuilder.form = {components: []};
     formBuilder.webform.ready.then(() => done());
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
 
   builderAfter() {
@@ -239,27 +234,10 @@ const Harness = {
     assert(element, `${name} input not found`);
     assert.equal(value, element.value);
   },
-  assertStringEqual(test) {
-    return function(value) {
-      /* eslint-disable no-irregular-whitespace */
-      return value.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,' ') ===
-        test.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,' ');
-      /* eslint-enable  no-irregular-whitespace */
-    };
-  },
   testSetInput(component, input, output, visible, index = 0) {
     component.setValue(input);
     assert.deepEqual(component.getValue(), output);
-<<<<<<< HEAD
-    if (typeof visible === 'function') {
-      assert(visible(component.inputs[index].value), 'Failed');
-    }
-    else {
-      assert.deepEqual(component.inputs[index].value, visible);
-    }
-=======
     assert.deepEqual(component.refs.input[index].value, visible);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return component;
   },
   testSubmission(form, submission, onChange) {
@@ -280,17 +258,11 @@ const Harness = {
     });
 
     onNext(form, 'change', () => {
-<<<<<<< HEAD
-      form.submit().catch(done);
-=======
       form.submit();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
 
     this.testSetGet(form, submission);
     assert.deepEqual(form.data, submission.data);
-<<<<<<< HEAD
-=======
   },
   testValid(component, value) {
     return new Promise((resolve, reject) => {
@@ -333,12 +305,11 @@ const Harness = {
       component.setValue(value);
       component.triggerChange();
     });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   testComponent(component, test, done) {
     let testBad = true;
     component.on('componentChange', (change) => {
-      const valid = component.checkValidity(null, true);
+      const valid = component.checkValidity();
       if (valid && !testBad) {
         assert.equal(change.value, test.good.value);
         done();
@@ -387,11 +358,7 @@ const Harness = {
     return form.nextPage();
   },
   testNumberBlur(cmp, inv, outv, display, index = 0) {
-<<<<<<< HEAD
-    const input = _.get(cmp, ['inputs', index], {});
-=======
     const input = _.get(cmp, ['refs', 'input', index], {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     input.value = inv;
     input.dispatchEvent(new Event('blur'));
     assert.strictEqual(cmp.getValueAt(index), outv);

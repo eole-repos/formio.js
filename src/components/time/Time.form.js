@@ -5,12 +5,6 @@ import TimeEditDisplay from './editForm/Time.edit.display';
 
 export default function(...extend) {
   return baseEditForm([
-<<<<<<< HEAD
-    {
-      key: 'display',
-      components: TimeEditDisplay
-    }
-=======
     {
       key: 'data',
       components: TimeEditData,
@@ -19,6 +13,5 @@ export default function(...extend) {
       key: 'display',
       components: TimeEditDisplay,
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ], ...extend);
 }

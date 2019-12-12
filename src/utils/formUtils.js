@@ -10,12 +10,7 @@ import isPlainObject from 'lodash/isPlainObject';
 import round from 'lodash/round';
 import chunk from 'lodash/chunk';
 import pad from 'lodash/pad';
-<<<<<<< HEAD
-import findIndex from 'lodash/findIndex';
-import jsonpatch from 'fast-json-patch';
-=======
 import { compare, applyPatch } from 'fast-json-patch';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 /**
  * Determine if a component is a layout component or not.
@@ -193,40 +188,6 @@ export function findComponents(components, query) {
   return searchComponents(components, query);
 }
 
-<<<<<<< HEAD
-let possibleFind = null;
-let possiblePath = [];
-let unknownCounter = {};
-const checkComponent = function(component, key, path) {
-  // Search for components without a key as well.
-  if (!component.key) {
-    if (!unknownCounter.hasOwnProperty(component.type)) {
-      unknownCounter[component.type] = 0;
-    }
-    unknownCounter[component.type]++;
-    if (key === component.type + unknownCounter[component.type]) {
-      possibleFind = component;
-      possiblePath = clone(path);
-    }
-  }
-  else if (possibleFind && (component.key === possibleFind.key)) {
-    const nextCount = component.key.match(/([0-9]+)$/g);
-    if (nextCount) {
-      unknownCounter[component.type] = parseInt(nextCount.pop(), 10);
-      possibleFind = null;
-      possiblePath = [];
-    }
-  }
-
-  if (component.key === key) {
-    return true;
-  }
-
-  return false;
-};
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 /**
  * This function will find a component in a form and return the component AND THE PATH to the component in the form.
  *
@@ -234,28 +195,6 @@ const checkComponent = function(component, key, path) {
  * @param key
  * @param fn
  * @param path
-<<<<<<< HEAD
- * @returns boolean - If the component was found.
- */
-export function findComponent(components, key, path, fn) {
-  if (!components || !key) {
-    return false;
-  }
-  if (typeof path === 'function') {
-    fn = path;
-    path = [];
-  }
-
-  path = path || [];
-  if (!path.length) {
-    // Reset search params.
-    possibleFind = null;
-    possiblePath = [];
-    unknownCounter = {};
-  }
-
-  let found = false;
-=======
  * @returns {*}
  */
 export function findComponent(components, key, path, fn) {
@@ -266,7 +205,6 @@ export function findComponent(components, key, path, fn) {
     return fn(components);
   }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   components.forEach(function(component, index) {
     var newPath = path.slice();
     newPath.push(index);
@@ -277,19 +215,8 @@ export function findComponent(components, key, path, fn) {
       component.columns.forEach(function(column, index) {
         var colPath = newPath.slice();
         colPath.push(index);
-<<<<<<< HEAD
-        column.type = 'column';
-        if (checkComponent(column, key, colPath)) {
-          found = true;
-          fn(column, colPath);
-        }
-        else if (findComponent(column.components, key, colPath.concat(['components']), fn)) {
-          found = true;
-        }
-=======
         colPath.push('components');
         findComponent(column.components, key, colPath, fn);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     }
 
@@ -301,47 +228,12 @@ export function findComponent(components, key, path, fn) {
         row.forEach(function(column, index) {
           var colPath = rowPath.slice();
           colPath.push(index);
-<<<<<<< HEAD
-          column.type = 'cell';
-          if (checkComponent(column, key, colPath)) {
-            found = true;
-            fn(column, colPath);
-          }
-          else if (findComponent(column.components, key, colPath.concat(['components']), fn)) {
-            found = true;
-          }
-=======
           colPath.push('components');
           findComponent(column.components, key, colPath, fn);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         });
       });
     }
 
-<<<<<<< HEAD
-    if (
-      component.hasOwnProperty('components') && Array.isArray(component.components) &&
-      findComponent(component.components, key, newPath.concat(['components']), fn)
-    ) {
-      found = true;
-    }
-
-    // Check this component.
-    if (checkComponent(component, key, newPath)) {
-      found = true;
-      fn(component, newPath);
-    }
-  });
-
-  // If the component was not found BUT there was a possibility then return it.
-  if (!path.length && !found && possibleFind) {
-    found = true;
-    fn(possibleFind, possiblePath);
-  }
-
-  // Return if this if found.
-  return found;
-=======
     if (component.hasOwnProperty('components') && Array.isArray(component.components)) {
       newPath.push('components');
       findComponent(component.components, key, newPath, fn);
@@ -351,7 +243,6 @@ export function findComponent(components, key, path, fn) {
       fn(component, newPath);
     }
   });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 /**
@@ -370,40 +261,23 @@ export function removeComponent(components, path) {
 }
 
 export function generateFormChange(type, data) {
-<<<<<<< HEAD
-  let change = null;
-  const schema = data.schema;
-=======
   let change;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   switch (type) {
     case 'add':
       change = {
         op: 'add',
-<<<<<<< HEAD
-        key: schema.key,
-        container: data.parent.key,
-        index: findIndex(data.parent.components, { id: data.id }),
-        component: schema
-=======
         key: data.component.key,
         container: data.parent.key, // Parent component
         path: data.path, // Path to container within parent component.
         index: data.index, // Index of component in parent container.
         component: data.component
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
       break;
     case 'edit':
       change = {
         op: 'edit',
-<<<<<<< HEAD
-        key: schema.key,
-        patches: jsonpatch.compare(data.originalComponent, schema)
-=======
         key: data.originalComponent.key,
         patches: compare(data.originalComponent, data.component)
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
 
       // Don't save if nothing changed.
@@ -414,11 +288,7 @@ export function generateFormChange(type, data) {
     case 'remove':
       change = {
         op: 'remove',
-<<<<<<< HEAD
-        key: schema.key,
-=======
         key: data.component.key,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
       break;
   }
@@ -426,17 +296,6 @@ export function generateFormChange(type, data) {
   return change;
 }
 
-<<<<<<< HEAD
-// Get the parent component provided a component key.
-const getParent = function(form, key, fn) {
-  if (!findComponent(form.components, key, null, fn)) {
-    // Return the root form if no parent is found so it will add the component to the root form.
-    fn(form);
-  }
-};
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 export function applyFormChanges(form, changes) {
   const failed = [];
   changes.forEach(function(change) {
@@ -444,9 +303,6 @@ export function applyFormChanges(form, changes) {
     switch (change.op) {
       case 'add':
         var newComponent = change.component;
-<<<<<<< HEAD
-        getParent(form, change.container, function(parent) {
-=======
 
         // Find the container to set the component in.
         findComponent(form.components, change.container, null, function(parent) {
@@ -454,7 +310,6 @@ export function applyFormChanges(form, changes) {
             parent = form;
           }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           // A move will first run an add so remove any existing components with matching key before inserting.
           findComponent(form.components, change.key, null, function(component, path) {
             // If found, use the existing component. (If someone else edited it, the changes would be here)
@@ -463,12 +318,8 @@ export function applyFormChanges(form, changes) {
           });
 
           found = true;
-<<<<<<< HEAD
-          parent.components.splice(change.index, 0, newComponent);
-=======
           var container = get(parent, change.path);
           container.splice(change.index, 0, newComponent);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         });
         break;
       case 'remove':
@@ -481,11 +332,7 @@ export function applyFormChanges(form, changes) {
         findComponent(form.components, change.key, null, function(component, path) {
           found = true;
           try {
-<<<<<<< HEAD
-            set(form.components, path, jsonpatch.applyPatch(component, change.patches).newDocument);
-=======
             set(form.components, path, applyPatch(component, change.patches).newDocument);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           }
           catch (err) {
             failed.push(change);
@@ -714,11 +561,7 @@ export function getStrings(form) {
     }
 
     if (component.type === 'editgrid') {
-<<<<<<< HEAD
-      const string = this.component.addAnother || 'Add Another';
-=======
       const string = component.addAnother || 'Add Another';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (component.addAnother) {
         strings.push({
           key: component.key,

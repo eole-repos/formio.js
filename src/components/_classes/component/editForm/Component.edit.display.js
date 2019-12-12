@@ -70,73 +70,23 @@ export default [
     input: true,
     key: 'tabindex',
     label: 'Tab Index',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.display.js
-    placeholder: 'Tab Index',
-    tooltip: 'Sets the tabindex attribute of this component to override the tab order of the form. See the <a href=\\\'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\\\'>MDN documentation</a> on tabindex for more information.'
-  },
-  {
-    weight: 700,
-    type: 'radio',
-    label: 'Persistent',
-    tooltip: 'A persistent field will be stored in database when the form is submitted.',
-    key: 'persistent',
-    input: true,
-    inline: true,
-    values: [
-      { label: 'None', value: false },
-      { label: 'Server', value: true },
-      { label: 'Client', value: 'client-only' },
-    ]
-  },
-  {
-    weight: 800,
-    type: 'checkbox',
-    label: 'Multiple Values',
-    tooltip: 'Allows multiple values to be entered for this field.',
-    key: 'multiple',
-    input: true
-  },
-  {
-    weight: 805,
-    type: 'checkbox',
-    label: 'Allow Reordering',
-    tooltip: 'Allows changing order of multiple values using drag and drop',
-    key: 'reorder',
-    customConditional(context) {
-      return !!context.data.multiple || context.data.type === 'datagrid' || context.data.type === 'editgrid';
-    },
-    input: true
-=======
     placeholder: '0',
     tooltip: 'Sets the tabindex attribute of this component to override the tab order of the form. See the <a href=\'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\'>MDN documentation</a> on tabindex for more information.'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.display.js
   },
   {
     weight: 1100,
     type: 'checkbox',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.display.js
-    label: 'Clear Value When Hidden',
-    key: 'clearOnHide',
-    tooltip: 'When a field is hidden, clear the value.',
-=======
     label: 'Hidden',
     tooltip: 'A hidden field is still a part of the form, but is hidden from view.',
     key: 'hidden',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.display.js
     input: true
   },
   {
     weight: 1200,
     type: 'checkbox',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.display.js
-    label: 'Protected',
-    tooltip: 'A protected field will not be returned when queried via API.',
-    key: 'protected',
-=======
     label: 'Hide Label',
     tooltip: 'Hide the label of this component. This allows you to show the label in the form builder, but not when it is rendered.',
     key: 'hideLabel',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.display.js
     input: true
   },
   {
@@ -159,17 +109,6 @@ export default [
     }
   },
   {
-    weight: 1310,
-    type: 'checkbox',
-    label: 'Show Label in DataGrid',
-    tooltip: 'Show the label when in a Datagrid.',
-    key: 'dataGridLabel',
-    input: true,
-    customConditional(context) {
-      return context.instance.root.editComponent.inDataGrid;
-    }
-  },
-  {
     weight: 1400,
     type: 'checkbox',
     label: 'Disabled',
@@ -185,16 +124,5 @@ export default [
     key: 'tableView',
     input: true
   },
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.display.js
-  {
-    weight: 1550,
-    type: 'checkbox',
-    label: 'Always enabled',
-    tooltip: 'Make this field always enabled, even if the form is disabled',
-    key: 'alwaysEnabled',
-    input: true
-  }
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.display.js
 ];
 /* eslint-enable max-len */

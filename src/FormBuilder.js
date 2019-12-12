@@ -8,24 +8,9 @@ export default class FormBuilder extends Form {
     super(element, form, Object.assign(options, FormBuilder.options));
   }
 
-<<<<<<< HEAD
-  create() {
-    if (!this.form) {
-      this.form = {};
-    }
-    if (!this.form.components) {
-      this.form.components = [];
-    }
-    if (this.form.display === 'wizard') {
-      return new WizardBuilder(this.element, this.options);
-    }
-    else if (this.form.display === 'pdf') {
-      return new PDFBuilder(this.element, this.options);
-=======
   create(display) {
     if (Builders.builders[display]) {
       return new Builders.builders[display](this.element, this.options);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     else {
       // eslint-disable-next-line new-cap

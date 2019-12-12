@@ -165,10 +165,6 @@ describe('EditGrid Component', () => {
       Harness.testElements(component, 'div.editgrid-actions button.btn-primary', 1);
       Harness.testElements(component, 'div.editgrid-actions button.btn-danger', 1);
       assert(!component.checkValidity(component.getValue(), true), 'Item should not be valid');
-<<<<<<< HEAD:src/components/editgrid/EditGrid.spec.js
-      done();
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/editgrid/EditGrid.unit.js
     });
   });
 
@@ -240,15 +236,9 @@ describe('EditGrid Component', () => {
     });
   });
 
-<<<<<<< HEAD:src/components/editgrid/EditGrid.spec.js
-  it('Should not allow saving when errors exist', done => {
-    Harness.testCreate(EditGridComponent, comp1).then((component) => {
-      Harness.clickElement(component, 'div.editgrid-add button');
-=======
   it('Should not allow saving when errors exist', () => {
     return Harness.testCreate(EditGridComponent, comp1).then((component) => {
       Harness.clickElement(component, 'button.btn-primary');
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/editgrid/EditGrid.unit.js
       Harness.clickElement(component, 'div.editgrid-actions button.btn-primary');
       Harness.getInputValue(component, 'data[editgrid][0][field1]', '');
       Harness.getInputValue(component, 'data[editgrid][0][field2]', '');
@@ -292,10 +282,6 @@ describe('EditGrid Component', () => {
       assert(!component.checkValidity(component.getValue(), true), 'Item should not be valid');
       Harness.clickElement(component, 'div.editgrid-actions button.btn-danger');
       assert(component.checkValidity(component.getValue(), true), 'Item should be valid');
-<<<<<<< HEAD:src/components/editgrid/EditGrid.spec.js
-      done();
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/editgrid/EditGrid.unit.js
     });
   });
 
@@ -315,10 +301,6 @@ describe('EditGrid Component', () => {
       Harness.testInnerHtml(component, 'li.list-group-header div.row div:nth-child(3)', '2');
       Harness.clickElement(component, 'li.list-group-item:nth-child(3) div.editRow');
       Harness.testInnerHtml(component, 'li.list-group-header div.row div:nth-child(3)', '2');
-<<<<<<< HEAD:src/components/editgrid/EditGrid.spec.js
-      done();
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/editgrid/EditGrid.unit.js
     });
   });
 

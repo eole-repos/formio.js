@@ -32,27 +32,6 @@ export default class FieldsetComponent extends NestedComponent {
     return `form-group ${super.className}`;
   }
 
-<<<<<<< HEAD
-  build(state) {
-    this.element = this.ce('fieldset', {
-      id: this.id,
-      class: this.className
-    });
-    if (this.component.legend) {
-      const legend = this.ce('legend');
-      legend.appendChild(this.text(this.component.legend));
-      this.createTooltip(legend);
-      this.setCollapseHeader(legend);
-      this.element.appendChild(legend);
-    }
-    this.body = this.ce('div', {
-      class: 'card-body'
-    });
-    this.addComponents(null, null, null, state);
-    this.element.appendChild(this.body);
-    this.setCollapsed();
-    this.attachLogic();
-=======
   get templateName() {
     return 'fieldset';
   }
@@ -60,6 +39,5 @@ export default class FieldsetComponent extends NestedComponent {
   constructor(...args) {
     super(...args);
     this.noField = true;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }

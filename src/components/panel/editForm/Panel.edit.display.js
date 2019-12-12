@@ -1,7 +1,5 @@
 export default [
   {
-<<<<<<< HEAD
-=======
     key: 'labelPosition',
     ignore: true
   },
@@ -22,7 +20,6 @@ export default [
     ignore: true
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     key: 'label',
     hidden: true,
     calculateValue(context) {
@@ -30,13 +27,10 @@ export default [
     }
   },
   {
-<<<<<<< HEAD
-=======
     key: 'tabindex',
     hidden: true,
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     weight: 1,
     type: 'textfield',
     input: true,
@@ -132,11 +126,7 @@ export default [
       }
     ],
     customConditional(context) {
-<<<<<<< HEAD
-      return context.instance.root.editForm.display === 'wizard';
-=======
       return context.instance.options.editForm.display === 'wizard';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   },
   {
@@ -156,20 +146,6 @@ export default [
     input: true,
     conditional: {
       json: { '===': [{ var: 'data.collapsible' }, true] }
-<<<<<<< HEAD
-    }
-  },
-  {
-    weight: 652,
-    type: 'checkbox',
-    label: 'Lazy Load Contents',
-    tooltip: 'Lazy loads the contents only when the panel is opened.',
-    key: 'lazyLoad',
-    input: true,
-    conditional: {
-      json: { '===': [{ var: 'data.collapsed' }, true] }
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   }
 ];

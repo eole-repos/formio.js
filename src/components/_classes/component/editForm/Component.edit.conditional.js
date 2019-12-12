@@ -30,20 +30,7 @@ export default [
         valueProperty: 'value',
         data: {
           custom(context) {
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.conditional.js
-            var values = [];
-            context.utils.eachComponent(context.instance.root.editForm.components, function(component) {
-              if (component.key !== context.data.key) {
-                values.push({
-                  label: component.label || component.key,
-                  value: component.key
-                });
-              }
-            });
-            return values;
-=======
             return getContextComponents(context);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.conditional.js
           }
         }
       },

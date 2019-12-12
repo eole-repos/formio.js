@@ -17,8 +17,6 @@ export default [
     calculateValue(context) {
       return context.data.enableRowGroups ? true : context.data.disableAddingRemovingRows;
     },
-<<<<<<< HEAD
-=======
   },
   {
     type: 'checkbox',
@@ -26,7 +24,6 @@ export default [
     key: 'reorder',
     weight: 407,
     input: true,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'textfield',
@@ -61,27 +58,6 @@ export default [
     }
   },
   {
-<<<<<<< HEAD
-    type: 'select',
-    label: 'Remove Button Placement',
-    key: 'removePlacement',
-    defaultValue: 'col',
-    dataSrc: 'values',
-    data: {
-      values: [
-        { label: 'Right Most Column', value: 'col' },
-        { label: 'Row Top-Right corner', value: 'corner' },
-      ]
-    },
-    weight: 412,
-    input: true,
-    customConditional(context) {
-      return !context.data.disableAddingRemovingRows;
-    }
-  },
-  {
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'checkbox',
     label: 'Default Open Rows',
     key: 'defaultOpen',
@@ -115,10 +91,7 @@ export default [
     type: 'datagrid',
     input: true,
     key: 'rowGroups',
-<<<<<<< HEAD
-=======
     reorder: true,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     components: [
       {
         label: 'Label',

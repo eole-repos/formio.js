@@ -10,8 +10,6 @@ export default function(...extend) {
       components: HTMLEditDisplay,
     },
     {
-<<<<<<< HEAD
-=======
       key: 'data',
       ignore: true,
     },
@@ -20,7 +18,6 @@ export default function(...extend) {
       ignore: true,
     },
     {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       key: 'logic',
       components: HTMLEditLogic,
     },

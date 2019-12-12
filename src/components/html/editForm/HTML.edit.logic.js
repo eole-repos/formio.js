@@ -87,11 +87,7 @@ export default [
                     context.row.hasOwnProperty('property') &&
                     context.row.property.type === 'string' &&
                     context.row.property.component === 'content';
-<<<<<<< HEAD
-                }
-=======
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
               },
             ],
           },

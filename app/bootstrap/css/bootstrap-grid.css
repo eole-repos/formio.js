@@ -1,9 +1,5 @@
 /*!
-<<<<<<< HEAD
- * Bootstrap Grid v4.3.1 (https://getbootstrap.com/)
-=======
  * Bootstrap Grid v4.4.1 (https://getbootstrap.com/)
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -51,11 +47,7 @@ html {
   }
 }
 
-<<<<<<< HEAD
-.container-fluid {
-=======
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -63,8 +55,6 @@ html {
   margin-left: auto;
 }
 
-<<<<<<< HEAD
-=======
 @media (min-width: 576px) {
   .container, .container-sm {
     max-width: 540px;
@@ -89,7 +79,6 @@ html {
   }
 }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -130,8 +119,6 @@ html {
   max-width: 100%;
 }
 
-<<<<<<< HEAD
-=======
 .row-cols-1 > * {
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
@@ -168,7 +155,6 @@ html {
   max-width: 16.666667%;
 }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .col-auto {
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -375,8 +361,6 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
-<<<<<<< HEAD
-=======
   .row-cols-sm-1 > * {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
@@ -407,7 +391,6 @@ html {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   .col-sm-auto {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -580,8 +563,6 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
-<<<<<<< HEAD
-=======
   .row-cols-md-1 > * {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
@@ -612,7 +593,6 @@ html {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   .col-md-auto {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -785,8 +765,6 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
-<<<<<<< HEAD
-=======
   .row-cols-lg-1 > * {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
@@ -817,7 +795,6 @@ html {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   .col-lg-auto {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -990,8 +967,6 @@ html {
     flex-grow: 1;
     max-width: 100%;
   }
-<<<<<<< HEAD
-=======
   .row-cols-xl-1 > * {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
@@ -1022,7 +997,6 @@ html {
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   .col-xl-auto {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;

@@ -2,11 +2,7 @@ import Component from '../_classes/component/Component';
 
 export default class HTMLComponent extends Component {
   static schema(...extend) {
-<<<<<<< HEAD
-    return BaseComponent.schema({
-=======
     return Component.schema({
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       label: 'HTML',
       type: 'htmlelement',
       tag: 'p',
@@ -32,28 +28,6 @@ export default class HTMLComponent extends Component {
     return HTMLComponent.schema();
   }
 
-<<<<<<< HEAD
-  setHTML() {
-    this.htmlElement.innerHTML = this.interpolate(this.component.content);
-  }
-
-  build() {
-    this.createElement();
-    this.htmlElement = this.ce(this.component.tag, {
-      id: this.id,
-      class: this.component.className
-    });
-    _.each(this.component.attrs, (attr) => {
-      if (attr.attr) {
-        this.htmlElement.setAttribute(attr.attr, this.interpolate(attr.value));
-      }
-    });
-    if (this.component.content) {
-      this.setHTML();
-    }
-    if (this.component.refreshOnChange) {
-      this.on('change', () => this.setHTML(), true);
-=======
   get content() {
     return this.component.content ? this.interpolate(this.component.content, {
       data: this.rootValue,
@@ -69,10 +43,7 @@ export default class HTMLComponent extends Component {
     super.checkRefreshOn(changed);
     if (this.component.refreshOnChange && this.refs.html) {
       this.setContent(this.refs.html, this.content);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
-    this.element.appendChild(this.htmlElement);
-    this.attachLogic();
   }
 
   renderContent() {

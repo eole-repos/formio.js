@@ -20,9 +20,6 @@ export default function(...extend) {
     {
       key: 'validation',
       components: DayEditValidation
-<<<<<<< HEAD
-    }
-=======
     },
     {
       key: 'day',
@@ -42,6 +39,5 @@ export default function(...extend) {
       weight: 3,
       components: DayEditYear
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ], ...extend);
 }

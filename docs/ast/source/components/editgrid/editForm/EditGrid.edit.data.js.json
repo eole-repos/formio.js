@@ -1,44 +1,28 @@
 {
   "type": "File",
   "start": 0,
-<<<<<<< HEAD
-  "end": 345,
-=======
   "end": 392,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-<<<<<<< HEAD
-      "line": 15,
-=======
       "line": 19,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-<<<<<<< HEAD
-    "end": 345,
-=======
     "end": 392,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-<<<<<<< HEAD
-        "line": 15,
-=======
         "line": 19,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         "column": 0
       }
     },
@@ -47,44 +31,28 @@
       {
         "type": "ExportDefaultDeclaration",
         "start": 0,
-<<<<<<< HEAD
-        "end": 344,
-=======
         "end": 391,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         "loc": {
           "start": {
             "line": 1,
             "column": 0
           },
           "end": {
-<<<<<<< HEAD
-            "line": 14,
-=======
             "line": 18,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             "column": 2
           }
         },
         "declaration": {
           "type": "ArrayExpression",
           "start": 15,
-<<<<<<< HEAD
-          "end": 343,
-=======
           "end": 390,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "loc": {
             "start": {
               "line": 1,
               "column": 15
             },
             "end": {
-<<<<<<< HEAD
-              "line": 14,
-=======
               "line": 18,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
               "column": 1
             }
           },
@@ -554,8 +522,6 @@
                   }
                 }
               ]
-<<<<<<< HEAD
-=======
             },
             {
               "type": "ObjectExpression",
@@ -679,7 +645,6 @@
                   }
                 }
               ]
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             }
           ],
           "leadingComments": [],
@@ -1769,8 +1734,6 @@
     },
     {
       "type": {
-<<<<<<< HEAD
-=======
         "label": "{",
         "beforeExpr": true,
         "startsExpr": true,
@@ -2032,7 +1995,6 @@
     },
     {
       "type": {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         "label": "]",
         "beforeExpr": false,
         "startsExpr": false,
@@ -2044,17 +2006,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 342,
-      "end": 343,
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 0
-        },
-        "end": {
-          "line": 14,
-=======
       "start": 389,
       "end": 390,
       "loc": {
@@ -2064,7 +2015,6 @@
         },
         "end": {
           "line": 18,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 1
         }
       }
@@ -2082,17 +2032,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 343,
-      "end": 344,
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 1
-        },
-        "end": {
-          "line": 14,
-=======
       "start": 390,
       "end": 391,
       "loc": {
@@ -2102,7 +2041,6 @@
         },
         "end": {
           "line": 18,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 2
         }
       }
@@ -2120,17 +2058,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 345,
-      "end": 345,
-      "loc": {
-        "start": {
-          "line": 15,
-          "column": 0
-        },
-        "end": {
-          "line": 15,
-=======
       "start": 392,
       "end": 392,
       "loc": {
@@ -2140,7 +2067,6 @@
         },
         "end": {
           "line": 19,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 0
         }
       }

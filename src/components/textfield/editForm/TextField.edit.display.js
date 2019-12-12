@@ -2,33 +2,22 @@ import Widgets from '../../../widgets';
 import _ from 'lodash';
 export default [
   {
-<<<<<<< HEAD
-    weight: 50,
-=======
     weight: 400,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'select',
     input: true,
     key: 'widget.type',
     label: 'Widget',
     placeholder: 'Select a widget',
     tooltip: 'The widget is the display UI used to input the value of the field.',
-<<<<<<< HEAD
-=======
     defaultValue: 'input',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     onChange: (context) => {
       context.data.widget = _.pick(context.data.widget, 'type');
     },
     dataSrc: 'values',
     data: {
       values: [
-<<<<<<< HEAD
-        { label: 'Calendar', value: 'calendar' }
-=======
         { label: 'Input Field', value: 'input' },
         { label: 'Calendar Picker', value: 'calendar' },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       ]
     },
     conditional: {
@@ -36,19 +25,6 @@ export default [
     }
   },
   {
-<<<<<<< HEAD
-    weight: 55,
-    type: 'textarea',
-    key: 'widget',
-    label: 'Widget Settings',
-    calculateValue: (context) => {
-      if (_.isEmpty(_.omit(context.data.widget, 'type'))) {
-        let settings = {};
-        if (context.data.widget && context.data.widget.type) {
-          settings = Widgets[context.data.widget.type].defaultSettings;
-        }
-        return settings;
-=======
     weight: 405,
     type: 'textarea',
     key: 'widget',
@@ -75,7 +51,6 @@ export default [
         else if (type) {
           return _.omit(Widgets[type].defaultSettings, 'language');
         }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
       return context.data.widget;
     },
@@ -84,11 +59,7 @@ export default [
     editor: 'ace',
     as: 'json',
     conditional: {
-<<<<<<< HEAD
-      json: { '!!': { var: 'data.widget.type' } }
-=======
       json: { '!==': [{ var: 'data.widget.type' }, 'input'] }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   },
   {
@@ -157,21 +128,6 @@ export default [
     label: 'Suffix'
   },
   {
-<<<<<<< HEAD
-    weight: 710,
-    type: 'checkbox',
-    input: true,
-    key: 'showWordCount',
-    label: 'Show Word Counter'
-  },
-  {
-    weight: 720,
-    type: 'checkbox',
-    input: true,
-    key: 'showCharCount',
-    label: 'Show Character Counter'
-  }
-=======
     weight: 1300,
     type: 'checkbox',
     label: 'Hide Input',
@@ -195,5 +151,4 @@ export default [
     key: 'showCharCount',
     input: true
   },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 ];

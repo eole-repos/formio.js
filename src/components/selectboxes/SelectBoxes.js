@@ -22,12 +22,6 @@ export default class SelectBoxesComponent extends RadioComponent {
     };
   }
 
-<<<<<<< HEAD
-  constructor(component, options, data) {
-    super(component, options, data);
-
-    this.validators = this.validators.concat(['minSelectedCount', 'maxSelectedCount']);
-=======
   constructor(...args) {
     super(...args);
     this.validators = this.validators.concat('minSelectedCount', 'maxSelectedCount');
@@ -35,7 +29,6 @@ export default class SelectBoxesComponent extends RadioComponent {
 
   init() {
     super.init();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     this.component.inputType = 'checkbox';
   }
 
@@ -105,10 +98,6 @@ export default class SelectBoxesComponent extends RadioComponent {
         value = {};
       }
     }
-<<<<<<< HEAD
-    flags = this.getFlags.apply(this, arguments);
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     if (Array.isArray(value)) {
       _.each(value, (val) => {
         value[val] = true;
@@ -133,49 +122,7 @@ export default class SelectBoxesComponent extends RadioComponent {
       }
       input.checked = !!value[input.value];
     });
-<<<<<<< HEAD
-
-    return this.updateValue(flags);
-  }
-
-  checkValidity(data, dirty, rowData) {
-    const maxCount = this.component.validate.maxSelectedCount;
-
-    if (maxCount) {
-      const count = Object.keys(this.validationValue).reduce((total, key) =>{
-        if (this.validationValue[key]) {
-          total++;
-        }
-        return total;
-      }, 0);
-
-      if (count >= maxCount) {
-        this.inputs.forEach(item => {
-          if (!item.checked) {
-            item.disabled = true;
-          }
-        });
-        const message = this.component.maxSelectedCountMessage
-          ? this.component.maxSelectedCountMessage
-          : `You can only select up to ${maxCount} items to continue.`;
-        this.setCustomValidity(message);
-        return false;
-      }
-      else {
-        this.inputs.forEach(item => {
-          item.disabled = false;
-        });
-      }
-    }
-
-    return super.checkValidity(data, dirty, rowData);
-  }
-
-  get validationValue() {
-    return super.validationValue;
-=======
     return changed;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   getValueAsString(value) {

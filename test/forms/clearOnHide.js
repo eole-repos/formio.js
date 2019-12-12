@@ -602,12 +602,7 @@ export default {
   },
   tests: {
     'Test starting hidden'(form, done) {
-<<<<<<< HEAD
-      form.checkConditions(form.getValue());
-      assert.deepEqual(_.omit(form.getValue(), ['metadata']), hiddenData);
-=======
       assert.deepEqual(form.getValue(), hiddenData);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       done();
     },
     'Test starting visible'(form, done) {

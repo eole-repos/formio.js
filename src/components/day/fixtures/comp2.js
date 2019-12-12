@@ -19,11 +19,7 @@ export default {
     'year': {
       'required': true,
       'placeholder': '',
-<<<<<<< HEAD
-      'type': 'text'
-=======
       'type': 'number'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     },
     'month': {
       'required': true,
@@ -33,11 +29,7 @@ export default {
     'day': {
       'required': true,
       'placeholder': '',
-<<<<<<< HEAD
-      'type': 'text'
-=======
       'type': 'number'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   },
   'key': 'date',

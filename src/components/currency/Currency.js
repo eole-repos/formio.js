@@ -43,11 +43,6 @@ export default class CurrencyComponent extends NumberComponent {
       decimalLimit: decimalLimit,
       decimalSeparator: this.decimalSeparator,
       lang: this.options.language
-<<<<<<< HEAD
-    });
-    this.prefix = this.options.prefix || affixes.prefix;
-    this.suffix = this.options.suffix || affixes.suffix;
-=======
     });
     this.prefix = this.options.prefix || affixes.prefix;
     this.suffix = this.options.suffix || affixes.suffix;
@@ -60,7 +55,6 @@ export default class CurrencyComponent extends NumberComponent {
       allowNegative: _.get(this.component, 'allowNegative', true),
       allowDecimal: _.get(this.component, 'allowDecimal', true)
     });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   get defaultSchema() {

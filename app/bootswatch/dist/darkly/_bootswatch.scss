@@ -15,18 +15,12 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
   }
 }
 
-<<<<<<< HEAD
-.bg-dark {
-  background-color: $success !important;
-  &.navbar-dark .navbar-nav {
-=======
 .bg-light {
   &.navbar {
     background-color: $success !important;
   }
 
   &.navbar-light .navbar-nav {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     .nav-link:focus,
     .nav-link:hover,
     .active > .nav-link {

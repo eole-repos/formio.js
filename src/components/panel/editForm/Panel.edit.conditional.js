@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import EditFormUtils from '../../base/editForm/utils';
-=======
 import EditFormUtils from '../../_classes/component/editForm/utils';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 /* eslint-disable quotes, max-len */
 const title = 'Advanced Next Page';
 const jsonProp = 'nextPage';
@@ -30,11 +26,7 @@ export default [
   {
     ...settingComponent,
     customConditional(context) {
-<<<<<<< HEAD
-      return context.instance.root.editForm.display === 'wizard';
-=======
       return context.instance.options.editForm.display === 'wizard';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   }
 ];

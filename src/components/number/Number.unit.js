@@ -7,12 +7,7 @@ import NumberComponent from './Number';
 import {
   comp1,
   comp2,
-<<<<<<< HEAD:src/components/number/Number.spec.js
-  comp3,
-  comp4
-=======
   comp3
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/number/Number.unit.js
 } from './fixtures';
 
 describe('Number Component', () => {
@@ -105,30 +100,13 @@ describe('Number Component', () => {
     });
   });
 
-<<<<<<< HEAD:src/components/number/Number.spec.js
-  it('Should format numbers for French locale', (done) => {
-    Harness.testCreate(NumberComponent, comp2, { language: 'fr' }).then((component) => {
-=======
   it('Should format numbers for French locale', () => {
     return Harness.testCreate(NumberComponent, comp2, { language: 'fr' }).then((component) => {
       // The spaces in these tests are a weird unicode space so be careful duplicating the tests.
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/number/Number.unit.js
       Harness.testSetInput(component, null, null, '');
       Harness.testSetInput(component, 0, 0, '0');
       Harness.testSetInput(component, 1, 1, '1');
       Harness.testSetInput(component, -1, -1, '-1');
-<<<<<<< HEAD:src/components/number/Number.spec.js
-      Harness.testSetInput(component, 1000, 1000, Harness.assertStringEqual('1 000'));
-      Harness.testSetInput(component, -1000, -1000, Harness.assertStringEqual('-1 000'));
-      Harness.testSetInput(component, 1000.00, 1000, Harness.assertStringEqual('1 000'));
-      Harness.testSetInput(component, -1000.00, -1000, Harness.assertStringEqual('-1 000'));
-      Harness.testSetInput(component, 1000.01, 1000.01, Harness.assertStringEqual('1 000,01'));
-      Harness.testSetInput(component, -1000.01, -1000.01, Harness.assertStringEqual('-1 000,01'));
-      Harness.testSetInput(component, 1000.001, 1000.001, Harness.assertStringEqual('1 000,001'));
-      Harness.testSetInput(component, -1000.001, -1000.001, Harness.assertStringEqual('-1 000,001'));
-      Harness.testSetInput(component, 1234567890.12, 1234567890.12, Harness.assertStringEqual('1 234 567 890,12'));
-      Harness.testSetInput(component, -1234567890.12, -1234567890.12, Harness.assertStringEqual('-1 234 567 890,12'));
-=======
       Harness.testSetInput(component, 1000, 1000, '1 000');
       Harness.testSetInput(component, -1000, -1000, '-1 000');
       Harness.testSetInput(component, 1000.00, 1000, '1 000');
@@ -139,7 +117,6 @@ describe('Number Component', () => {
       Harness.testSetInput(component, -1000.001, -1000.001, '-1 000,001');
       Harness.testSetInput(component, 1234567890.12, 1234567890.12, '1 234 567 890,12');
       Harness.testSetInput(component, -1234567890.12, -1234567890.12, '-1 234 567 890,12');
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/number/Number.unit.js
       Harness.testSetInput(component, 12.123456789, 12.123456789, '12,123456789');
       Harness.testSetInput(component, -12.123456789, -12.123456789, '-12,123456789');
     });
@@ -166,16 +143,6 @@ describe('Number Component', () => {
     });
   });
 
-<<<<<<< HEAD:src/components/number/Number.spec.js
-  it('Should display default integer value', (done) => {
-    Harness.testCreate(NumberComponent, comp3).then(number => {
-      assert.deepEqual(_.get(number, ['inputs', '0', 'value']), '42');
-      done();
-    });
-  });
-
-  it('Should display default decimal value', (done) => {
-=======
   it('Should display default integer value', () => {
     return Harness.testCreate(NumberComponent, comp3).then(number => {
       assert.deepEqual(_.get(number, ['refs', 'input', '0', 'value']), '42');
@@ -183,7 +150,6 @@ describe('Number Component', () => {
   });
 
   it('Should display default decimal value', () => {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/number/Number.unit.js
     const TEST_VAL = 4.2;
     const comp = _.cloneDeep(comp3);
 
@@ -191,107 +157,6 @@ describe('Number Component', () => {
     comp.decimalLimit = 2;
     comp.requireDecimal = true;
 
-<<<<<<< HEAD:src/components/number/Number.spec.js
-    Harness.testCreate(NumberComponent, comp).then(number => {
-      assert.deepEqual(_.get(number, ['inputs', '0', 'value']), '4.20');
-      done();
-    });
-  });
-
-  it('Should add trailing zeros on blur, if decimal required', (done) => {
-    const comp = _.cloneDeep(comp3);
-
-    comp.decimalLimit = 2;
-    comp.requireDecimal = true;
-
-    Harness.testCreate(NumberComponent, comp).then(number => {
-      const testset = [
-        // [inv, outv, display]
-        ['42',        42,       '42.00'],
-        ['42.1',      42.1,     '42.10'],
-        ['42.01',     42.01,    '42.01'],
-        ['4200',      4200,     '4200.00'],
-        ['4200.4',    4200.4,   '4200.40'],
-        ['4200.42',   4200.42,  '4200.42'],
-        ['4200.',     4200,     '4200.00'],
-        ['99999999.', 99999999, '99999999.00']
-      ];
-
-      testset.forEach((set, index) => {
-        try {
-          Harness.testNumberBlur(number, ...set);
-        }
-        catch (err) {
-          done(new Error(`Test case #${index}, set: ${set}, err: ${err.message}`));
-        }
-      });
-
-      done();
-    }, done);
-  });
-
-  it('Should add trailing zeros on blur, if decimal and delimiter is required', (done) => {
-    const comp = _.cloneDeep(comp3);
-
-    comp.decimalLimit = 2;
-    comp.requireDecimal = true;
-    comp.delimiter = true;
-
-    /* eslint-disable max-statements */
-    Harness.testCreate(NumberComponent, comp).then(number => {
-      const testset = [
-        // [inv, outv, display]
-        ['42',        42,       '42.00'],
-        ['42.1',      42.1,     '42.10'],
-        ['42.01',     42.01,    '42.01'],
-        ['4200',      4200,     '4,200.00'],
-        ['4200.4',    4200.4,   '4,200.40'],
-        ['4200.42',   4200.42,  '4,200.42'],
-        ['4200.',     4200,     '4,200.00'],
-        ['99999999.', 99999999, '99,999,999.00']
-      ];
-
-      testset.forEach((set, index) => {
-        try {
-          Harness.testNumberBlur(number, ...set);
-        }
-        catch (err) {
-          done(new Error(`Test case #${index}, set: ${set}, err: ${err.message}`));
-        }
-      });
-
-      done();
-    }, done);
-  });
-
-  it('Should add trailing zeros on blur with `multiple` flag', (done) => {
-    Harness.testCreate(NumberComponent, comp4).then(number => {
-      const testset = [
-        ['42',        42,       '42.00'],
-        ['42.1',      42.1,     '42.10'],
-        ['42.01',     42.01,    '42.01'],
-        ['4200',      4200,     '4,200.00'],
-        ['4200.4',    4200.4,   '4,200.40'],
-        ['4200.42',   4200.42,  '4,200.42'],
-        ['4200.',     4200,     '4,200.00'],
-        ['99999999.', 99999999, '99,999,999.00']
-      ];
-
-      testset.forEach((set, index) => {
-        try {
-          assert.strictEqual(number.inputs.length, index + 1);
-          Harness.testNumberBlur(number, ...set, index);
-          number.addValue();
-        }
-        catch (err) {
-          done(new Error(`Test case #${index}, set: ${set}, err: ${err.message}`));
-        }
-      });
-
-      done();
-    }, done);
-  });
-=======
     return Harness.testCreate(NumberComponent, comp).then(number => {
       assert.deepEqual(_.get(number, ['refs', 'input', '0', 'value']), '4.20');
     });
@@ -390,5 +255,4 @@ describe('Number Component', () => {
   //     done();
   //   }, done);
   // });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/number/Number.unit.js
 });

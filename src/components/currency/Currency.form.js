@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import baseEditForm from '../base/Base.form';
-import CurrencyEditDisplay from './editForm/Currency.edit.display';
-import CurrencyEditData from './editForm/Currency.edit.data';
-
-=======
 import baseEditForm from '../textfield/TextField.form';
 import CurrencyEditDisplay from './editForm/Currency.edit.display';
 import CurrencyEditData from './editForm/Currency.edit.data';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 export default function(...extend) {
   return baseEditForm([
     {
@@ -17,9 +10,6 @@ export default function(...extend) {
     {
       key: 'data',
       components: CurrencyEditData
-<<<<<<< HEAD
-    }
-=======
     },
     {
       key: 'validation',
@@ -46,6 +36,5 @@ export default function(...extend) {
         },
       ]
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ], ...extend);
 }

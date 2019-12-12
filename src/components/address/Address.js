@@ -50,15 +50,12 @@ export default class AddressComponent extends TextFieldComponent {
     return AddressComponent.schema();
   }
 
-<<<<<<< HEAD
-=======
   get inputInfo() {
     const info = super.inputInfo;
     info.attr.class += ' address-search';
     return info;
   }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   setValueAt(index, value, flags) {
     flags = flags || {};
     if (!flags.noDefault && (value === null || value === undefined)) {

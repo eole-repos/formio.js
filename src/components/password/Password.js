@@ -8,11 +8,7 @@ export default class PasswordComponent extends TextFieldComponent {
       label: 'Password',
       key: 'password',
       protected: true,
-<<<<<<< HEAD
-      tableView: false
-=======
       tableView: false,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }, ...extend);
   }
 

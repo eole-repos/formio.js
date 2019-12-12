@@ -1,24 +1,6 @@
 import Harness from '../../../test/harness';
-<<<<<<< HEAD:src/components/textfield/TextField.spec.js
-import TextFieldComponent from './TextField';
-import EventEmitter from '../../EventEmitter';
-
-import {
-  comp1
-} from './fixtures';
-
-describe('TextField Component', () => {
-  it('Should build a TextField component', (done) => {
-    Harness.testCreate(TextFieldComponent, comp1).then((component) => {
-      Harness.testElements(component, 'input[type="text"]', 1);
-      done();
-    });
-  });
-});
-=======
 import EventEmitter from '../../EventEmitter';
 import assert from 'power-assert';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/textfield/TextField.builder.spec.js
 
 describe('TextField Builder', () => {
   let builder = null;
@@ -46,21 +28,15 @@ describe('TextField Builder', () => {
       // Make sure default preview is correct.
       const preview = builder.componentPreview.innerHTML;
       assert(preview.indexOf('formio-component formio-component-textfield formio-component-textField') !== -1, 'Must have correct classes');
-<<<<<<< HEAD:src/components/textfield/TextField.spec.js
-      assert(preview.indexOf('<label class="control-label" style="" for="textField">Text Field</label>') !== -1, 'Must have a label');
-      assert(preview.indexOf('<input name="data[textField]" type="text" class="form-control" lang="en" id="textField"') !== -1, 'Must have an input');
-      done();
-=======
       assert(preview.indexOf('<label class="control-label" style="">Text Field</label>') !== -1, 'Must have a label');
       assert(preview.indexOf('<input name="data[textField]" type="text" class="form-control"') !== -1, 'Must have an input');
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/textfield/TextField.builder.spec.js
     });
   });
 
   it('Should allow you to change the label', (done) => {
     Harness.setComponentProperty('label', 'Text Field', 'First Name', (preview) => {
       assert(preview.match(/label.*input/), 'Label must be on top.');
-      assert(preview.indexOf('<label class="control-label" style="" for="textField2">First Name</label>') !== -1, 'Must have a label');
+      assert(preview.indexOf('<label class="control-label" style="">First Name</label>') !== -1, 'Must have a label');
       done();
     });
   });
@@ -147,11 +123,11 @@ describe('TextField Builder', () => {
   });
 
   it('Should set the prefix of the input', (done) => {
-    Harness.testBuilderProperty('prefix', '', '$', /div class="input-group">.*<div class="input-group-addon input-group-prepend">.*<span class="input-group-text">\$<\/span><\/div>.*input/, done);
+    Harness.testBuilderProperty('prefix', '', '$', /div class="input-group">.*<div class="input-group-addon">\$<\/div>.*input/, done);
   });
 
   it('Should set the suffix of the input', (done) => {
-    Harness.testBuilderProperty('suffix', '', 'USD', /div class="input-group">.*input.*<div class="input-group-addon input-group-append">.*<span class="input-group-text">USD<\/span><\/div>/, done);
+    Harness.testBuilderProperty('suffix', '', 'USD', /div class="input-group">.*input.*<div class="input-group-addon">USD<\/div>/, done);
   });
 
   it('Should set the custom css class of the input', (done) => {

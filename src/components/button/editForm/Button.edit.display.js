@@ -25,11 +25,7 @@ export default [
     data: {
       values: [
         { label: 'Submit', value: 'submit' },
-<<<<<<< HEAD
-        { label: 'Save State', value: 'saveState' },
-=======
         { label: 'Save in state', value: 'saveState' },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         { label: 'Event', value: 'event' },
         { label: 'Custom', value: 'custom' },
         { label: 'Reset', value: 'reset' },
@@ -61,29 +57,6 @@ export default [
     conditional: {
       json: { '!==': [{ var: 'data.action' }, 'submit'] },
     },
-  },
-  {
-    type: 'textfield',
-    label: 'Save State',
-    key: 'state',
-    weight: 112,
-    tooltip: 'The state you wish to save the submission under when this button is pressed. Example "draft" would save the submission in Draft Mode.',
-    input: true,
-    conditional: {
-      json: { '!==': [{ var: 'data.action' }, 'saveState'] }
-    }
-  },
-  {
-    type: 'checkbox',
-    input: true,
-    inputType: 'checkbox',
-    key: 'showValidations',
-    label: 'Show Validations',
-    weight: 115,
-    tooltip: 'When the button is pressed, show any validation errors on the form.',
-    conditional: {
-      json: { '!==': [{ var: 'data.action' }, 'submit'] }
-    }
   },
   {
     type: 'textfield',

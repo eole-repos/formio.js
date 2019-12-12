@@ -56,11 +56,7 @@ lib: builder
       </div>
     </div>
     <div class="row">
-<<<<<<< HEAD
-      <div class="col-md-4"><a href="https://github.com/formio/formio" target="_blank"><img class="img-responsive" src="{{ site.baseUrl }}/app/github-logo.png"></a></div>
-=======
       <div class="col-md-4"><a href="https://github.com/formio/formio" target="_blank"><img style="width: 100%" class="img-responsive" src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"></a></div>
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       <div class="col-md-8">
         <p>Getting started is as easy as...</p>
         <pre style="background-color: white;">git clone https://github.com/formio/formio.git
@@ -110,20 +106,7 @@ var onReady = function() {
 };
 
 var setDisplay = function(display) {
-<<<<<<< HEAD
-  builder.setDisplay(display).then(function(instance) {     
-     instance.on('change', function(form) {
-       if (form.components) {
-          formElement.innerHTML = '';
-          jsonElement.innerHTML = '';
-          jsonElement.appendChild(document.createTextNode(JSON.stringify(form, null, 4)));
-          Formio.createForm(formElement, form).then(onForm);
-       }
-     });
-   });
-=======
   builder.setDisplay(display).then(onReady);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 };
 
 // Handle the form selection.

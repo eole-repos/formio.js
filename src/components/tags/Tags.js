@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import BaseComponent from '../base/Base';
-import Choices from 'choices.js/public/assets/scripts/choices.js';
-import _ from 'lodash';
-=======
 import Input from '../_classes/input/Input';
 import Choices from 'choices.js/public/assets/scripts/choices.js';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 export default class TagsComponent extends Input {
   static schema(...extend) {
@@ -59,15 +53,9 @@ export default class TagsComponent extends Input {
     if (!element) {
       return;
     }
-<<<<<<< HEAD
-    input.setAttribute('dir', this.i18next.dir());
-    this.choices = new Choices(input, {
-      delimiter: (this.component.delimeter || ','),
-=======
     element.setAttribute('dir', this.i18next.dir());
     this.choices = new Choices(element, {
       delimiter: this.delimiter,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       editItems: true,
       maxItemCount: this.component.maxTags,
       removeItemButton: true,
@@ -82,31 +70,14 @@ export default class TagsComponent extends Input {
         this.choices.hideDropdown(true);
       }
     });
-<<<<<<< HEAD
-    this.choices.itemList.element.tabIndex = input.tabIndex;
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   detach() {
     super.detach();
     if (this.choices) {
-<<<<<<< HEAD
-      if (this.component.storeas === 'string' && (typeof value === 'string')) {
-        value = value.split(',');
-      }
-      if (value && !_.isArray(value)) {
-        value = [value];
-      }
-      this.choices.removeActiveItems();
-      if (value) {
-        this.choices.setValue(value);
-      }
-=======
       this.choices.destroyed = true;
       this.choices.destroy();
       this.choices = null;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   }
 

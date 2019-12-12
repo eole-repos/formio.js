@@ -17,18 +17,9 @@ export default class TimeComponent extends TextFieldComponent {
 
   constructor(component, options, data) {
     super(component, options, data);
-<<<<<<< HEAD
-    //check if <input type="time" /> is supported to fallback to input with mask (for Safari and IE)
-    const input = this.ce('time');
-    this.timeInputSupported = (input.type === 'time');
-    if (!this.timeInputSupported) {
-      this.component.inputMask = '99:99';
-    }
-=======
 
     this.component.inputMask = '99:99';
     this.component.inputType = this.component.inputType || 'time';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   static get builderInfo() {
@@ -74,19 +65,11 @@ export default class TimeComponent extends TextFieldComponent {
   }
 
   getValueAt(index) {
-<<<<<<< HEAD
-    if (!this.inputs.length || !this.inputs[index]) {
-      return this.emptyValue;
-    }
-    const val = this.inputs[index].value;
-    if (!val) {
-=======
     if (!this.refs.input.length || !this.refs.input[index]) {
       return this.emptyValue;
     }
     const { value } = this.refs.input[index];
     if (!value) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       return this.emptyValue;
     }
 
@@ -94,9 +77,6 @@ export default class TimeComponent extends TextFieldComponent {
   }
 
   setValueAt(index, value) {
-<<<<<<< HEAD
-    this.inputs[index].value = value ? moment(value, 'HH:mm:ss').format(this.component.format) : value;
-=======
     this.refs.input[index].value = value ? this.getValueAsString(value) : value;
   }
 
@@ -106,6 +86,5 @@ export default class TimeComponent extends TextFieldComponent {
 
   getValueAsString(value) {
     return (value ? moment(value, this.dataFormat).format(this.component.format) : value) || '';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }

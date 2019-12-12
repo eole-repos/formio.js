@@ -9,9 +9,6 @@ export default function(...extend) {
     {
       key: 'display',
       components: SignatureEditDisplay
-<<<<<<< HEAD
-    }
-=======
     },
     {
       key: 'data',
@@ -21,6 +18,5 @@ export default function(...extend) {
       key: 'validation',
       components: SignatureEditValidation
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ], ...extend);
 }

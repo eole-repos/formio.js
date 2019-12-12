@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-<<<<<<< HEAD
     machine: true
     environment:
       GIT_USER: 'eole-developer'

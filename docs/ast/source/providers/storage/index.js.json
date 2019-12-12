@@ -1,44 +1,28 @@
 {
   "type": "File",
   "start": 0,
-<<<<<<< HEAD
-  "end": 236,
-=======
   "end": 299,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-<<<<<<< HEAD
-      "line": 13,
-=======
       "line": 16,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-<<<<<<< HEAD
-    "end": 236,
-=======
     "end": 299,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-<<<<<<< HEAD
-        "line": 13,
-=======
         "line": 16,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         "column": 0
       }
     },
@@ -460,17 +444,6 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-<<<<<<< HEAD
-        "start": 141,
-        "end": 235,
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 0
-          },
-          "end": {
-            "line": 12,
-=======
         "start": 179,
         "end": 298,
         "loc": {
@@ -480,23 +453,11 @@
           },
           "end": {
             "line": 15,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             "column": 2
           }
         },
         "declaration": {
           "type": "ObjectExpression",
-<<<<<<< HEAD
-          "start": 156,
-          "end": 234,
-          "loc": {
-            "start": {
-              "line": 6,
-              "column": 15
-            },
-            "end": {
-              "line": 12,
-=======
           "start": 194,
           "end": 297,
           "loc": {
@@ -506,24 +467,12 @@
             },
             "end": {
               "line": 15,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
               "column": 1
             }
           },
           "properties": [
             {
               "type": "ObjectProperty",
-<<<<<<< HEAD
-              "start": 160,
-              "end": 174,
-              "loc": {
-                "start": {
-                  "line": 7,
-                  "column": 2
-                },
-                "end": {
-                  "line": 7,
-=======
               "start": 198,
               "end": 212,
               "loc": {
@@ -533,7 +482,6 @@
                 },
                 "end": {
                   "line": 9,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                   "column": 16
                 }
               },
@@ -542,17 +490,6 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 160,
-                "end": 166,
-                "loc": {
-                  "start": {
-                    "line": 7,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 7,
-=======
                 "start": 198,
                 "end": 204,
                 "loc": {
@@ -562,7 +499,6 @@
                   },
                   "end": {
                     "line": 9,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 8
                   },
                   "identifierName": "base64"
@@ -571,17 +507,6 @@
               },
               "value": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 168,
-                "end": 174,
-                "loc": {
-                  "start": {
-                    "line": 7,
-                    "column": 10
-                  },
-                  "end": {
-                    "line": 7,
-=======
                 "start": 206,
                 "end": 212,
                 "loc": {
@@ -591,7 +516,6 @@
                   },
                   "end": {
                     "line": 9,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 16
                   },
                   "identifierName": "base64"
@@ -601,17 +525,6 @@
             },
             {
               "type": "ObjectProperty",
-<<<<<<< HEAD
-              "start": 178,
-              "end": 194,
-              "loc": {
-                "start": {
-                  "line": 8,
-                  "column": 2
-                },
-                "end": {
-                  "line": 8,
-=======
               "start": 216,
               "end": 232,
               "loc": {
@@ -621,7 +534,6 @@
                 },
                 "end": {
                   "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                   "column": 18
                 }
               },
@@ -630,17 +542,6 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 178,
-                "end": 185,
-                "loc": {
-                  "start": {
-                    "line": 8,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 8,
-=======
                 "start": 216,
                 "end": 223,
                 "loc": {
@@ -650,7 +551,6 @@
                   },
                   "end": {
                     "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 9
                   },
                   "identifierName": "dropbox"
@@ -659,17 +559,6 @@
               },
               "value": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 187,
-                "end": 194,
-                "loc": {
-                  "start": {
-                    "line": 8,
-                    "column": 11
-                  },
-                  "end": {
-                    "line": 8,
-=======
                 "start": 225,
                 "end": 232,
                 "loc": {
@@ -679,7 +568,6 @@
                   },
                   "end": {
                     "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 18
                   },
                   "identifierName": "dropbox"
@@ -689,17 +577,6 @@
             },
             {
               "type": "ObjectProperty",
-<<<<<<< HEAD
-              "start": 198,
-              "end": 204,
-              "loc": {
-                "start": {
-                  "line": 9,
-                  "column": 2
-                },
-                "end": {
-                  "line": 9,
-=======
               "start": 236,
               "end": 242,
               "loc": {
@@ -709,7 +586,6 @@
                 },
                 "end": {
                   "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                   "column": 8
                 }
               },
@@ -718,17 +594,6 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 198,
-                "end": 200,
-                "loc": {
-                  "start": {
-                    "line": 9,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 9,
-=======
                 "start": 236,
                 "end": 238,
                 "loc": {
@@ -738,7 +603,6 @@
                   },
                   "end": {
                     "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 4
                   },
                   "identifierName": "s3"
@@ -747,17 +611,6 @@
               },
               "value": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 202,
-                "end": 204,
-                "loc": {
-                  "start": {
-                    "line": 9,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 9,
-=======
                 "start": 240,
                 "end": 242,
                 "loc": {
@@ -767,7 +620,6 @@
                   },
                   "end": {
                     "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 8
                   },
                   "identifierName": "s3"
@@ -777,17 +629,6 @@
             },
             {
               "type": "ObjectProperty",
-<<<<<<< HEAD
-              "start": 208,
-              "end": 216,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-=======
               "start": 246,
               "end": 254,
               "loc": {
@@ -797,7 +638,6 @@
                 },
                 "end": {
                   "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                   "column": 10
                 }
               },
@@ -806,17 +646,6 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 208,
-                "end": 211,
-                "loc": {
-                  "start": {
-                    "line": 10,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 10,
-=======
                 "start": 246,
                 "end": 249,
                 "loc": {
@@ -826,7 +655,6 @@
                   },
                   "end": {
                     "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 5
                   },
                   "identifierName": "url"
@@ -835,17 +663,6 @@
               },
               "value": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 213,
-                "end": 216,
-                "loc": {
-                  "start": {
-                    "line": 10,
-                    "column": 7
-                  },
-                  "end": {
-                    "line": 10,
-=======
                 "start": 251,
                 "end": 254,
                 "loc": {
@@ -855,7 +672,6 @@
                   },
                   "end": {
                     "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 10
                   },
                   "identifierName": "url"
@@ -865,17 +681,6 @@
             },
             {
               "type": "ObjectProperty",
-<<<<<<< HEAD
-              "start": 220,
-              "end": 232,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-=======
               "start": 258,
               "end": 270,
               "loc": {
@@ -885,7 +690,6 @@
                 },
                 "end": {
                   "line": 13,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                   "column": 14
                 }
               },
@@ -894,17 +698,6 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 220,
-                "end": 225,
-                "loc": {
-                  "start": {
-                    "line": 11,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 11,
-=======
                 "start": 258,
                 "end": 263,
                 "loc": {
@@ -914,7 +707,6 @@
                   },
                   "end": {
                     "line": 13,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 7
                   },
                   "identifierName": "azure"
@@ -923,17 +715,6 @@
               },
               "value": {
                 "type": "Identifier",
-<<<<<<< HEAD
-                "start": 227,
-                "end": 232,
-                "loc": {
-                  "start": {
-                    "line": 11,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 11,
-=======
                 "start": 265,
                 "end": 270,
                 "loc": {
@@ -943,15 +724,12 @@
                   },
                   "end": {
                     "line": 13,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
                     "column": 14
                   },
                   "identifierName": "azure"
                 },
                 "name": "azure"
               }
-<<<<<<< HEAD
-=======
             },
             {
               "type": "ObjectProperty",
@@ -1004,7 +782,6 @@
                 },
                 "name": "indexeddb"
               }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             }
           ],
           "leadingComments": [],
@@ -1488,7 +1265,6 @@
         "start": {
           "line": 4,
           "column": 13
-<<<<<<< HEAD
         },
         "end": {
           "line": 4,
@@ -1626,12 +1402,6 @@
         "end": {
           "line": 5,
           "column": 15
-=======
-        },
-        "end": {
-          "line": 4,
-          "column": 17
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       }
     },
@@ -1648,7 +1418,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
       "value": "./url",
       "start": 132,
       "end": 139,
@@ -1660,19 +1429,6 @@
         "end": {
           "line": 5,
           "column": 23
-=======
-      "value": "./azure",
-      "start": 105,
-      "end": 114,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 18
-        },
-        "end": {
-          "line": 4,
-          "column": 27
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       }
     },
@@ -1689,7 +1445,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
       "start": 139,
       "end": 140,
       "loc": {
@@ -1700,208 +1455,6 @@
         "end": {
           "line": 5,
           "column": 24
-=======
-      "start": 114,
-      "end": 115,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 27
-        },
-        "end": {
-          "line": 4,
-          "column": 28
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "import",
-        "keyword": "import",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-<<<<<<< HEAD
-      "value": "export",
-      "start": 141,
-      "end": 147,
-=======
-      "value": "import",
-      "start": 116,
-      "end": 122,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 0
-        },
-        "end": {
-          "line": 6,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-<<<<<<< HEAD
-      "value": "default",
-      "start": 148,
-      "end": 155,
-=======
-      "value": "url",
-      "start": 123,
-      "end": 126,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 7
-        },
-        "end": {
-<<<<<<< HEAD
-          "line": 6,
-          "column": 14
-=======
-          "line": 5,
-          "column": 10
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-<<<<<<< HEAD
-      "start": 156,
-      "end": 157,
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 15
-        },
-        "end": {
-          "line": 6,
-          "column": 16
-=======
-      "value": "from",
-      "start": 127,
-      "end": 131,
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 11
-        },
-        "end": {
-          "line": 5,
-          "column": 15
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "string",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-<<<<<<< HEAD
-      "value": "base64",
-      "start": 160,
-      "end": 166,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 2
-        },
-        "end": {
-          "line": 7,
-          "column": 8
-=======
-      "value": "./url",
-      "start": 132,
-      "end": 139,
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 16
-        },
-        "end": {
-          "line": 5,
-          "column": 23
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ";",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-<<<<<<< HEAD
-      "start": 166,
-      "end": 167,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 8
-        },
-        "end": {
-          "line": 7,
-          "column": 9
-=======
-      "start": 139,
-      "end": 140,
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 23
-        },
-        "end": {
-          "line": 5,
-          "column": 24
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       }
     },
@@ -1945,15 +1498,6 @@
         "postfix": false,
         "binop": null
       },
-<<<<<<< HEAD
-      "value": "base64",
-      "start": 168,
-      "end": 174,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 10
-=======
       "value": "indexeddb",
       "start": 148,
       "end": 157,
@@ -1961,10 +1505,9 @@
         "start": {
           "line": 6,
           "column": 7
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         },
         "end": {
-          "line": 7,
+          "line": 6,
           "column": 16
         }
       }
@@ -2035,17 +1578,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 174,
-      "end": 175,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 16
-        },
-        "end": {
-          "line": 7,
-=======
       "start": 176,
       "end": 177,
       "loc": {
@@ -2240,7 +1772,6 @@
         },
         "end": {
           "line": 9,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 17
         }
       }
@@ -2258,17 +1789,6 @@
         "binop": null
       },
       "value": "dropbox",
-<<<<<<< HEAD
-      "start": 178,
-      "end": 185,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 2
-        },
-        "end": {
-          "line": 8,
-=======
       "start": 216,
       "end": 223,
       "loc": {
@@ -2278,7 +1798,6 @@
         },
         "end": {
           "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 9
         }
       }
@@ -2296,17 +1815,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 185,
-      "end": 186,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 9
-        },
-        "end": {
-          "line": 8,
-=======
       "start": 223,
       "end": 224,
       "loc": {
@@ -2316,7 +1824,6 @@
         },
         "end": {
           "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 10
         }
       }
@@ -2334,17 +1841,6 @@
         "binop": null
       },
       "value": "dropbox",
-<<<<<<< HEAD
-      "start": 187,
-      "end": 194,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 11
-        },
-        "end": {
-          "line": 8,
-=======
       "start": 225,
       "end": 232,
       "loc": {
@@ -2354,7 +1850,6 @@
         },
         "end": {
           "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 18
         }
       }
@@ -2372,17 +1867,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 194,
-      "end": 195,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 18
-        },
-        "end": {
-          "line": 8,
-=======
       "start": 232,
       "end": 233,
       "loc": {
@@ -2392,7 +1876,6 @@
         },
         "end": {
           "line": 10,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 19
         }
       }
@@ -2410,17 +1893,6 @@
         "binop": null
       },
       "value": "s3",
-<<<<<<< HEAD
-      "start": 198,
-      "end": 200,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 2
-        },
-        "end": {
-          "line": 9,
-=======
       "start": 236,
       "end": 238,
       "loc": {
@@ -2430,7 +1902,6 @@
         },
         "end": {
           "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 4
         }
       }
@@ -2448,17 +1919,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 200,
-      "end": 201,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 4
-        },
-        "end": {
-          "line": 9,
-=======
       "start": 238,
       "end": 239,
       "loc": {
@@ -2468,7 +1928,6 @@
         },
         "end": {
           "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 5
         }
       }
@@ -2486,17 +1945,6 @@
         "binop": null
       },
       "value": "s3",
-<<<<<<< HEAD
-      "start": 202,
-      "end": 204,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 6
-        },
-        "end": {
-          "line": 9,
-=======
       "start": 240,
       "end": 242,
       "loc": {
@@ -2506,7 +1954,6 @@
         },
         "end": {
           "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 8
         }
       }
@@ -2524,17 +1971,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 204,
-      "end": 205,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 8
-        },
-        "end": {
-          "line": 9,
-=======
       "start": 242,
       "end": 243,
       "loc": {
@@ -2544,7 +1980,6 @@
         },
         "end": {
           "line": 11,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 9
         }
       }
@@ -2562,17 +1997,6 @@
         "binop": null
       },
       "value": "url",
-<<<<<<< HEAD
-      "start": 208,
-      "end": 211,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 2
-        },
-        "end": {
-          "line": 10,
-=======
       "start": 246,
       "end": 249,
       "loc": {
@@ -2582,7 +2006,6 @@
         },
         "end": {
           "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 5
         }
       }
@@ -2600,17 +2023,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 211,
-      "end": 212,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 5
-        },
-        "end": {
-          "line": 10,
-=======
       "start": 249,
       "end": 250,
       "loc": {
@@ -2620,7 +2032,6 @@
         },
         "end": {
           "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 6
         }
       }
@@ -2638,17 +2049,6 @@
         "binop": null
       },
       "value": "url",
-<<<<<<< HEAD
-      "start": 213,
-      "end": 216,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 7
-        },
-        "end": {
-          "line": 10,
-=======
       "start": 251,
       "end": 254,
       "loc": {
@@ -2658,7 +2058,6 @@
         },
         "end": {
           "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 10
         }
       }
@@ -2676,17 +2075,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 216,
-      "end": 217,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 10
-        },
-        "end": {
-          "line": 10,
-=======
       "start": 254,
       "end": 255,
       "loc": {
@@ -2696,7 +2084,6 @@
         },
         "end": {
           "line": 12,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 11
         }
       }
@@ -2714,17 +2101,6 @@
         "binop": null
       },
       "value": "azure",
-<<<<<<< HEAD
-      "start": 220,
-      "end": 225,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 2
-        },
-        "end": {
-          "line": 11,
-=======
       "start": 258,
       "end": 263,
       "loc": {
@@ -2734,7 +2110,6 @@
         },
         "end": {
           "line": 13,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 7
         }
       }
@@ -2752,17 +2127,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 225,
-      "end": 226,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 7
-        },
-        "end": {
-          "line": 11,
-=======
       "start": 263,
       "end": 264,
       "loc": {
@@ -2772,7 +2136,6 @@
         },
         "end": {
           "line": 13,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 8
         }
       }
@@ -2790,18 +2153,6 @@
         "binop": null
       },
       "value": "azure",
-<<<<<<< HEAD
-      "start": 227,
-      "end": 232,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 9
-        },
-        "end": {
-          "line": 11,
-          "column": 14
-=======
       "start": 265,
       "end": 270,
       "loc": {
@@ -2942,7 +2293,6 @@
         "end": {
           "line": 14,
           "column": 23
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       }
     },
@@ -2958,17 +2308,6 @@
         "postfix": false,
         "binop": null
       },
-<<<<<<< HEAD
-      "start": 233,
-      "end": 234,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-=======
       "start": 296,
       "end": 297,
       "loc": {
@@ -2978,7 +2317,6 @@
         },
         "end": {
           "line": 15,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 1
         }
       }
@@ -2996,17 +2334,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 234,
-      "end": 235,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 1
-        },
-        "end": {
-          "line": 12,
-=======
       "start": 297,
       "end": 298,
       "loc": {
@@ -3016,7 +2343,6 @@
         },
         "end": {
           "line": 15,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 2
         }
       }
@@ -3034,17 +2360,6 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 236,
-      "end": 236,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 13,
-=======
       "start": 299,
       "end": 299,
       "loc": {
@@ -3054,7 +2369,6 @@
         },
         "end": {
           "line": 16,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 0
         }
       }

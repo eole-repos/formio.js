@@ -7,10 +7,7 @@ import moment from 'moment-timezone/moment-timezone';
 import jtz from 'jstimezonedetect';
 import { lodashOperators } from './jsonlogic/operators';
 import NativePromise from 'native-promise-only';
-<<<<<<< HEAD
-=======
 import dompurify from 'dompurify';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import { getValue } from './formUtils';
 import Evaluator from './Evaluator';
 const interpolate = Evaluator.interpolate;
@@ -18,12 +15,9 @@ const { fetch } = fetchPonyfill({
   Promise: NativePromise
 });
 
-<<<<<<< HEAD
-=======
 import BuilderUtils from './builder';
 export { BuilderUtils };
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 export * from './formUtils';
 
 // Configure JsonLogic
@@ -53,29 +47,16 @@ export { jsonLogic, moment };
  * @param args
  * @return {*}
  */
-/* eslint-disable max-statements */
 export function evaluate(func, args, ret, tokenize) {
   let returnVal = null;
-  args.component = args.component ? _.cloneDeep(args.component) : { key: 'unknown' };
+  const component = args.component ? args.component : { key: 'unknown' };
   if (!args.form && args.instance) {
     args.form = _.get(args.instance, 'root._form', {});
   }
 
-<<<<<<< HEAD
-  // Deeply cloning the form is expensive - only do it if it looks like the function needs it
-  if (func.toString().includes('form')) {
-    args.form = _.cloneDeep(args.form);
-  }
-  else {
-    delete args.form;
-  }
-
-  const componentKey = args.component.key;
-=======
   const originalArgs = args;
   const componentKey = component.key;
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   if (typeof func === 'string') {
     if (ret) {
       func += `;return ${ret}`;
@@ -110,9 +91,6 @@ export function evaluate(func, args, ret, tokenize) {
 
   if (typeof func === 'function') {
     try {
-<<<<<<< HEAD
-      returnVal = Array.isArray(args) ? func(...args) : func(args);
-=======
       if (typeof window === 'object') {
         returnVal = Array.isArray(args) ? func(...args) : func(args);
       }
@@ -134,7 +112,6 @@ export function evaluate(func, args, ret, tokenize) {
 
         returnVal = sandbox.result;
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     catch (err) {
       returnVal = null;
@@ -155,7 +132,6 @@ export function evaluate(func, args, ret, tokenize) {
   }
   return returnVal;
 }
-/* eslint-enable max-statements */
 
 export function getRandomComponentId() {
   return `e${Math.random().toString(36).substring(7)}`;
@@ -385,13 +361,6 @@ export function setActionProperty(component, action, result, row, data, instance
         result,
       };
       const textValue = action.property.component ? action[action.property.component] : action.text;
-<<<<<<< HEAD
-      const newValue = (instance && instance.interpolate) ?
-        instance.interpolate(textValue, evalData) :
-        Evaluator.interpolate(textValue, evalData);
-      if (newValue !== _.get(component, action.property.value, '')) {
-        _.set(component, action.property.value, newValue);
-=======
       const currentValue = _.get(component, property, '');
       const newValue = (instance && instance.interpolate)
         ? instance.interpolate(textValue, evalData)
@@ -399,19 +368,15 @@ export function setActionProperty(component, action, result, row, data, instance
 
       if (newValue !== currentValue) {
         _.set(component, property, newValue);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
 
       break;
     }
   }
 
-<<<<<<< HEAD
-=======
   return component;
 }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 /**
  * Make a filename guaranteed to be unique.
  * @param name
@@ -578,11 +543,7 @@ export function loadZones(timezone) {
     return moment.zonesPromise;
   }
   return moment.zonesPromise = fetch(
-<<<<<<< HEAD
-    'https://formio.github.io/formio.js/resources/latest.json',
-=======
     'https://cdn.form.io/moment-timezone/data/packed/latest.json',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ).then(resp => resp.json().then(zones => {
     moment.tz.load(zones);
     moment.zonesLoaded = true;
@@ -751,13 +712,6 @@ export function convertFormatToMoment(format) {
 
 export function convertFormatToMask(format) {
   return format
-<<<<<<< HEAD
-    // Short and long month replacement.
-    .replace(/(MMM|MMMM)/g, 'MM')
-    // Year conversion
-    .replace(/[ydhmsHM]/g, '9')
-    // AM/PM conversion
-=======
   // Long month replacement.
     .replace(/M{4}/g, 'MM')
     // Initial short month conversion.
@@ -767,7 +721,6 @@ export function convertFormatToMask(format) {
     // Year conversion.
     .replace(/[ydhmsHMG]/g, '9')
     // AM/PM conversion.
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     .replace(/a/g, 'AA');
 }
 
@@ -973,11 +926,7 @@ export function delay(fn, delay = 0, ...args) {
  */
 export function iterateKey(key) {
   if (!key.match(/(\d+)$/)) {
-<<<<<<< HEAD
-    return `${key}2`;
-=======
     return `${key}1`;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   return key.replace(/(\d+)$/, function(suffix) {
@@ -1090,9 +1039,6 @@ export function observeOverload(callback, options = {}) {
   };
 }
 
-<<<<<<< HEAD
-export { Evaluator, interpolate };
-=======
 export function getContextComponents(context) {
   const values = [];
 
@@ -1173,4 +1119,3 @@ export function isInputComponent(componentJson) {
       return true;
   }
 }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

@@ -154,11 +154,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro" !defau
 
 // Forms =======================================================================
 
-<<<<<<< HEAD
-// .input-group-addon {
-//   color: $body-color;
-// }
-=======
 .custom-control-input:checked ~ .custom-control-label::before {
   background: $primary;
 }
@@ -181,7 +176,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro" !defau
     background-color: rgba(255, 255, 255, 0.75);
   }
 }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Navs ========================================================================
 

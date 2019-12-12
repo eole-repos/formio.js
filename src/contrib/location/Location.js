@@ -48,34 +48,10 @@ export default class LocationComponent extends TextFieldComponent {
     return '';
   }
 
-<<<<<<< HEAD:src/components/location/Location.js
-  build() {
-    this.element = this.ce('div', {
-      id: this.id,
-      class: 'map-container'
-    });
-    this.element.component = this;
-    this.initGoogleMap();
-    this.input = this.createInput(this.element);
-    this.addInput(this.input, this.element);
-    const gmapElement = this.ce('div', {
-      id: this.component.map.gmapId,
-      style: 'min-height: 300px; height: calc(100vh - 600px);'
-    });
-    this.element.appendChild(gmapElement);
-    this.attachLogic();
-  }
-
-  setValue(value, flags) {
-    flags = this.getFlags.apply(this, arguments);
-    flags.noValidate = true;
-    return super.setValue(value, flags);
-=======
   get inputInfo() {
     const info = super.inputInfo;
     info.attr.class += ' Gmap-search';
     return info;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/contrib/location/Location.js
   }
 
   renderElement(value, index) {

@@ -1,9 +1,5 @@
 import EditFormUtils from './utils';
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.validation.js
-import Evaluator from '../../../utils/Evaluator';
-=======
 import Evaluator from '../../../../utils/Evaluator';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.validation.js
 
 /* eslint-disable quotes, max-len */
 export default [
@@ -24,11 +20,7 @@ export default [
     input: true
   },
   {
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.validation.js
-    weight: 150,
-=======
     weight: 0,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.validation.js
     type: 'select',
     key: 'validateOn',
     defaultValue: 'change',
@@ -44,8 +36,6 @@ export default [
     }
   },
   {
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.validation.js
-=======
     weight: 190,
     type: 'textfield',
     input: true,
@@ -55,7 +45,6 @@ export default [
     tooltip: 'The label for this field when an error occurs.'
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.validation.js
     weight: 200,
     key: 'validate.customMessage',
     label: 'Custom Error Message',

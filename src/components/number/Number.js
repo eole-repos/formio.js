@@ -58,9 +58,6 @@ export default class NumberComponent extends Input {
       this.decimalSeparator = override.decimalSeparator;
       this.delimiter = override.delimiter;
     }
-<<<<<<< HEAD
-    this.numberMask = createNumberMask({
-=======
     this.numberMask = this.createNumberMask();
   }
 
@@ -71,7 +68,6 @@ export default class NumberComponent extends Input {
    */
   createNumberMask() {
     return createNumberMask({
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       prefix: '',
       suffix: '',
       requireDecimal: _.get(this.component, 'requireDecimal', false),
@@ -109,16 +105,11 @@ export default class NumberComponent extends Input {
   }
 
   setInputMask(input) {
-<<<<<<< HEAD
-    input.setAttribute('pattern', '\\d*');
-
-=======
     let numberPattern = '[0-9';
     numberPattern += this.decimalSeparator ? `\\${this.decimalSeparator}` : '';
     numberPattern += this.delimiter ? `\\${this.delimiter}` : '';
     numberPattern += ']*';
     input.setAttribute('pattern', numberPattern);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     input.mask = maskInput({
       inputElement: input,
       mask: this.numberMask
@@ -169,11 +160,7 @@ export default class NumberComponent extends Input {
       return `${value}${this.decimalSeparator}${_.repeat('0', this.decimalLimit)}`;
     }
     else if (this.component.requireDecimal && value && value.includes(this.decimalSeparator)) {
-<<<<<<< HEAD
-      return `${value}${_.repeat('0', this.decimalLimit - value.split(this.decimalSeparator)[1].length)})}`;
-=======
       return `${value}${_.repeat('0', this.decimalLimit - value.split(this.decimalSeparator)[1].length)}`;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     return value;
@@ -188,37 +175,6 @@ export default class NumberComponent extends Input {
   }
 
   getMaskedValue(value) {
-<<<<<<< HEAD
-    return conformToMask(value.toString(), this.numberMask).conformedValue;
-  }
-
-  /** @override **/
-  createInput(...args) {
-    const input = super.createInput(...args);
-
-    if (this.component.requireDecimal) {
-      this.addEventListener(input, 'blur', () => {
-        const index = this.inputs.indexOf(input);
-
-        if (index !== -1) {
-          this.setValueAt(index, this.getValueAt(index));
-        }
-      });
-    }
-
-    return input;
-  }
-
-  getView(value) {
-    if (!value && value !== 0) {
-      return '';
-    }
-    const widget = this.widget;
-    if (widget && widget.getView) {
-      return widget.getView(value);
-    }
-
-=======
     return conformToMask(value === null ? '0' : value.toString(), this.numberMask).conformedValue;
   }
 
@@ -227,7 +183,6 @@ export default class NumberComponent extends Input {
       return '';
     }
     value = this.getWidgetValueAsString(value);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     if (Array.isArray(value)) {
       return value.map(this.getMaskedValue).join(', ');
     }

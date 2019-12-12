@@ -50,97 +50,14 @@ export default class ColumnsComponent extends NestedComponent {
     return schema;
   }
 
-<<<<<<< HEAD
-  constructor(component, options, data) {
-    super(component, options, data);
-    this.rows = [];
-=======
   get defaultSchema() {
     return ColumnsComponent.schema();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   get className() {
     return `row ${super.className}`;
   }
 
-<<<<<<< HEAD
-  get gridSize() {
-    return 12;
-  }
-
-  /** @type {number} */
-  get nbVisible() {
-    return _.filter(this.components, 'visible').length;
-  }
-
-  /**
-   * Justify columns width according to `this.gridSize`.
-   * @param {ColumnComponent[]} columns
-   * @return {*}
-   */
-  justifyRow(columns) {
-    const visible = _.filter(columns, 'visible');
-    const nbColumns = columns.length;
-    const nbVisible = visible.length;
-
-    if (nbColumns > 0 && nbVisible > 0) {
-      const w = Math.floor(this.gridSize / nbVisible);
-      const totalWidth = w * nbVisible;
-      const span = this.gridSize - totalWidth;
-
-      _.each(visible, column => {
-        column.component.width = w;
-      });
-
-      // In case when row is not fully filled,
-      // extending last col to fill empty space.
-      _.last(visible).component.width += span;
-
-      _.each(visible, col => {
-        col.element.setAttribute('class', col.className);
-      });
-    }
-  }
-
-  /**
-   * Group columns in rows.
-   * @return {Array.<ColumnComponent[]>}
-   */
-  groupByRow() {
-    const initVal = { stack: [], rows: [] };
-    const width = x => x.component.width;
-    const result = _.reduce(this.components, (acc, next) => {
-      const stack = [...acc.stack, next];
-      if (_.sumBy(stack, width) <= this.gridSize) {
-        acc.stack = stack;
-        return acc;
-      }
-      else {
-        acc.rows = [...acc.rows, acc.stack];
-        acc.stack = [next];
-        return acc;
-      }
-    }, initVal);
-
-    return _.concat(result.rows, [result.stack]);
-  }
-
-  justify() {
-    _.each(this.rows, this.justifyRow.bind(this));
-  }
-
-  addComponents(element, data, options, state) {
-    const container = this.getContainer();
-    container.noDrop = true;
-    _.each(this.component.columns, (column, index) => {
-      column.type = 'column';
-      //fix input: true issue for existent forms
-      column.input = false;
-      column.hideOnChildrenHidden = this.component.hideOnChildrenHidden;
-      const component = this.addComponent(column, container, this.data, null, null, state);
-      component.column = index;
-=======
   get columnKey() {
     return `column-${this.id}`;
   }
@@ -160,29 +77,10 @@ export default class ColumnsComponent extends NestedComponent {
         component.column = index;
         this.columns[index].push(component);
       });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
     this.rows = this.groupByRow();
   }
 
-<<<<<<< HEAD
-  checkConditions(data) {
-    if (this.component.autoAdjust) {
-      const result = super.checkConditions(data);
-
-      this.justify();
-
-      return result;
-    }
-    else {
-      return super.checkConditions(data);
-    }
-  }
-
-  destroy() {
-    this.rows = [];
-    return super.destroy();
-=======
   labelIsHidden() {
     return true;
   }
@@ -278,6 +176,5 @@ export default class ColumnsComponent extends NestedComponent {
   destroy() {
     super.destroy();
     this.columns = [];
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }

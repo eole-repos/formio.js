@@ -66,19 +66,6 @@ export default class SignatureComponent extends Input {
   }
 
   setValue(value, flags) {
-<<<<<<< HEAD
-    flags = this.getFlags.apply(this, arguments);
-    const changed = super.setValue(value, flags);
-    if (this.signaturePad) {
-      if (value && !flags.noSign) {
-        this.signatureImage.setAttribute('src', value);
-        this.showCanvas(false);
-      }
-      if (!value) {
-        this.signaturePad.clear();
-      }
-    }
-=======
     flags = flags || {};
     const changed = super.setValue(value, flags);
     if (value && this.refs.signatureImage && (!flags.noSign || this.options.readOnly)) {
@@ -93,7 +80,6 @@ export default class SignatureComponent extends Input {
         this.triggerChange();
       }
     }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return changed;
   }
 
@@ -154,30 +140,11 @@ export default class SignatureComponent extends Input {
       element: super.renderElement(value, index),
       required: _.get(this.component, 'validate.required', false),
     });
-<<<<<<< HEAD
-    this.addFocusBlurEvents(this.padBody);
-
-    // Create the refresh button.
-    this.refresh = this.ce('a', {
-      class: 'btn btn-sm btn-default btn-light signature-pad-refresh'
-    });
-    const refreshIcon = this.getIcon('refresh');
-    this.refresh.appendChild(refreshIcon);
-    this.padBody.appendChild(this.refresh);
-
-    // The signature canvas.
-    this.canvas = this.ce('canvas', {
-      class: 'signature-pad-canvas',
-      height: this.component.height
-    });
-    this.padBody.appendChild(this.canvas);
-=======
   }
 
   attach(element) {
     this.loadRefs(element, { canvas: 'single', refresh: 'single', padBody: 'single', signatureImage: 'single' });
     const superAttach = super.attach(element);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     this.onDisabled();
 
@@ -220,43 +187,10 @@ export default class SignatureComponent extends Input {
       event.preventDefault();
       this.showCanvas(true);
       this.signaturePad.clear();
-<<<<<<< HEAD
-      this.setValue(null);
-    });
-    this.signaturePad.onEnd = () => this.setValue(this.signaturePad.toDataURL(), {
-      noSign: true
-    });
-    this.signatureImage.setAttribute('src', this.signaturePad.toDataURL());
-
-    // Ensure the signature is always the size of its container.
-    this.addEventListener(window, 'resize', _.debounce(() => this.checkSize(), 100));
-    const interval = setInterval(() => {
-      if (this.padBody.offsetWidth) {
-        clearInterval(interval);
-        this.checkSize();
-      }
-    }, 200);
-
-    // Restore values.
-    this.restoreValue();
-
-    // disable the signature pad if the form in ViewOnly mode
-    if (this.shouldDisable || this.viewOnly) {
-      this.disabled = true;
-
-      // In view mode, ensure the padBody background color is set
-      // in case the source image is a different aspect ratio
-      this.padBody.style.backgroundColor = this.component.backgroundColor;
-    }
-
-    this.autofocus();
-    this.attachLogic();
-=======
       this.setValue(this.defaultValue);
     });
     this.setValue(this.dataValue);
     return superAttach;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
   /* eslint-enable max-statements */
 

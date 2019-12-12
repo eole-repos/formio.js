@@ -54,15 +54,6 @@ export default class Form extends Element {
     this.display = '';
   }
 
-<<<<<<< HEAD
-  create() {
-    const isFlat = this.options && this.options.flatten;
-    if (this.form.display === 'wizard' && !isFlat) {
-      return new Wizard(this.element, this.options);
-    }
-    else if (this.form.display === 'pdf' && !isFlat) {
-      return new PDF(this.element, this.options);
-=======
   /**
    * Create a new form instance provided the display of the form.
    *
@@ -76,7 +67,6 @@ export default class Form extends Element {
     this.display = display;
     if (Displays.displays[display]) {
       return new Displays.displays[display](this.element, this.options);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     else {
       // eslint-disable-next-line new-cap
@@ -98,19 +88,6 @@ export default class Form extends Element {
     let result;
     formParam = formParam || this.form;
     if (typeof formParam === 'string') {
-<<<<<<< HEAD
-      return (new Formio(formParam)).loadForm().then((form) => {
-        this.form = form;
-        if (this.instance) {
-          this.instance.destroy();
-        }
-        this.instance = this.create();
-        this.instance.url = formParam;
-        this.instance.nosubmit = false;
-        this.instance.loadSubmission();
-        this.form = this.instance.form = form;
-        return this.instance.ready.then(() => this.instance);
-=======
       const formio = new Formio(formParam);
       result = this.getSubmission(formio).then((submission) => {
         return formio.loadForm().then((form) => {
@@ -123,7 +100,6 @@ export default class Form extends Element {
           }
           return this.instance;
         });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     }
     else {
@@ -181,25 +157,6 @@ export default class Form extends Element {
   }
 
   static embed(embed) {
-<<<<<<< HEAD
-    if (!embed || !embed.src) {
-      return null;
-    }
-    const id = this.id || `formio-${Math.random().toString(36).substring(7)}`;
-    const className = embed.class || 'formio-form-wrapper';
-
-    // Add the styles to the header.
-    if (embed.styles) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = embed.styles;
-      document.head.appendChild(link);
-    }
-
-    document.write(`<div id="${id}" class="${className}"></div>`);
-    const formElement = document.getElementById(id);
-    return (new Form(formElement, embed.src)).render();
-=======
     return new NativePromise((resolve) => {
       if (!embed || !embed.src) {
         resolve();
@@ -237,7 +194,6 @@ export default class Form extends Element {
       return true;
     }
     return false;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   /**

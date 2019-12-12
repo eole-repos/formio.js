@@ -102,17 +102,6 @@ export default [
     },
   },
   {
-    type: 'checkbox',
-    input: true,
-    label: 'Lazy Load URL',
-    key: 'lazyLoad',
-    tooltip: 'When set, this will not fire off the request to the URL until this control is within focus. This can improve performance if you have many Select dropdowns on your form where the API\'s will only fire when the control is activated.',
-    weight: 11,
-    conditional: {
-      json: { '===': [{ var: 'data.dataSrc' }, 'url'] }
-    }
-  },
-  {
     type: 'datagrid',
     input: true,
     label: 'Request Headers',
@@ -145,10 +134,7 @@ export default [
     tooltip: 'Values to use as the data source. Labels are shown in the select field. Values are the corresponding values saved with the submission.',
     weight: 10,
     reorder: true,
-<<<<<<< HEAD
-=======
     defaultValue: [{ label: '', value: '' }],
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     components: [
       {
         label: 'Label',
@@ -162,13 +148,8 @@ export default [
         input: true,
         type: 'textfield',
         allowCalculateOverride: true,
-<<<<<<< HEAD
-        calculateValue: { _camelCase: [{ var: 'row.label' }] }
-      }
-=======
         calculateValue: { _camelCase: [{ var: 'row.label' }] },
       },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     ],
     conditional: {
       json: { '===': [{ var: 'data.dataSrc' }, 'values'] },
@@ -187,10 +168,7 @@ export default [
     clearOnHide: false,
     label: 'Resource',
     key: 'data.resource',
-<<<<<<< HEAD
-=======
     lazyLoad: false,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     weight: 10,
     tooltip: 'The resource to be used with this field.',
     conditional: {
@@ -247,27 +225,16 @@ export default [
       }
     },
     data: {
-<<<<<<< HEAD
-      url: '/form/{{ data.data.resource }}'
-=======
       url: '/form/{{ data.data.resource }}',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     },
     conditional: {
       json: {
         and: [
           { '===': [{ var: 'data.dataSrc' }, 'resource'] },
-<<<<<<< HEAD
-          { var: 'data.data.resource' }
-        ]
-      }
-    }
-=======
           { var: 'data.data.resource' },
         ],
       },
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'select',
@@ -301,15 +268,6 @@ export default [
     tooltip: 'The property of each item in the data source to use as the select value. If not specified, the item itself will be used.',
     conditional: {
       json: {
-<<<<<<< HEAD
-        and: [
-          { '!==': [{ var: 'data.dataSrc' }, 'values'] },
-          { '!==': [{ var: 'data.dataSrc' }, 'resource'] },
-          { '!==': [{ var: 'data.dataSrc' }, 'custom'] }
-        ],
-      }
-    }
-=======
         in: [
           { var: 'data.dataSrc' },
           [
@@ -320,7 +278,6 @@ export default [
         ],
       },
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'textfield',
@@ -388,23 +345,6 @@ export default [
     },
   },
   {
-    type: 'number',
-    input: true,
-    key: 'minSearch',
-    weight: 17,
-    label: 'Minimum Search Length',
-    tooltip: 'The minimum amount of characters they must type before a search is made.',
-    defaultValue: 0,
-    conditional: {
-      json: {
-        and: [
-          { '===': [{ var: 'data.dataSrc' }, 'url'] },
-          { '!=': [{ var: 'data.searchField' }, ''] }
-        ]
-      }
-    }
-  },
-  {
     type: 'textfield',
     input: true,
     key: 'filter',
@@ -443,23 +383,6 @@ export default [
         ],
       },
     },
-  },
-  {
-    type: 'textfield',
-    input: true,
-    key: 'sort',
-    label: 'Sort Query',
-    weight: 18,
-    description: 'The sort query for results',
-    tooltip: 'User this to provide additional sorting using query parameters',
-    conditional: {
-      json: {
-        or: [
-          { '===': [{ var: 'data.dataSrc' }, 'url'] },
-          { '===': [{ var: 'data.dataSrc' }, 'resource'] }
-        ]
-      }
-    }
   },
   {
     type: 'number',
@@ -518,8 +441,6 @@ export default [
     }
   },
   {
-<<<<<<< HEAD
-=======
     type: 'select',
     input: true,
     key: 'refreshOn',
@@ -556,7 +477,6 @@ export default [
     },
   },
   {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'checkbox',
     input: true,
     weight: 20,
@@ -609,9 +529,6 @@ export default [
   {
     type: 'checkbox',
     input: true,
-<<<<<<< HEAD
-    weight: 21,
-=======
     weight: 23,
     key: 'addResource',
     label: 'Add Resource',
@@ -641,7 +558,6 @@ export default [
     type: 'checkbox',
     input: true,
     weight: 25,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     key: 'reference',
     label: 'Save as reference',
     tooltip: 'Using this option will save this field as a reference and link its value to the value of the origin record.',
@@ -657,63 +573,21 @@ export default [
     label: 'Formio Authenticate',
     tooltip: 'Check this if you would like to use Formio Authentication with the request.',
     conditional: {
-<<<<<<< HEAD
-      json: { '===': [{ var: 'data.dataSrc' }, 'url'] }
-    }
-=======
       json: { '===': [{ var: 'data.dataSrc' }, 'url'] },
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'checkbox',
     input: true,
-<<<<<<< HEAD
-    weight: 22,
-    key: 'readOnlyValue',
-    label: 'Read Only Value',
-    tooltip: 'Check this if you would like to show just the value when in Read Only mode.'
-=======
     weight: 27,
     key: 'readOnlyValue',
     label: 'Read Only Value',
     tooltip: 'Check this if you would like to show just the value when in Read Only mode.',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'textarea',
     as: 'json',
     editor: 'ace',
-<<<<<<< HEAD
-    weight: 23,
-    input: true,
-    key: 'customOptions',
-    label: 'Custom default options',
-    tooltip: 'A raw JSON object to use as default options for the Select component (Choices JS).',
-    defaultValue: {}
-  },
-  {
-    label: 'Search Threshold',
-    mask: false,
-    tableView: true,
-    alwaysEnabled: false,
-    type: 'number',
-    input: true,
-    key: 'selectThreshold',
-    validate: {
-      min: 0,
-      customMessage: '',
-      json: '',
-      max: 1
-    },
-    delimiter: false,
-    requireDecimal: false,
-    encrypted: false,
-    defaultValue: 0.3,
-    weight: 30,
-    tooltip: 'At what point does the match algorithm give up. A threshold of 0.0 requires a perfect match, a threshold of 1.0 would match anything.'
-  }
-=======
     weight: 28,
     input: true,
     key: 'customOptions',
@@ -721,5 +595,4 @@ export default [
     tooltip: 'A raw JSON object to use as options for the Select component (Choices JS).',
     defaultValue: {},
   },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 ];

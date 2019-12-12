@@ -26,10 +26,7 @@ export default {
       const newKey = uniqueKey(formKeys, component.key);
       if (newKey !== component.key) {
         component.key = newKey;
-<<<<<<< HEAD
-=======
         formKeys[newKey] = true;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         changed = true;
       }
     }, true);

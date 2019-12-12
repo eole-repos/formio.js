@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import baseEditForm from '../base/Base.form';
-export default function(...extend) {
-  return baseEditForm([{
-    key: 'data',
-    components: [{
-      key: 'defaultValue',
-      ignore: true
-    }]
-  }], ...extend);
-=======
 import baseEditForm from '../_classes/component/Component.form';
 
 import ContainerEditDisplay from './editForm/Container.edit.display';
@@ -25,5 +14,4 @@ export default function(...extend) {
       components: ContainerEditData
     },
   ], ...extend);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

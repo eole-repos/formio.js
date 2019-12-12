@@ -1,10 +1,4 @@
 import NativePromise from 'native-promise-only';
-<<<<<<< HEAD
-
-import _ from 'lodash';
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import Formio from './Formio';
 import Webform from './Webform';
 import { fastCloneDeep } from './utils/utils';
@@ -18,23 +12,6 @@ export default class PDF extends Webform {
   init() {
     super.init();
 
-<<<<<<< HEAD
-    // Resolve when the iframe is ready.
-    this.iframeReady = new NativePromise((resolve) => (this.iframeReadyResolve = resolve));
-  }
-
-  postMessage(message) {
-    if (!message || !this.iframeReady) {
-      return;
-    }
-    if (!message.type) {
-      message.type = 'iframe-data';
-    }
-    this.iframeReady.then(() => {
-      if (this.iframe && this.iframe.contentWindow) {
-        this.iframe.contentWindow.postMessage(JSON.stringify(message), '*');
-      }
-=======
     // Handle an iframe submission.
     this.on('iframe-submission', (submission) => this.setValue(submission, {
       fromIframe: true
@@ -48,7 +25,6 @@ export default class PDF extends Webform {
     return this.renderTemplate('pdf', {
       classes: 'formio-form-pdf',
       children: this.renderComponents()
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
   }
 
@@ -168,8 +144,6 @@ export default class PDF extends Webform {
   }
 
   setForm(form) {
-    const formCopy = _.cloneDeep(form);
-
     return super.setForm(form).then(() => {
       if (this.formio) {
         form.projectUrl = this.formio.projectUrl;
@@ -177,10 +151,7 @@ export default class PDF extends Webform {
         form.base = this.formio.base;
         this.postMessage({ name: 'token', data: this.formio.getToken() });
       }
-
-      this.postMessage({ name: 'form', data: formCopy });
-
-      return form;
+      this.postMessage({ name: 'form', data: form });
     });
   }
 
@@ -228,78 +199,6 @@ export default class PDF extends Webform {
     });
   }
 
-<<<<<<< HEAD
-  addComponent(component, element, data, before, noAdd, state) {
-    // Never add the component to the DOM.
-    super.addComponent(component, element, data, before, true, state);
-  }
-
-  // Iframe should always be shown.
-  showElement() {}
-  build() {
-    // Do not rebuild the iframe...
-    if (this.iframe) {
-      this.addComponents();
-      return;
-    }
-
-    this.zoomIn = this.ce('span', {
-      style: 'position:absolute;right:10px;top:10px;cursor:pointer;',
-      class: 'btn btn-default btn-secondary no-disable'
-    }, this.ce('i', {
-      class: this.iconClass('zoom-in')
-    }));
-    this.addEventListener(this.zoomIn, 'click', (event) => {
-      event.preventDefault();
-      this.postMessage({ name: 'zoomIn' });
-    });
-
-    this.zoomOut = this.ce('span', {
-      style: 'position:absolute;right:10px;top:60px;cursor:pointer;',
-      class: 'btn btn-default btn-secondary no-disable'
-    }, this.ce('i', {
-      class: this.iconClass('zoom-out')
-    }));
-    this.addEventListener(this.zoomOut, 'click', (event) => {
-      event.preventDefault();
-      this.postMessage({ name: 'zoomOut' });
-    });
-
-    this.iframe = this.ce('iframe', {
-      src: this.getSrc(),
-      id: `iframe-${this.id}`,
-      seamless: true,
-      class: 'formio-iframe'
-    });
-
-    // Handle an iframe submission.
-    this.on('iframe-submission', (submission) => {
-      this.setSubmission(submission).then(() => this.submit());
-    }, true);
-
-    // Trigger when this form is ready.
-    this.on('iframe-ready', () => this.iframeReadyResolve(), true);
-
-    this.appendChild(this.element, [
-      this.zoomIn,
-      this.zoomOut,
-      this.iframe
-    ]);
-
-    if (
-      !this.options.readOnly &&
-      _.find(this.form.components, (component) => component.type === 'button' && component.action === 'submit' && !component.hidden)
-    ) {
-      this.submitButton = this.ce('button', {
-        type: 'button',
-        class: 'btn btn-primary'
-      }, 'Submit');
-
-      this.addEventListener(this.submitButton, 'click', () => {
-        this.postMessage({ name: 'getSubmission' });
-      });
-      this.appendChild(this.element, this.submitButton);
-=======
   postMessage(message) {
     // If we get here before the iframeReady promise is set up, it's via the superclass constructor
     if (!this.iframeReady) {
@@ -308,7 +207,6 @@ export default class PDF extends Webform {
 
     if (!message.type) {
       message.type = 'iframe-data';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     this.iframeReady.then(() => {
@@ -328,7 +226,7 @@ export default class PDF extends Webform {
 window.addEventListener('message', (event) => {
   let eventData = null;
   try {
-    eventData = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+    eventData = JSON.parse(event.data);
   }
   catch (err) {
     eventData = null;

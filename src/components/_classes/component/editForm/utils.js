@@ -1,9 +1,5 @@
 import _ from 'lodash';
-<<<<<<< HEAD:src/components/base/editForm/utils.js
-import Evaluator from '../../../utils/Evaluator';
-=======
 import Evaluator from '../../../../utils/Evaluator';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/utils.js
 const EditFormUtils = {
   sortAndFilterComponents(components) {
     return _.filter(_.sortBy(components, 'weight'), (item) => !item.ignore);

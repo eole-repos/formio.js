@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-// Keep lodash off the global scope.
-import _ from 'lodash';
-_.noConflict();
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 /*global Formio*/
 const scripts = document.getElementsByTagName('script');
 let thisScript = null;
@@ -15,31 +8,6 @@ while (i--) {
     break;
   }
 }
-<<<<<<< HEAD
-
-if (thisScript) {
-  const Form = require('./formio.form').Form;
-  const query = {};
-  let scriptSrc = thisScript.src.replace(/^([^?]+).*/, '$1').split('/');
-  scriptSrc.pop();
-  scriptSrc = scriptSrc.join('/');
-  const queryString = thisScript.src.replace(/^[^?]+\??/,'');
-  queryString.replace(/\?/g, '&').split('&').forEach((item) => {
-    query[item.split('=')[0]] = item.split('=')[1] && decodeURIComponent(item.split('=')[1]);
-  });
-  query.styles = query.styles || (`${scriptSrc}/formio.full.min.css`);
-  if (query.base) {
-    Formio.setBaseUrl(query.base);
-  }
-  if (query.project) {
-    Formio.setProjectUrl(query.project);
-  }
-  Form.embed(query).then((instance) => {
-    Formio.events.emit('formEmbedded', instance);
-    instance.on('submit', (submission) => {
-      let returnUrl = query.return || query.redirect;
-
-=======
 
 if (thisScript) {
   const Form = require('./formio.form').Form;
@@ -57,7 +25,6 @@ if (thisScript) {
     instance.on('submit', (submission) => {
       let returnUrl = query.return || query.redirect;
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       // Allow form based configuration for return url.
       if (
         !returnUrl &&

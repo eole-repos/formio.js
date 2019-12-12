@@ -1,9 +1,5 @@
 /*!
-<<<<<<< HEAD
-  * Bootstrap v4.3.1 (https://getbootstrap.com/)
-=======
   * Bootstrap v4.4.1 (https://getbootstrap.com/)
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
@@ -11,11 +7,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
   (global = global || self, factory(global.bootstrap = {}, global.jQuery));
-<<<<<<< HEAD
-}(this, function (exports, $) { 'use strict';
-=======
 }(this, (function (exports, $) { 'use strict';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
 
@@ -50,22 +42,6 @@
     return obj;
   }
 
-<<<<<<< HEAD
-  function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-      var ownKeys = Object.keys(source);
-
-      if (typeof Object.getOwnPropertySymbols === 'function') {
-        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-        }));
-      }
-
-      ownKeys.forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-=======
   function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
 
@@ -95,7 +71,6 @@
           Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
         });
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     return target;
@@ -109,11 +84,7 @@
 
   /**
    * --------------------------------------------------------------------------
-<<<<<<< HEAD
-   * Bootstrap (v4.3.1): util.js
-=======
    * Bootstrap (v4.4.1): util.js
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -262,10 +233,6 @@
       }
 
       return Util.findShadowRoot(element.parentNode);
-<<<<<<< HEAD
-    }
-  };
-=======
     },
     jQueryDetection: function jQueryDetection() {
       if (typeof $ === 'undefined') {
@@ -285,7 +252,6 @@
     }
   };
   Util.jQueryDetection();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   setTransitionEndSupport();
 
   /**
@@ -295,11 +261,7 @@
    */
 
   var NAME = 'alert';
-<<<<<<< HEAD
-  var VERSION = '4.3.1';
-=======
   var VERSION = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -316,22 +278,12 @@
     ALERT: 'alert',
     FADE: 'fade',
     SHOW: 'show'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Alert =
   /*#__PURE__*/
@@ -473,11 +425,7 @@
    */
 
   var NAME$1 = 'button';
-<<<<<<< HEAD
-  var VERSION$1 = '4.3.1';
-=======
   var VERSION$1 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -489,29 +437,15 @@
   };
   var Selector$1 = {
     DATA_TOGGLE_CARROT: '[data-toggle^="button"]',
-<<<<<<< HEAD
-    DATA_TOGGLE: '[data-toggle="buttons"]',
-=======
     DATA_TOGGLES: '[data-toggle="buttons"]',
     DATA_TOGGLE: '[data-toggle="button"]',
     DATA_TOGGLES_BUTTONS: '[data-toggle="buttons"] .btn',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     INPUT: 'input:not([type="hidden"])',
     ACTIVE: '.active',
     BUTTON: '.btn'
   };
   var Event$1 = {
     CLICK_DATA_API: "click" + EVENT_KEY$1 + DATA_API_KEY$1,
-<<<<<<< HEAD
-    FOCUS_BLUR_DATA_API: "focus" + EVENT_KEY$1 + DATA_API_KEY$1 + " " + ("blur" + EVENT_KEY$1 + DATA_API_KEY$1)
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
     FOCUS_BLUR_DATA_API: "focus" + EVENT_KEY$1 + DATA_API_KEY$1 + " " + ("blur" + EVENT_KEY$1 + DATA_API_KEY$1),
     LOAD_DATA_API: "load" + EVENT_KEY$1 + DATA_API_KEY$1
   };
@@ -520,7 +454,6 @@
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Button =
   /*#__PURE__*/
@@ -536,11 +469,7 @@
     _proto.toggle = function toggle() {
       var triggerChangeEvent = true;
       var addAriaPressed = true;
-<<<<<<< HEAD
-      var rootElement = $(this._element).closest(Selector$1.DATA_TOGGLE)[0];
-=======
       var rootElement = $(this._element).closest(Selector$1.DATA_TOGGLES)[0];
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (rootElement) {
         var input = this._element.querySelector(Selector$1.INPUT);
@@ -556,15 +485,6 @@
                 $(activeElement).removeClass(ClassName$1.ACTIVE);
               }
             }
-<<<<<<< HEAD
-          }
-
-          if (triggerChangeEvent) {
-            if (input.hasAttribute('disabled') || rootElement.hasAttribute('disabled') || input.classList.contains('disabled') || rootElement.classList.contains('disabled')) {
-              return;
-            }
-
-=======
           } else if (input.type === 'checkbox') {
             if (this._element.tagName === 'LABEL' && input.checked === this._element.classList.contains(ClassName$1.ACTIVE)) {
               triggerChangeEvent = false;
@@ -575,7 +495,6 @@
           }
 
           if (triggerChangeEvent) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             input.checked = !this._element.classList.contains(ClassName$1.ACTIVE);
             $(input).trigger('change');
           }
@@ -585,14 +504,6 @@
         }
       }
 
-<<<<<<< HEAD
-      if (addAriaPressed) {
-        this._element.setAttribute('aria-pressed', !this._element.classList.contains(ClassName$1.ACTIVE));
-      }
-
-      if (triggerChangeEvent) {
-        $(this._element).toggleClass(ClassName$1.ACTIVE);
-=======
       if (!(this._element.hasAttribute('disabled') || this._element.classList.contains('disabled'))) {
         if (addAriaPressed) {
           this._element.setAttribute('aria-pressed', !this._element.classList.contains(ClassName$1.ACTIVE));
@@ -601,7 +512,6 @@
         if (triggerChangeEvent) {
           $(this._element).toggleClass(ClassName$1.ACTIVE);
         }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     };
 
@@ -643,16 +553,6 @@
 
 
   $(document).on(Event$1.CLICK_DATA_API, Selector$1.DATA_TOGGLE_CARROT, function (event) {
-<<<<<<< HEAD
-    event.preventDefault();
-    var button = event.target;
-
-    if (!$(button).hasClass(ClassName$1.BUTTON)) {
-      button = $(button).closest(Selector$1.BUTTON);
-    }
-
-    Button._jQueryInterface.call($(button), 'toggle');
-=======
     var button = event.target;
 
     if (!$(button).hasClass(ClassName$1.BUTTON)) {
@@ -672,13 +572,10 @@
 
       Button._jQueryInterface.call($(button), 'toggle');
     }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }).on(Event$1.FOCUS_BLUR_DATA_API, Selector$1.DATA_TOGGLE_CARROT, function (event) {
     var button = $(event.target).closest(Selector$1.BUTTON)[0];
     $(button).toggleClass(ClassName$1.FOCUS, /^focus(in)?$/.test(event.type));
   });
-<<<<<<< HEAD
-=======
   $(window).on(Event$1.LOAD_DATA_API, function () {
     // ensure correct active class is set to match the controls' actual values/states
     // find all checkboxes/readio buttons inside data-toggle groups
@@ -708,7 +605,6 @@
       }
     }
   });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /**
    * ------------------------------------------------------------------------
    * jQuery
@@ -730,11 +626,7 @@
    */
 
   var NAME$2 = 'carousel';
-<<<<<<< HEAD
-  var VERSION$2 = '4.3.1';
-=======
   var VERSION$2 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -807,22 +699,12 @@
   var PointerType = {
     TOUCH: 'touch',
     PEN: 'pen'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Carousel =
   /*#__PURE__*/
@@ -942,11 +824,7 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, Default, config);
-=======
       config = _objectSpread2({}, Default, {}, config);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       Util.typeCheckConfig(NAME$2, config, DefaultType);
       return config;
     };
@@ -958,12 +836,8 @@
         return;
       }
 
-<<<<<<< HEAD
-      var direction = absDeltax / this.touchDeltaX; // swipe left
-=======
       var direction = absDeltax / this.touchDeltaX;
       this.touchDeltaX = 0; // swipe left
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (direction > 0) {
         this.prev();
@@ -1089,11 +963,6 @@
           event.preventDefault();
           this.next();
           break;
-<<<<<<< HEAD
-
-        default:
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     };
 
@@ -1245,17 +1114,10 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$2);
 
-<<<<<<< HEAD
-        var _config = _objectSpread({}, Default, $(this).data());
-
-        if (typeof config === 'object') {
-          _config = _objectSpread({}, _config, config);
-=======
         var _config = _objectSpread2({}, Default, {}, $(this).data());
 
         if (typeof config === 'object') {
           _config = _objectSpread2({}, _config, {}, config);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
@@ -1293,11 +1155,7 @@
         return;
       }
 
-<<<<<<< HEAD
-      var config = _objectSpread({}, $(target).data(), $(this).data());
-=======
       var config = _objectSpread2({}, $(target).data(), {}, $(this).data());
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -1366,11 +1224,7 @@
    */
 
   var NAME$3 = 'collapse';
-<<<<<<< HEAD
-  var VERSION$3 = '4.3.1';
-=======
   var VERSION$3 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -1403,22 +1257,12 @@
   var Selector$3 = {
     ACTIVES: '.show, .collapsing',
     DATA_TOGGLE: '[data-toggle="collapse"]'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Collapse =
   /*#__PURE__*/
@@ -1605,11 +1449,7 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, Default$1, config);
-=======
       config = _objectSpread2({}, Default$1, {}, config);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$3, config, DefaultType$1);
@@ -1663,11 +1503,7 @@
         var $this = $(this);
         var data = $this.data(DATA_KEY$3);
 
-<<<<<<< HEAD
-        var _config = _objectSpread({}, Default$1, $this.data(), typeof config === 'object' && config ? config : {});
-=======
         var _config = _objectSpread2({}, Default$1, {}, $this.data(), {}, typeof config === 'object' && config ? config : {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
         if (!data && _config.toggle && /show|hide/.test(config)) {
           _config.toggle = false;
@@ -1742,11 +1578,7 @@
 
   /**!
    * @fileOverview Kickass library to create and place poppers near their reference elements.
-<<<<<<< HEAD
-   * @version 1.14.7
-=======
    * @version 1.16.0
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
    * @license
    * Copyright (c) 2016 Federico Zivolo and contributors
    *
@@ -1768,18 +1600,6 @@
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
    * SOFTWARE.
    */
-<<<<<<< HEAD
-  var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
-
-  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-  var timeoutDuration = 0;
-  for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-      timeoutDuration = 1;
-      break;
-    }
-  }
-=======
   var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
 
   var timeoutDuration = function () {
@@ -1791,7 +1611,6 @@
     }
     return 0;
   }();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   function microtaskDebounce(fn) {
     var called = false;
@@ -1911,8 +1730,6 @@
     return getScrollParent(getParentNode(element));
   }
 
-<<<<<<< HEAD
-=======
   /**
    * Returns the reference node of the reference object, or the reference object itself.
    * @method
@@ -1924,7 +1741,6 @@
     return reference && reference.referenceNode ? reference.referenceNode : reference;
   }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
   var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
 
@@ -2233,13 +2049,8 @@
 
     // subtract scrollbar size from sizes
     var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-<<<<<<< HEAD
-    var width = sizes.width || element.clientWidth || result.right - result.left;
-    var height = sizes.height || element.clientHeight || result.bottom - result.top;
-=======
     var width = sizes.width || element.clientWidth || result.width;
     var height = sizes.height || element.clientHeight || result.height;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     var horizScrollbar = element.offsetWidth - width;
     var vertScrollbar = element.offsetHeight - height;
@@ -2391,11 +2202,7 @@
     // NOTE: 1 DOM access here
 
     var boundaries = { top: 0, left: 0 };
-<<<<<<< HEAD
-    var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-=======
     var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     // Handle viewport case
     if (boundariesElement === 'viewport') {
@@ -2523,11 +2330,7 @@
   function getReferenceOffsets(state, popper, reference) {
     var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
-<<<<<<< HEAD
-    var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-=======
     var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
   }
 
@@ -2789,11 +2592,7 @@
 
     this.disableEventListeners();
 
-<<<<<<< HEAD
-    // remove the popper if user explicity asked for the deletion on destroy
-=======
     // remove the popper if user explicitly asked for the deletion on destroy
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     // do not use `remove` because IE11 doesn't support it
     if (this.options.removeOnDestroy) {
       this.popper.parentNode.removeChild(this.popper);
@@ -3395,9 +3194,6 @@
 
       // flip the variation if required
       var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-<<<<<<< HEAD
-      var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
-=======
 
       // flips variation if reference element overflows boundaries
       var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
@@ -3406,7 +3202,6 @@
       var flippedVariationByContent = !!options.flipVariationsByContent && (isVertical && variation === 'start' && overflowsRight || isVertical && variation === 'end' && overflowsLeft || !isVertical && variation === 'start' && overflowsBottom || !isVertical && variation === 'end' && overflowsTop);
 
       var flippedVariation = flippedVariationByRef || flippedVariationByContent;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (overlapsRef || overflowsBoundaries || flippedVariation) {
         // this boolean to detect any flip loop
@@ -4013,9 +3808,6 @@
        * The popper will never be placed outside of the defined boundaries
        * (except if `keepTogether` is enabled)
        */
-<<<<<<< HEAD
-      boundariesElement: 'viewport'
-=======
       boundariesElement: 'viewport',
       /**
        * @prop {Boolean} flipVariations=false
@@ -4033,7 +3825,6 @@
        * The original placement should have a set variation.
        */
       flipVariationsByContent: false
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     },
 
     /**
@@ -4250,13 +4041,8 @@
     /**
      * Creates a new Popper.js instance.
      * @class Popper
-<<<<<<< HEAD
-     * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
-     * @param {HTMLElement} popper - The HTML element used as the popper
-=======
      * @param {Element|referenceObject} reference - The reference element used to position the popper
      * @param {Element} popper - The HTML / XML element used as the popper
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
      * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
      * @return {Object} instance - The generated Popper.js instance
      */
@@ -4411,11 +4197,7 @@
    */
 
   var NAME$4 = 'dropdown';
-<<<<<<< HEAD
-  var VERSION$4 = '4.3.1';
-=======
   var VERSION$4 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -4475,28 +4257,14 @@
     flip: true,
     boundary: 'scrollParent',
     reference: 'toggle',
-<<<<<<< HEAD
-    display: 'dynamic'
-=======
     display: 'dynamic',
     popperConfig: null
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   };
   var DefaultType$2 = {
     offset: '(number|string|function)',
     flip: 'boolean',
     boundary: '(string|element)',
     reference: '(string|element)',
-<<<<<<< HEAD
-    display: 'string'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
     display: 'string',
     popperConfig: '(null|object)'
   };
@@ -4505,7 +4273,6 @@
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Dropdown =
   /*#__PURE__*/
@@ -4529,11 +4296,6 @@
         return;
       }
 
-<<<<<<< HEAD
-      var parent = Dropdown._getParentFromElement(this._element);
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       var isActive = $(this._menu).hasClass(ClassName$4.SHOW);
 
       Dropdown._clearMenus();
@@ -4542,8 +4304,6 @@
         return;
       }
 
-<<<<<<< HEAD
-=======
       this.show(true);
     };
 
@@ -4556,17 +4316,13 @@
         return;
       }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       var relatedTarget = {
         relatedTarget: this._element
       };
       var showEvent = $.Event(Event$4.SHOW, relatedTarget);
-<<<<<<< HEAD
-=======
 
       var parent = Dropdown._getParentFromElement(this._element);
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       $(parent).trigger(showEvent);
 
       if (showEvent.isDefaultPrevented()) {
@@ -4574,11 +4330,7 @@
       } // Disable totally Popper.js for Dropdown in Navbar
 
 
-<<<<<<< HEAD
-      if (!this._inNavbar) {
-=======
       if (!this._inNavbar && usePopper) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         /**
          * Check for Popper dependency
          * Popper - https://popper.js.org
@@ -4625,31 +4377,6 @@
       $(parent).toggleClass(ClassName$4.SHOW).trigger($.Event(Event$4.SHOWN, relatedTarget));
     };
 
-<<<<<<< HEAD
-    _proto.show = function show() {
-      if (this._element.disabled || $(this._element).hasClass(ClassName$4.DISABLED) || $(this._menu).hasClass(ClassName$4.SHOW)) {
-        return;
-      }
-
-      var relatedTarget = {
-        relatedTarget: this._element
-      };
-      var showEvent = $.Event(Event$4.SHOW, relatedTarget);
-
-      var parent = Dropdown._getParentFromElement(this._element);
-
-      $(parent).trigger(showEvent);
-
-      if (showEvent.isDefaultPrevented()) {
-        return;
-      }
-
-      $(this._menu).toggleClass(ClassName$4.SHOW);
-      $(parent).toggleClass(ClassName$4.SHOW).trigger($.Event(Event$4.SHOWN, relatedTarget));
-    };
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     _proto.hide = function hide() {
       if (this._element.disabled || $(this._element).hasClass(ClassName$4.DISABLED) || !$(this._menu).hasClass(ClassName$4.SHOW)) {
         return;
@@ -4668,13 +4395,10 @@
         return;
       }
 
-<<<<<<< HEAD
-=======
       if (this._popper) {
         this._popper.destroy();
       }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       $(this._menu).toggleClass(ClassName$4.SHOW);
       $(parent).toggleClass(ClassName$4.SHOW).trigger($.Event(Event$4.HIDDEN, relatedTarget));
     };
@@ -4713,11 +4437,7 @@
     };
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, this.constructor.Default, $(this._element).data(), config);
-=======
       config = _objectSpread2({}, this.constructor.Default, {}, $(this._element).data(), {}, config);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       Util.typeCheckConfig(NAME$4, config, this.constructor.DefaultType);
       return config;
     };
@@ -4766,11 +4486,7 @@
 
       if (typeof this._config.offset === 'function') {
         offset.fn = function (data) {
-<<<<<<< HEAD
-          data.offsets = _objectSpread({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
-=======
           data.offsets = _objectSpread2({}, data.offsets, {}, _this2._config.offset(data.offsets, _this2._element) || {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           return data;
         };
       } else {
@@ -4791,14 +4507,8 @@
           preventOverflow: {
             boundariesElement: this._config.boundary
           }
-<<<<<<< HEAD
-        } // Disable Popper.js if we have a static display
-
-      };
-=======
         }
       }; // Disable Popper.js if we have a static display
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {
@@ -4806,11 +4516,7 @@
         };
       }
 
-<<<<<<< HEAD
-      return popperConfig;
-=======
       return _objectSpread2({}, popperConfig, {}, this._config.popperConfig);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     } // Static
     ;
 
@@ -4882,14 +4588,11 @@
         }
 
         toggles[i].setAttribute('aria-expanded', 'false');
-<<<<<<< HEAD
-=======
 
         if (context._popper) {
           context._popper.destroy();
         }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         $(dropdownMenu).removeClass(ClassName$4.SHOW);
         $(parent).removeClass(ClassName$4.SHOW).trigger($.Event(Event$4.HIDDEN, relatedTarget));
       }
@@ -4930,13 +4633,10 @@
 
       var isActive = $(parent).hasClass(ClassName$4.SHOW);
 
-<<<<<<< HEAD
-=======
       if (!isActive && event.which === ESCAPE_KEYCODE) {
         return;
       }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (!isActive || isActive && (event.which === ESCAPE_KEYCODE || event.which === SPACE_KEYCODE)) {
         if (event.which === ESCAPE_KEYCODE) {
           var toggle = parent.querySelector(Selector$4.DATA_TOGGLE);
@@ -4947,13 +4647,9 @@
         return;
       }
 
-<<<<<<< HEAD
-      var items = [].slice.call(parent.querySelectorAll(Selector$4.VISIBLE_ITEMS));
-=======
       var items = [].slice.call(parent.querySelectorAll(Selector$4.VISIBLE_ITEMS)).filter(function (item) {
         return $(item).is(':visible');
       });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (items.length === 0) {
         return;
@@ -5033,11 +4729,7 @@
    */
 
   var NAME$5 = 'modal';
-<<<<<<< HEAD
-  var VERSION$5 = '4.3.1';
-=======
   var VERSION$5 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -5058,10 +4750,7 @@
   };
   var Event$5 = {
     HIDE: "hide" + EVENT_KEY$5,
-<<<<<<< HEAD
-=======
     HIDE_PREVENTED: "hidePrevented" + EVENT_KEY$5,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     HIDDEN: "hidden" + EVENT_KEY$5,
     SHOW: "show" + EVENT_KEY$5,
     SHOWN: "shown" + EVENT_KEY$5,
@@ -5079,12 +4768,8 @@
     BACKDROP: 'modal-backdrop',
     OPEN: 'modal-open',
     FADE: 'fade',
-<<<<<<< HEAD
-    SHOW: 'show'
-=======
     SHOW: 'show',
     STATIC: 'modal-static'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   };
   var Selector$5 = {
     DIALOG: '.modal-dialog',
@@ -5093,22 +4778,12 @@
     DATA_DISMISS: '[data-dismiss="modal"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT: '.sticky-top'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Modal =
   /*#__PURE__*/
@@ -5254,21 +4929,11 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, Default$3, config);
-=======
       config = _objectSpread2({}, Default$3, {}, config);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       Util.typeCheckConfig(NAME$5, config, DefaultType$3);
       return config;
     };
 
-<<<<<<< HEAD
-    _proto._showElement = function _showElement(relatedTarget) {
-      var _this3 = this;
-
-      var transition = $(this._element).hasClass(ClassName$5.FADE);
-=======
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
@@ -5298,7 +4963,6 @@
 
       var transition = $(this._element).hasClass(ClassName$5.FADE);
       var modalBody = this._dialog ? this._dialog.querySelector(Selector$5.MODAL_BODY) : null;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
         // Don't move modal's DOM position
@@ -5311,13 +4975,8 @@
 
       this._element.setAttribute('aria-modal', true);
 
-<<<<<<< HEAD
-      if ($(this._dialog).hasClass(ClassName$5.SCROLLABLE)) {
-        this._dialog.querySelector(Selector$5.MODAL_BODY).scrollTop = 0;
-=======
       if ($(this._dialog).hasClass(ClassName$5.SCROLLABLE) && modalBody) {
         modalBody.scrollTop = 0;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       } else {
         this._element.scrollTop = 0;
       }
@@ -5337,21 +4996,12 @@
       });
 
       var transitionComplete = function transitionComplete() {
-<<<<<<< HEAD
-        if (_this3._config.focus) {
-          _this3._element.focus();
-        }
-
-        _this3._isTransitioning = false;
-        $(_this3._element).trigger(shownEvent);
-=======
         if (_this4._config.focus) {
           _this4._element.focus();
         }
 
         _this4._isTransitioning = false;
         $(_this4._element).trigger(shownEvent);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
 
       if (transition) {
@@ -5363,42 +5013,23 @@
     };
 
     _proto._enforceFocus = function _enforceFocus() {
-<<<<<<< HEAD
-      var _this4 = this;
-
-      $(document).off(Event$5.FOCUSIN) // Guard against infinite focus loop
-      .on(Event$5.FOCUSIN, function (event) {
-        if (document !== event.target && _this4._element !== event.target && $(_this4._element).has(event.target).length === 0) {
-          _this4._element.focus();
-=======
       var _this5 = this;
 
       $(document).off(Event$5.FOCUSIN) // Guard against infinite focus loop
       .on(Event$5.FOCUSIN, function (event) {
         if (document !== event.target && _this5._element !== event.target && $(_this5._element).has(event.target).length === 0) {
           _this5._element.focus();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       });
     };
 
     _proto._setEscapeEvent = function _setEscapeEvent() {
-<<<<<<< HEAD
-      var _this5 = this;
-=======
       var _this6 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (this._isShown && this._config.keyboard) {
         $(this._element).on(Event$5.KEYDOWN_DISMISS, function (event) {
           if (event.which === ESCAPE_KEYCODE$1) {
-<<<<<<< HEAD
-            event.preventDefault();
-
-            _this5.hide();
-=======
             _this6._triggerBackdropTransition();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           }
         });
       } else if (!this._isShown) {
@@ -5407,19 +5038,11 @@
     };
 
     _proto._setResizeEvent = function _setResizeEvent() {
-<<<<<<< HEAD
-      var _this6 = this;
-
-      if (this._isShown) {
-        $(window).on(Event$5.RESIZE, function (event) {
-          return _this6.handleUpdate(event);
-=======
       var _this7 = this;
 
       if (this._isShown) {
         $(window).on(Event$5.RESIZE, function (event) {
           return _this7.handleUpdate(event);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         });
       } else {
         $(window).off(Event$5.RESIZE);
@@ -5427,11 +5050,7 @@
     };
 
     _proto._hideModal = function _hideModal() {
-<<<<<<< HEAD
-      var _this7 = this;
-=======
       var _this8 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       this._element.style.display = 'none';
 
@@ -5444,19 +5063,11 @@
       this._showBackdrop(function () {
         $(document.body).removeClass(ClassName$5.OPEN);
 
-<<<<<<< HEAD
-        _this7._resetAdjustments();
-
-        _this7._resetScrollbar();
-
-        $(_this7._element).trigger(Event$5.HIDDEN);
-=======
         _this8._resetAdjustments();
 
         _this8._resetScrollbar();
 
         $(_this8._element).trigger(Event$5.HIDDEN);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     };
 
@@ -5468,11 +5079,7 @@
     };
 
     _proto._showBackdrop = function _showBackdrop(callback) {
-<<<<<<< HEAD
-      var _this8 = this;
-=======
       var _this9 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       var animate = $(this._element).hasClass(ClassName$5.FADE) ? ClassName$5.FADE : '';
 
@@ -5486,13 +5093,8 @@
 
         $(this._backdrop).appendTo(document.body);
         $(this._element).on(Event$5.CLICK_DISMISS, function (event) {
-<<<<<<< HEAD
-          if (_this8._ignoreBackdropClick) {
-            _this8._ignoreBackdropClick = false;
-=======
           if (_this9._ignoreBackdropClick) {
             _this9._ignoreBackdropClick = false;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             return;
           }
 
@@ -5500,15 +5102,7 @@
             return;
           }
 
-<<<<<<< HEAD
-          if (_this8._config.backdrop === 'static') {
-            _this8._element.focus();
-          } else {
-            _this8.hide();
-          }
-=======
           _this9._triggerBackdropTransition();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         });
 
         if (animate) {
@@ -5532,11 +5126,7 @@
         $(this._backdrop).removeClass(ClassName$5.SHOW);
 
         var callbackRemove = function callbackRemove() {
-<<<<<<< HEAD
-          _this8._removeBackdrop();
-=======
           _this9._removeBackdrop();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
           if (callback) {
             callback();
@@ -5583,11 +5173,7 @@
     };
 
     _proto._setScrollbar = function _setScrollbar() {
-<<<<<<< HEAD
-      var _this9 = this;
-=======
       var _this10 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (this._isBodyOverflowing) {
         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
@@ -5598,21 +5184,13 @@
         $(fixedContent).each(function (index, element) {
           var actualPadding = element.style.paddingRight;
           var calculatedPadding = $(element).css('padding-right');
-<<<<<<< HEAD
-          $(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this9._scrollbarWidth + "px");
-=======
           $(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this10._scrollbarWidth + "px");
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }); // Adjust sticky content margin
 
         $(stickyContent).each(function (index, element) {
           var actualMargin = element.style.marginRight;
           var calculatedMargin = $(element).css('margin-right');
-<<<<<<< HEAD
-          $(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this9._scrollbarWidth + "px");
-=======
           $(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this10._scrollbarWidth + "px");
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }); // Adjust body padding
 
         var actualPadding = document.body.style.paddingRight;
@@ -5661,11 +5239,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
-<<<<<<< HEAD
-        var _config = _objectSpread({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
-=======
         var _config = _objectSpread2({}, Default$3, {}, $(this).data(), {}, typeof config === 'object' && config ? config : {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
         if (!data) {
           data = new Modal(this, _config);
@@ -5706,11 +5280,7 @@
 
 
   $(document).on(Event$5.CLICK_DATA_API, Selector$5.DATA_TOGGLE, function (event) {
-<<<<<<< HEAD
-    var _this10 = this;
-=======
     var _this11 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     var target;
     var selector = Util.getSelectorFromElement(this);
@@ -5719,11 +5289,7 @@
       target = document.querySelector(selector);
     }
 
-<<<<<<< HEAD
-    var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread({}, $(target).data(), $(this).data());
-=======
     var config = $(target).data(DATA_KEY$5) ? 'toggle' : _objectSpread2({}, $(target).data(), {}, $(this).data());
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     if (this.tagName === 'A' || this.tagName === 'AREA') {
       event.preventDefault();
@@ -5736,13 +5302,8 @@
       }
 
       $target.one(Event$5.HIDDEN, function () {
-<<<<<<< HEAD
-        if ($(_this10).is(':visible')) {
-          _this10.focus();
-=======
         if ($(_this11).is(':visible')) {
           _this11.focus();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       });
     });
@@ -5765,11 +5326,7 @@
 
   /**
    * --------------------------------------------------------------------------
-<<<<<<< HEAD
-   * Bootstrap (v4.3.1): tools/sanitizer.js
-=======
    * Bootstrap (v4.4.1): tools/sanitizer.js
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -5807,15 +5364,6 @@
     strong: [],
     u: [],
     ul: []
-<<<<<<< HEAD
-    /**
-     * A pattern that recognizes a commonly useful subset of URLs that are safe.
-     *
-     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-     */
-
-  };
-=======
   };
   /**
    * A pattern that recognizes a commonly useful subset of URLs that are safe.
@@ -5823,7 +5371,6 @@
    * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
@@ -5890,11 +5437,7 @@
     };
 
     for (var i = 0, len = elements.length; i < len; i++) {
-<<<<<<< HEAD
-      var _ret = _loop(i, len);
-=======
       var _ret = _loop(i);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (_ret === "continue") continue;
     }
@@ -5909,11 +5452,7 @@
    */
 
   var NAME$6 = 'tooltip';
-<<<<<<< HEAD
-  var VERSION$6 = '4.3.1';
-=======
   var VERSION$6 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
@@ -5935,12 +5474,8 @@
     boundary: '(string|element)',
     sanitize: 'boolean',
     sanitizeFn: '(null|function)',
-<<<<<<< HEAD
-    whiteList: 'object'
-=======
     whiteList: 'object',
     popperConfig: '(null|object)'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   };
   var AttachmentMap$1 = {
     AUTO: 'auto',
@@ -5964,12 +5499,8 @@
     boundary: 'scrollParent',
     sanitize: true,
     sanitizeFn: null,
-<<<<<<< HEAD
-    whiteList: DefaultWhitelist
-=======
     whiteList: DefaultWhitelist,
     popperConfig: null
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   };
   var HoverState = {
     SHOW: 'show',
@@ -6001,34 +5532,17 @@
     FOCUS: 'focus',
     CLICK: 'click',
     MANUAL: 'manual'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Tooltip =
   /*#__PURE__*/
   function () {
     function Tooltip(element, config) {
-<<<<<<< HEAD
-      /**
-       * Check for Popper dependency
-       * Popper - https://popper.js.org
-       */
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (typeof Popper === 'undefined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
       } // private
@@ -6099,11 +5613,7 @@
       clearTimeout(this._timeout);
       $.removeData(this.element, this.constructor.DATA_KEY);
       $(this.element).off(this.constructor.EVENT_KEY);
-<<<<<<< HEAD
-      $(this.element).closest('.modal').off('hide.bs.modal');
-=======
       $(this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (this.tip) {
         $(this.tip).remove();
@@ -6114,11 +5624,7 @@
       this._hoverState = null;
       this._activeTrigger = null;
 
-<<<<<<< HEAD
-      if (this._popper !== null) {
-=======
       if (this._popper) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         this._popper.destroy();
       }
 
@@ -6171,33 +5677,7 @@
         }
 
         $(this.element).trigger(this.constructor.Event.INSERTED);
-<<<<<<< HEAD
-        this._popper = new Popper(this.element, tip, {
-          placement: attachment,
-          modifiers: {
-            offset: this._getOffset(),
-            flip: {
-              behavior: this.config.fallbackPlacement
-            },
-            arrow: {
-              element: Selector$6.ARROW
-            },
-            preventOverflow: {
-              boundariesElement: this.config.boundary
-            }
-          },
-          onCreate: function onCreate(data) {
-            if (data.originalPlacement !== data.placement) {
-              _this._handlePopperPlacementChange(data);
-            }
-          },
-          onUpdate: function onUpdate(data) {
-            return _this._handlePopperPlacementChange(data);
-          }
-        });
-=======
         this._popper = new Popper(this.element, tip, this._getPopperConfig(attachment));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         $(tip).addClass(ClassName$6.SHOW); // If this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
@@ -6345,11 +5825,6 @@
     } // Private
     ;
 
-<<<<<<< HEAD
-    _proto._getOffset = function _getOffset() {
-      var _this3 = this;
-
-=======
     _proto._getPopperConfig = function _getPopperConfig(attachment) {
       var _this3 = this;
 
@@ -6382,16 +5857,11 @@
     _proto._getOffset = function _getOffset() {
       var _this4 = this;
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       var offset = {};
 
       if (typeof this.config.offset === 'function') {
         offset.fn = function (data) {
-<<<<<<< HEAD
-          data.offsets = _objectSpread({}, data.offsets, _this3.config.offset(data.offsets, _this3.element) || {});
-=======
           data.offsets = _objectSpread2({}, data.offsets, {}, _this4.config.offset(data.offsets, _this4.element) || {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           return data;
         };
       } else {
@@ -6418,38 +5888,11 @@
     };
 
     _proto._setListeners = function _setListeners() {
-<<<<<<< HEAD
-      var _this4 = this;
-=======
       var _this5 = this;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       var triggers = this.config.trigger.split(' ');
       triggers.forEach(function (trigger) {
         if (trigger === 'click') {
-<<<<<<< HEAD
-          $(_this4.element).on(_this4.constructor.Event.CLICK, _this4.config.selector, function (event) {
-            return _this4.toggle(event);
-          });
-        } else if (trigger !== Trigger.MANUAL) {
-          var eventIn = trigger === Trigger.HOVER ? _this4.constructor.Event.MOUSEENTER : _this4.constructor.Event.FOCUSIN;
-          var eventOut = trigger === Trigger.HOVER ? _this4.constructor.Event.MOUSELEAVE : _this4.constructor.Event.FOCUSOUT;
-          $(_this4.element).on(eventIn, _this4.config.selector, function (event) {
-            return _this4._enter(event);
-          }).on(eventOut, _this4.config.selector, function (event) {
-            return _this4._leave(event);
-          });
-        }
-      });
-      $(this.element).closest('.modal').on('hide.bs.modal', function () {
-        if (_this4.element) {
-          _this4.hide();
-        }
-      });
-
-      if (this.config.selector) {
-        this.config = _objectSpread({}, this.config, {
-=======
           $(_this5.element).on(_this5.constructor.Event.CLICK, _this5.config.selector, function (event) {
             return _this5.toggle(event);
           });
@@ -6474,7 +5917,6 @@
 
       if (this.config.selector) {
         this.config = _objectSpread2({}, this.config, {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           trigger: 'manual',
           selector: ''
         });
@@ -6574,11 +6016,7 @@
           delete dataAttributes[dataAttr];
         }
       });
-<<<<<<< HEAD
-      config = _objectSpread({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
-=======
       config = _objectSpread2({}, this.constructor.Default, {}, dataAttributes, {}, typeof config === 'object' && config ? config : {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -6738,33 +6176,21 @@
    */
 
   var NAME$7 = 'popover';
-<<<<<<< HEAD
-  var VERSION$7 = '4.3.1';
-=======
   var VERSION$7 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
   var CLASS_PREFIX$1 = 'bs-popover';
   var BSCLS_PREFIX_REGEX$1 = new RegExp("(^|\\s)" + CLASS_PREFIX$1 + "\\S+", 'g');
 
-<<<<<<< HEAD
-  var Default$5 = _objectSpread({}, Tooltip.Default, {
-=======
   var Default$5 = _objectSpread2({}, Tooltip.Default, {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     placement: 'right',
     trigger: 'click',
     content: '',
     template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
   });
 
-<<<<<<< HEAD
-  var DefaultType$5 = _objectSpread({}, Tooltip.DefaultType, {
-=======
   var DefaultType$5 = _objectSpread2({}, Tooltip.DefaultType, {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     content: '(string|element|function)'
   });
 
@@ -6787,22 +6213,12 @@
     FOCUSOUT: "focusout" + EVENT_KEY$7,
     MOUSEENTER: "mouseenter" + EVENT_KEY$7,
     MOUSELEAVE: "mouseleave" + EVENT_KEY$7
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Popover =
   /*#__PURE__*/
@@ -6946,11 +6362,7 @@
    */
 
   var NAME$8 = 'scrollspy';
-<<<<<<< HEAD
-  var VERSION$8 = '4.3.1';
-=======
   var VERSION$8 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -6989,22 +6401,12 @@
   var OffsetMethod = {
     OFFSET: 'offset',
     POSITION: 'position'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var ScrollSpy =
   /*#__PURE__*/
@@ -7086,11 +6488,7 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, Default$6, typeof config === 'object' && config ? config : {});
-=======
       config = _objectSpread2({}, Default$6, {}, typeof config === 'object' && config ? config : {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (typeof config.target !== 'string') {
         var id = $(config.target).attr('id');
@@ -7270,11 +6668,7 @@
    */
 
   var NAME$9 = 'tab';
-<<<<<<< HEAD
-  var VERSION$9 = '4.3.1';
-=======
   var VERSION$9 = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -7301,22 +6695,12 @@
     DATA_TOGGLE: '[data-toggle="tab"], [data-toggle="pill"], [data-toggle="list"]',
     DROPDOWN_TOGGLE: '.dropdown-toggle',
     DROPDOWN_ACTIVE_CHILD: '> .dropdown-menu .active'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Tab =
   /*#__PURE__*/
@@ -7518,11 +6902,7 @@
    */
 
   var NAME$a = 'toast';
-<<<<<<< HEAD
-  var VERSION$a = '4.3.1';
-=======
   var VERSION$a = '4.4.1';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -7551,22 +6931,12 @@
   };
   var Selector$a = {
     DATA_DISMISS: '[data-dismiss="toast"]'
-<<<<<<< HEAD
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-  };
-=======
   };
   /**
    * ------------------------------------------------------------------------
    * Class Definition
    * ------------------------------------------------------------------------
    */
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   var Toast =
   /*#__PURE__*/
@@ -7586,16 +6956,12 @@
     _proto.show = function show() {
       var _this = this;
 
-<<<<<<< HEAD
-      $(this._element).trigger(Event$a.SHOW);
-=======
       var showEvent = $.Event(Event$a.SHOW);
       $(this._element).trigger(showEvent);
 
       if (showEvent.isDefaultPrevented()) {
         return;
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       if (this._config.animation) {
         this._element.classList.add(ClassName$a.FADE);
@@ -7609,23 +6975,16 @@
         $(_this._element).trigger(Event$a.SHOWN);
 
         if (_this._config.autohide) {
-<<<<<<< HEAD
-          _this.hide();
-=======
           _this._timeout = setTimeout(function () {
             _this.hide();
           }, _this._config.delay);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
       };
 
       this._element.classList.remove(ClassName$a.HIDE);
 
-<<<<<<< HEAD
-=======
       Util.reflow(this._element);
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       this._element.classList.add(ClassName$a.SHOWING);
 
       if (this._config.animation) {
@@ -7636,28 +6995,11 @@
       }
     };
 
-<<<<<<< HEAD
-    _proto.hide = function hide(withoutTimeout) {
-      var _this2 = this;
-
-=======
     _proto.hide = function hide() {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (!this._element.classList.contains(ClassName$a.SHOW)) {
         return;
       }
 
-<<<<<<< HEAD
-      $(this._element).trigger(Event$a.HIDE);
-
-      if (withoutTimeout) {
-        this._close();
-      } else {
-        this._timeout = setTimeout(function () {
-          _this2._close();
-        }, this._config.delay);
-      }
-=======
       var hideEvent = $.Event(Event$a.HIDE);
       $(this._element).trigger(hideEvent);
 
@@ -7666,7 +7008,6 @@
       }
 
       this._close();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     };
 
     _proto.dispose = function dispose() {
@@ -7685,46 +7026,26 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-<<<<<<< HEAD
-      config = _objectSpread({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
-=======
       config = _objectSpread2({}, Default$7, {}, $(this._element).data(), {}, typeof config === 'object' && config ? config : {});
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       Util.typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
       return config;
     };
 
     _proto._setListeners = function _setListeners() {
-<<<<<<< HEAD
-      var _this3 = this;
-
-      $(this._element).on(Event$a.CLICK_DISMISS, Selector$a.DATA_DISMISS, function () {
-        return _this3.hide(true);
-=======
       var _this2 = this;
 
       $(this._element).on(Event$a.CLICK_DISMISS, Selector$a.DATA_DISMISS, function () {
         return _this2.hide();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     };
 
     _proto._close = function _close() {
-<<<<<<< HEAD
-      var _this4 = this;
-
-      var complete = function complete() {
-        _this4._element.classList.add(ClassName$a.HIDE);
-
-        $(_this4._element).trigger(Event$a.HIDDEN);
-=======
       var _this3 = this;
 
       var complete = function complete() {
         _this3._element.classList.add(ClassName$a.HIDE);
 
         $(_this3._element).trigger(Event$a.HIDDEN);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       };
 
       this._element.classList.remove(ClassName$a.SHOW);
@@ -7794,34 +7115,6 @@
     return Toast._jQueryInterface;
   };
 
-<<<<<<< HEAD
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.3.1): index.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  (function () {
-    if (typeof $ === 'undefined') {
-      throw new TypeError('Bootstrap\'s JavaScript requires jQuery. jQuery must be included before Bootstrap\'s JavaScript.');
-    }
-
-    var version = $.fn.jquery.split(' ')[0].split('.');
-    var minMajor = 1;
-    var ltMajor = 2;
-    var minMinor = 9;
-    var minPatch = 1;
-    var maxMajor = 4;
-
-    if (version[0] < ltMajor && version[1] < minMinor || version[0] === minMajor && version[1] === minMinor && version[2] < minPatch || version[0] >= maxMajor) {
-      throw new Error('Bootstrap\'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
-    }
-  })();
-
-  exports.Util = Util;
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   exports.Alert = Alert;
   exports.Button = Button;
   exports.Carousel = Carousel;
@@ -7833,16 +7126,9 @@
   exports.Tab = Tab;
   exports.Toast = Toast;
   exports.Tooltip = Tooltip;
-<<<<<<< HEAD
-
-  Object.defineProperty(exports, '__esModule', { value: true });
-
-}));
-=======
   exports.Util = Util;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 //# sourceMappingURL=bootstrap.bundle.js.map

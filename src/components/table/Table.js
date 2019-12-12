@@ -46,42 +46,31 @@ export default class TableComponent extends NestedComponent {
     };
   }
 
-  constructor(component, options, data) {
-    const originalRows = _.cloneDeep(component.rows);
-    super(component, options, data);
-    if (!_.isEqual(originalRows, this.component.rows)) {
-      this.component.rows = originalRows;
-    }
-  }
-
   get defaultSchema() {
     return TableComponent.schema();
   }
 
   get schema() {
     const schema = _.omit(super.schema, 'components');
-    schema.rows = TableComponent.emptyTable(this.component.numRows, this.component.numCols);
+    schema.rows = [];
     this.eachComponent((component) => {
-      const row = schema.rows[component.tableRow];
-      const col = row && row[component.tableColumn];
-      if (!row || !col) {
-        return false;
+      if (!schema.rows || !schema.rows.length) {
+        schema.rows = TableComponent.emptyTable(this.component.numRows, this.component.numCols);
+      }
+      if (!schema.rows[component.tableRow]) {
+        schema.rows[component.tableRow] = [];
+      }
+      if (!schema.rows[component.tableRow][component.tableColumn]) {
+        schema.rows[component.tableRow][component.column] = { components: [] };
       }
       schema.rows[component.tableRow][component.tableColumn].components.push(component.schema);
     });
+    if (!schema.rows.length) {
+      schema.rows = TableComponent.emptyTable(this.component.numRows, this.component.numCols);
+    }
     return schema;
   }
 
-<<<<<<< HEAD
-  /**
-   *
-   * @param element
-   * @param data
-   */
-  addComponents(element, data, options, state) {
-    // Build the body.
-    this.tbody = this.ce('tbody');
-=======
   get className() {
     let name = `table-responsive ${super.className}`;
     if (!this.component.bordered) {
@@ -121,7 +110,6 @@ export default class TableComponent extends NestedComponent {
 
     const lastNonEmptyRow = [];
     this.table = [];
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     _.each(this.component.rows, (row, rowIndex) => {
       this.table[rowIndex] = [];
       _.each(row, (column, colIndex) => {
@@ -136,11 +124,7 @@ export default class TableComponent extends NestedComponent {
           }
         }
         _.each(column.components, (comp) => {
-<<<<<<< HEAD
-          const component = this.addComponent(comp, td, data, null, null, state);
-=======
           const component = this.createComponent(comp);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           component.tableRow = rowIndex;
           component.tableColumn = colIndex;
           this.table[rowIndex][colIndex].push(component);
@@ -161,23 +145,6 @@ export default class TableComponent extends NestedComponent {
     }));
   }
 
-<<<<<<< HEAD
-  build(state) {
-    this.element = this.ce('div', {
-      id: this.id,
-      class: `${this.className}  table-responsive`,
-    });
-    this.element.component = this;
-
-    let tableClass = 'table ';
-    _.each(['striped', 'bordered', 'hover', 'condensed'], (prop) => {
-      if (this.component[prop]) {
-        tableClass += `table-${prop} `;
-      }
-    });
-    this.table = this.ce('table', {
-      class: tableClass
-=======
   attach(element) {
     const keys = this.table.reduce((prev, row, rowIndex) => {
       prev[`${this.tableKey}-${rowIndex}`] = 'multiple';
@@ -189,21 +156,12 @@ export default class TableComponent extends NestedComponent {
       row.forEach((column, columnIndex) => {
         this.attachComponents(this.refs[`${this.tableKey}-${rowIndex}`][columnIndex], this.table[rowIndex][columnIndex], this.component.rows[rowIndex][columnIndex].components);
       });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
     return superAttach;
   }
 
-<<<<<<< HEAD
-    this.buildHeader();
-    this.addComponents(null, null, null, state);
-    this.table.appendChild(this.tbody);
-    this.element.appendChild(this.table);
-    this.attachLogic();
-=======
   destroy(all) {
     super.destroy(all);
     delete this.table;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }

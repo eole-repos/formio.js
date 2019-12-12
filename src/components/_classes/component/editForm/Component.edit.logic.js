@@ -57,21 +57,12 @@ export default [
                     },
                     {
                       value: 'json',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      label: 'JSON Logic'
-                    },
-                    {
-                      value: 'event',
-                      label: 'Event'
-                    }
-=======
                       label: 'JSON Logic',
                     },
                     {
                       value: 'event',
                       label: 'Event',
                     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                   ],
                 },
                 dataSrc: 'values',
@@ -84,13 +75,8 @@ export default [
                 key: 'simple',
                 type: 'container',
                 tableView: false,
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'simple';
-=======
                 customConditional({ row }) {
                   return row.type === 'simple';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                 },
                 components: [
                   {
@@ -99,13 +85,9 @@ export default [
                     label: 'Show',
                     type: 'hidden',
                     tableView: false,
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                    defaultValue: true
-=======
                     calculateValue() {
                       return true;
                     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                   },
                   {
                     type: 'select',
@@ -117,39 +99,18 @@ export default [
                     tableView: false,
                     data: {
                       custom(context) {
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                        var values = [];
-                        context.utils.eachComponent(context.instance.root.editForm.components, function(component, path) {
-                          if (component.key !== context.data.key) {
-                            values.push({
-                              label: component.label || component.key,
-                              value: path
-                            });
-                          }
-                        });
-                        return values;
-                      }
-                    }
-=======
                         return getContextComponents(context);
                       },
                     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                   },
                   {
                     type: 'textfield',
                     input: true,
                     label: 'Has the value:',
                     key: 'eq',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                    tableView: false
-                  }
-                ]
-=======
                     tableView: false,
                   },
                 ],
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
               {
                 weight: 10,
@@ -161,15 +122,9 @@ export default [
                 tableView: false,
                 placeholder: `result = (data['mykey'] > 1);`,
                 description: '"row", "data", and "component" variables are available. Return "result".',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'javascript';
-                }
-=======
                 customConditional({ row }) {
                   return row.type === 'javascript';
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
               {
                 weight: 10,
@@ -183,11 +138,6 @@ export default [
                 tableView: false,
                 placeholder: `{ ... }`,
                 description: '"row", "data", "component" and "_" variables are available. Return the result to be passed to the action if truthy.',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'json';
-                }
-=======
                 customConditional({ row }) {
                   return row.type === 'json';
                 },
@@ -203,20 +153,7 @@ export default [
                 customConditional({ row }) {
                   return row.type === 'event';
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
-              {
-                weight: 10,
-                type: 'textfield',
-                key: 'event',
-                label: 'Event Name',
-                placeholder: 'event',
-                description: 'The event that will trigger this logic. You can trigger events externally or via a button.',
-                tableView: false,
-                customConditional(context) {
-                  return context.row.type === 'event';
-                }
-              }
             ],
             key: 'trigger',
             type: 'container',
@@ -298,11 +235,7 @@ export default [
                     {
                       label: 'Required',
                       value: 'validate.required',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      type: 'boolean'
-=======
                       type: 'boolean',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                     },
                     {
                       label: 'Disabled',
@@ -335,14 +268,6 @@ export default [
                       type: 'string',
                     },
                     {
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      label: 'Tooltip',
-                      value: 'tooltip',
-                      type: 'string'
-                    },
-                    {
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                       label: 'Description',
                       value: 'description',
                       type: 'string',
@@ -350,50 +275,31 @@ export default [
                     {
                       label: 'Placeholder',
                       value: 'placeholder',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      type: 'string'
-=======
                       type: 'string',
                     },
                     {
                       label: 'Input Mask',
                       value: 'inputMask',
                       type: 'string',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                     },
                     {
                       label: 'CSS Class',
                       value: 'className',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      type: 'string'
-=======
                       type: 'string',
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                     },
                     {
                       label: 'Container Custom Class',
                       value: 'customClass',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                      type: 'string'
-                    }
-=======
                       type: 'string',
                     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
                   ],
                 },
                 key: 'property',
                 label: 'Component Property',
                 input: true,
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'property';
-                }
-=======
                 customConditional({ row }) {
                   return row.type === 'property';
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
               {
                 weight: 30,
@@ -416,19 +322,11 @@ export default [
                 dataSrc: 'values',
                 template: '<span>{{ item.label }}</span>',
                 type: 'select',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'property' &&
-                    context.row.hasOwnProperty('property') &&
-                    context.row.property.type === 'boolean';
-                }
-=======
                 customConditional({ row }) {
                   return row.type === 'property' &&
                     row.hasOwnProperty('property') &&
                     row.property.type === 'boolean';
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
               {
                 weight: 30,
@@ -439,21 +337,12 @@ export default [
                 input: true,
                 tableView: false,
                 description: 'Can use templating with {{ data.myfield }}. "data", "row", "component" and "result" variables are available.',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'property' &&
-                    context.row.hasOwnProperty('property') &&
-                    context.row.property.type === 'string' &&
-                    !context.row.property.component;
-                }
-=======
                 customConditional({ row }) {
                   return row.type === 'property' &&
                     row.hasOwnProperty('property') &&
                     row.property.type === 'string' &&
                     !row.property.component;
                 },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
               },
               {
                 weight: 20,
@@ -466,12 +355,6 @@ export default [
                 type: 'textarea',
                 tableView: false,
                 description: '"row", "data", "component", and "result" variables are available. Return the value.',
-<<<<<<< HEAD:src/components/base/editForm/Base.edit.logic.js
-                customConditional(context) {
-                  return context.row.type === 'value';
-                }
-              }
-=======
                 customConditional({ row }) {
                   return row.type === 'value';
                 },
@@ -491,7 +374,6 @@ export default [
                   return row.type === 'mergeComponentSchema';
                 },
               },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e:src/components/_classes/component/editForm/Component.edit.logic.js
             ],
           },
         ],

@@ -64,13 +64,7 @@ export default [
     tooltip: 'The value used with this radio button.',
     weight: 430,
     conditional: {
-<<<<<<< HEAD
-      json: { '===': [{ var: 'data.inputType' }, 'radio'] }
-    }
-  }
-=======
       json: { '===': [{ var: 'data.inputType' }, 'radio'] },
     },
   },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 ];

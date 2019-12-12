@@ -65,37 +65,6 @@ export default class PDFBuilder extends WebformBuilder {
     };
   }
 
-<<<<<<< HEAD
-  addDropZone() {
-    if (!this.dropZone) {
-      this.dropZone = this.ce('div', {
-        class: 'formio-drop-zone'
-      });
-      this.prepend(this.dropZone);
-    }
-    this.addEventListener(this.dropZone, 'dragover', (event) => {
-      event.preventDefault();
-      return false;
-    });
-    this.addEventListener(this.dropZone, 'drop', (event) => {
-      event.preventDefault();
-      this.dragStop(event);
-      return false;
-    });
-    this.disableDropZone();
-  }
-
-  render() {
-    return this.onElement.then(() => {
-      this.build(this.clear());
-      this.isBuilt = true;
-      this.on('resetForm', () => this.resetValue(), true);
-      this.on('refreshData', () => this.updateValue(), true);
-      setTimeout(() => {
-        this.onChange();
-        this.emit('render');
-      }, 1);
-=======
   get hasPDF() {
     return _.has(this.webform.form, 'settings.pdf');
   }
@@ -143,38 +112,8 @@ export default class PDFBuilder extends WebformBuilder {
       form: this.hasPDF ?
         this.webform.render() :
         this.renderTemplate('pdfBuilderUpload', {})
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
 
-<<<<<<< HEAD
-  enableDropZone() {
-    if (this.dropZone) {
-      const iframeRect = getElementRect(this.pdfForm.element);
-      this.dropZone.style.height = iframeRect && iframeRect.height  ? `${iframeRect.height}px` : '1000px';
-      this.dropZone.style.width = iframeRect && iframeRect.width ? `${iframeRect.width}px` : '100%';
-      this.addClass(this.dropZone, 'enabled');
-    }
-  }
-
-  disableDropZone() {
-    if (this.dropZone) {
-      this.removeClass(this.dropZone, 'enabled');
-    }
-  }
-
-  addComponentTo(schema, parent, element, sibling) {
-    const comp = super.addComponentTo(schema, parent, element, sibling);
-    comp.isNew = true;
-    if (this.pdfForm && schema.overlay) {
-      this.pdfForm.postMessage({ name: 'addElement', data: schema });
-    }
-    return comp;
-  }
-
-  addComponent(component, element, data, before, noAdd, state) {
-    return super.addComponent(component, element, data, before, true, state);
-  }
-=======
     return result;
   }
 
@@ -234,31 +173,14 @@ export default class PDFBuilder extends WebformBuilder {
           this.refs.hiddenFileInputElement.value = '';
         });
       }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       return NativePromise.resolve();
     }
 
-<<<<<<< HEAD
-  dragStart(event, component) {
-    event.stopPropagation();
-    event.dataTransfer.setData('text/plain', 'true');
-    this.currentComponent = component;
-    this.enableDropZone();
-  }
-
-  removeEventListeners(all) {
-    super.removeEventListeners(all);
-    _.each(this.groups, (group) => {
-      _.each(group.components, (builderComponent) => {
-        this.removeEventListener(builderComponent, 'dragstart');
-        this.removeEventListener(builderComponent, 'dragend');
-=======
     // Normal PDF Builder
     return super.attach(element).then(() => {
       this.loadRefs(this.element, {
         iframeDropzone: 'single', 'sidebar-container': 'single'
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
 
       this.afterAttach();
@@ -266,40 +188,6 @@ export default class PDFBuilder extends WebformBuilder {
     });
   }
 
-<<<<<<< HEAD
-  clear() {
-    const state = {};
-    this.destroy(state);
-    return state;
-  }
-  redraw() {
-    if (this.pdfForm) {
-      this.pdfForm.postMessage({ name: 'redraw' });
-    }
-  }
-
-  dragStop(event) {
-    const schema = this.currentComponent ? this.currentComponent.schema : null;
-    if (!schema) {
-      return false;
-    }
-
-    // Special case for file components - default to image mode when added via PDF builder
-    if (schema.type === 'file') {
-      schema.image = true;
-    }
-
-    schema.overlay = {
-      top: event.offsetY,
-      left: event.offsetX,
-      width: schema.defaultOverlayWidth || 100,
-      height: schema.defaultOverlayHeight || 20
-    };
-
-    this.addComponentTo(schema, this, this.getContainer());
-    this.disableDropZone();
-    return false;
-=======
   afterAttach() {
     this.initIframeEvents();
     this.updateDropzoneDimensions();
@@ -350,7 +238,6 @@ export default class PDFBuilder extends WebformBuilder {
     }
     this.refs.uploadError.style.display = message ? '' : 'none';
     this.refs.uploadError.innerHTML = message;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   createForm(options) {
@@ -366,17 +253,6 @@ export default class PDFBuilder extends WebformBuilder {
     return this.webform;
   }
 
-<<<<<<< HEAD
-  addBuilderComponent(component, group) {
-    const builderComponent = super.addBuilderComponent(component, group);
-    if (builderComponent) {
-      builderComponent.element.draggable = true;
-      builderComponent.element.setAttribute('draggable', true);
-      this.addEventListener(builderComponent.element, 'dragstart', (event) => this.dragStart(event, component), true);
-      this.addEventListener(builderComponent.element, 'dragend', () => this.disableDropZone(), true);
-    }
-    return builderComponent;
-=======
   setForm(form) {
     return super.setForm(form).then(() => {
       return this.ready.then(() => {
@@ -387,25 +263,12 @@ export default class PDFBuilder extends WebformBuilder {
         return form;
       });
     });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   saveComponent(...args) {
     return super.saveComponent(...args).then(() => this.afterAttach());
   }
 
-<<<<<<< HEAD
-  build() {
-    this.buildSidebar();
-    if (!this.pdfForm) {
-      this.element.noDrop = true;
-      this.pdfForm = new PDF(this.element, this.options);
-      this.addClass(this.pdfForm.element, 'formio-pdf-builder');
-    }
-    this.pdfForm.destroy(true);
-    this.pdfForm.on('iframe-elementUpdate', schema => {
-      const component = this.getComponentById(schema.id);
-=======
   destroy() {
     super.destroy();
     this.webform.destroy();
@@ -429,7 +292,6 @@ export default class PDFBuilder extends WebformBuilder {
     this.webform.off('iframe-componentClick');
     this.webform.on('iframe-elementUpdate', schema => {
       const component = this.webform.getComponentById(schema.id);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (component && component.component) {
         component.component.overlay = {
           page: schema.page,
@@ -442,16 +304,10 @@ export default class PDFBuilder extends WebformBuilder {
         this.emit('updateComponent', component);
       }
       return component;
-<<<<<<< HEAD
-    }, true);
-    this.pdfForm.on('iframe-componentUpdate', schema => {
-      const component = this.getComponentById(schema.id);
-=======
     });
 
     this.webform.on('iframe-componentUpdate', schema => {
       const component = this.webform.getComponentById(schema.id);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (component && component.component) {
         component.component.overlay = {
           page: schema.overlay.page,
@@ -470,54 +326,14 @@ export default class PDFBuilder extends WebformBuilder {
         this.emit('change', this.form);
       }
       return component;
-<<<<<<< HEAD
-    }, true);
-    this.pdfForm.on('iframe-componentClick', schema => {
-      const component = this.getComponentById(schema.id);
-=======
     });
 
     this.webform.on('iframe-componentClick', schema => {
       const component = this.webform.getComponentById(schema.id);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       if (component) {
         this.editComponent(component.component, this.webform.iframeElement);
       }
     }, true);
-<<<<<<< HEAD
-    this.addComponents();
-    this.addDropZone();
-    this.updateDraggable();
-    this.formReadyResolve();
-  }
-
-  setForm(form) {
-    // If this is a brand new form, make sure it has a submit button component
-    if (!form.created && !_.find(form.components || [], { type: 'button', key: 'submit' })) {
-      form.components.push({
-        type: 'button',
-        label: this.t('Submit'),
-        key: 'submit',
-        size: 'md',
-        block: false,
-        action: 'submit',
-        disableOnInvalid: true,
-        theme: 'primary'
-      });
-    }
-
-    return super.setForm(form).then(() => {
-      return this.ready.then(() => {
-        // Ensure PDFBuilder component IDs are included in form schema to prevent desync with child PDF
-        const formCopy = _.cloneDeep(form);
-        formCopy.components.forEach((c, i) => c.id = this.components[i].id);
-
-        if (this.pdfForm) {
-          return this.pdfForm.setForm(formCopy);
-        }
-        return form;
-      });
-=======
   }
 
   // 8888888b.                                                                   888                   d8b
@@ -558,7 +374,6 @@ export default class PDFBuilder extends WebformBuilder {
       this.removeEventListener(el, 'dragend');
       this.addEventListener(el, 'dragstart', this.onDragStart.bind(this), true);
       this.addEventListener(el, 'dragend',   this.onDragEnd  .bind(this), true);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     });
   }
 

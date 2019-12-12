@@ -1,44 +1,28 @@
 {
   "type": "File",
   "start": 0,
-<<<<<<< HEAD
-  "end": 29,
-=======
   "end": 87,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-<<<<<<< HEAD
-      "line": 2,
-=======
       "line": 4,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-<<<<<<< HEAD
-    "end": 29,
-=======
     "end": 87,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-<<<<<<< HEAD
-        "line": 2,
-=======
         "line": 4,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         "column": 0
       }
     },
@@ -112,8 +96,6 @@
           },
           "value": "./comp1"
         }
-<<<<<<< HEAD
-=======
       },
       {
         "type": "ExportNamedDeclaration",
@@ -252,7 +234,6 @@
           },
           "value": "./comp3"
         }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     ],
     "directives": []
@@ -394,7 +375,8 @@
     },
     {
       "type": {
-        "label": "eof",
+        "label": "export",
+        "keyword": "export",
         "beforeExpr": false,
         "startsExpr": false,
         "rightAssociative": false,
@@ -405,14 +387,9 @@
         "binop": null,
         "updateContext": null
       },
-<<<<<<< HEAD
-      "start": 29,
-      "end": 29,
-=======
       "value": "export",
       "start": 29,
       "end": 35,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       "loc": {
         "start": {
           "line": 2,
@@ -420,8 +397,6 @@
         },
         "end": {
           "line": 2,
-<<<<<<< HEAD
-=======
           "column": 6
         }
       }
@@ -686,7 +661,6 @@
         },
         "end": {
           "line": 4,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           "column": 0
         }
       }

@@ -64,11 +64,7 @@ const url = (formio) => {
 
       //Overrides previous request props
       if (options) {
-<<<<<<< HEAD
-        const parsedOptions = JSON.parse(options);
-=======
         const parsedOptions = typeof options === 'string' ? JSON.parse(options) : options;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         for (const prop in parsedOptions) {
           xhr[prop] = parsedOptions[prop];
         }
@@ -80,22 +76,14 @@ const url = (formio) => {
   return {
     title: 'Url',
     name: 'url',
-<<<<<<< HEAD
-    uploadFile(file, name, dir, progressCallback, url, options) {
-=======
     uploadFile(file, name, dir, progressCallback, url, options, fileKey) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       const uploadRequest = function(form) {
         return xhrRequest(url, name, {
           baseUrl: encodeURIComponent(formio.projectUrl),
           project: form ? form.project : '',
           form: form ? form._id : ''
         }, {
-<<<<<<< HEAD
-          file,
-=======
           [fileKey]:file,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           name,
           dir
         }, options, progressCallback).then(response => {
@@ -121,8 +109,6 @@ const url = (formio) => {
         return uploadRequest();
       }
     },
-<<<<<<< HEAD
-=======
     deleteFile(fileInfo) {
       return new NativePromise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -139,7 +125,6 @@ const url = (formio) => {
       });
     },
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     downloadFile(file) {
       if (file.private) {
         if (formio.submissionId && file.data) {

@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import Choices from 'choices.js/public/assets/scripts/choices.js';
-=======
 import Choices from '../../utils/ChoicesWrapper';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import _ from 'lodash';
 import Formio from '../../Formio';
-<<<<<<< HEAD
-=======
 import Field from '../_classes/field/Field';
 import Form from '../../Form';
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import NativePromise from 'native-promise-only';
 
 export default class SelectComponent extends Field {
@@ -25,17 +18,11 @@ export default class SelectComponent extends Field {
         resource: '',
         custom: ''
       },
-<<<<<<< HEAD
-      limit: 100,
-      dataSrc: 'values',
-      valueProperty: '',
-=======
       clearOnRefresh: false,
       limit: 100,
       dataSrc: 'values',
       valueProperty: '',
       lazyLoad: true,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       filter: '',
       searchEnabled: true,
       searchField: '',
@@ -45,15 +32,11 @@ export default class SelectComponent extends Field {
       template: '<span>{{ item.label }}</span>',
       selectFields: '',
       searchThreshold: 0.3,
-<<<<<<< HEAD
-      fuseOptions: {},
-=======
       tableView: true,
       fuseOptions: {
         include: 'score',
         threshold: 0.3,
       },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       customOptions: {}
     }, ...extend);
   }
@@ -109,8 +92,6 @@ export default class SelectComponent extends Field {
   }
 
   get emptyValue() {
-<<<<<<< HEAD
-=======
     if (this.valueProperty) {
       return '';
     }
@@ -126,7 +107,6 @@ export default class SelectComponent extends Field {
       return 'value';
     }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return '';
   }
 
@@ -151,18 +131,6 @@ export default class SelectComponent extends Field {
 
   get shouldDisabled() {
     return super.shouldDisabled || this.parentDisabled;
-  }
-
-  get isSelectResource() {
-    return this.component.dataSrc === 'resource';
-  }
-
-  get isSelectURL() {
-    return this.component.dataSrc === 'url';
-  }
-
-  get isInfiniteScrollProvided() {
-    return this.isSelectResource || this.isSelectURL;
   }
 
   itemTemplate(data) {
@@ -194,54 +162,6 @@ export default class SelectComponent extends Field {
     }
   }
 
-<<<<<<< HEAD
-  /**
-   * @param {*} data
-   * @param {boolean} [forceUseValue=false] - if true, return 'value' property of the data
-   * @return {*}
-   */
-  itemValue(data, forceUseValue = false) {
-    if (_.isObject(data)) {
-      if (this.component.valueProperty) {
-        return _.get(data, this.component.valueProperty);
-      }
-
-      if (forceUseValue) {
-        return data.value;
-      }
-    }
-
-    return data;
-  }
-
-  addAutofillHoneyInput(container, input) {
-    const autofillInput = this.ce('input', {
-      type: 'text',
-      name: this.info.attr.name,
-      style: 'display: none',
-    });
-
-    input.addEventListener('change', (event) => {
-      autofillInput.value = JSON.stringify(event.detail ? event.detail.value : event.target.value);
-    });
-
-    autofillInput.addEventListener('change', (event) => {
-      this.updateValue({}, JSON.parse(event.target.value));
-    });
-
-    container.appendChild(autofillInput);
-  }
-
-  createInput(container) {
-    this.selectContainer = container;
-    this.selectInput = super.createInput(container);
-    if (this.component.widget !== 'html5') {
-      this.addAutofillHoneyInput(this.selectContainer, this.selectInput);
-    }
-  }
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /**
    * Adds an option to the select dropdown.
    *
@@ -256,12 +176,6 @@ export default class SelectComponent extends Field {
 
     if (value) {
       this.selectOptions.push(option);
-<<<<<<< HEAD
-    }
-    if (this.choices) {
-      return;
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     if (this.refs.selectContainer && (this.component.widget === 'html5')) {
@@ -325,17 +239,12 @@ export default class SelectComponent extends Field {
       }
     }
 
-<<<<<<< HEAD
-    if (!this.choices && this.selectInput) {
-      this.selectInput.innerHTML = '';
-=======
     if (!this.choices && this.refs.selectContainer) {
       if (this.loading) {
         // this.removeChildFrom(this.refs.input[0], this.selectContainer);
       }
 
       this.empty(this.refs.selectContainer);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // If they provided select values, then we need to get them instead.
@@ -395,13 +304,10 @@ export default class SelectComponent extends Field {
     if (this.choices) {
       this.choices.setChoices(this.selectOptions, 'value', 'label', true);
     }
-<<<<<<< HEAD
-=======
     else if (this.loading) {
       // Re-attach select input.
       // this.appendTo(this.refs.input[0], this.selectContainer);
     }
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     // We are no longer loading.
     this.isScrollLoading = false;
@@ -449,13 +355,8 @@ export default class SelectComponent extends Field {
     const limit = this.component.limit || 100;
     const skip = this.isScrollLoading ? this.selectOptions.length : 0;
     const query = (this.component.dataSrc === 'url') ? {} : {
-<<<<<<< HEAD
-      limit: limit,
-      skip: skip
-=======
       limit,
       skip,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     };
 
     // Allow for url interpolation.
@@ -473,11 +374,7 @@ export default class SelectComponent extends Field {
         query[`${this.component.searchField}`] = search.join(',');
       }
       else {
-<<<<<<< HEAD
-        query[`${this.component.searchField}__regex`] = search;
-=======
         query[`${this.component.searchField}`] = search;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     }
 
@@ -555,43 +452,6 @@ export default class SelectComponent extends Field {
     return this.evaluate(this.component.data.custom, {
       values: []
     }, 'values');
-<<<<<<< HEAD
-  }
-
-  updateCustomItems() {
-    this.setItems(this.getCustomItems() || []);
-  }
-
-  get additionalResourcesAvailable() {
-    return _.isNil(this.serverCount) || (this.serverCount > this.downloadedResources.length);
-  }
-
-  get serverCount() {
-    if (this.isFromSearch) {
-      return this.searchServerCount;
-    }
-
-    return this.defaultServerCount;
-  }
-
-  set serverCount(value) {
-    if (this.isFromSearch) {
-      this.searchServerCount = value;
-    }
-    else {
-      this.defaultServerCount = value;
-    }
-  }
-
-  get downloadedResources() {
-    if (this.isFromSearch) {
-      return this.searchDownloadedResources;
-    }
-
-    return this.defaultDownloadedResources;
-  }
-
-=======
   }
 
   updateCustomItems() {
@@ -641,7 +501,6 @@ export default class SelectComponent extends Field {
     return this.defaultDownloadedResources;
   }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   set downloadedResources(value) {
     if (this.isFromSearch) {
       this.searchDownloadedResources = value;
@@ -667,10 +526,6 @@ export default class SelectComponent extends Field {
 
     switch (this.component.dataSrc) {
       case 'values':
-<<<<<<< HEAD
-        this.component.valueProperty = this.originalComponent.valueProperty = 'value';
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         this.setItems(this.component.data.values);
         break;
       case 'json':
@@ -688,11 +543,7 @@ export default class SelectComponent extends Field {
         let resourceUrl = this.options.formio ? this.options.formio.formsUrl : `${Formio.getProjectUrl()}/form`;
         resourceUrl += (`/${this.component.data.resource}/submission`);
 
-<<<<<<< HEAD
-        if (this.additionalResourcesAvailable) {
-=======
         if (forceUpdate || this.additionalResourcesAvailable) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           try {
             this.loadItems(resourceUrl, searchInput, this.requestHeaders);
           }
@@ -703,7 +554,6 @@ export default class SelectComponent extends Field {
         else {
           this.setItems(this.downloadedResources);
         }
-
         break;
       }
       case 'url': {
@@ -715,18 +565,9 @@ export default class SelectComponent extends Field {
         let method;
         let body;
 
-<<<<<<< HEAD
-        if (url.substr(0, 1) === '/') {
-          let baseUrl = Formio.getProjectUrl();
-          if (!baseUrl) {
-            baseUrl = Formio.getBaseUrl();
-          }
-          url = baseUrl + this.component.data.url;
-=======
         if (url.startsWith('/')) {
           const baseUrl = Formio.getProjectUrl() || Formio.getBaseUrl();
           url = baseUrl + url;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
 
         if (!this.component.data.method) {
@@ -850,12 +691,6 @@ export default class SelectComponent extends Field {
   }
 
   /* eslint-disable max-statements */
-<<<<<<< HEAD
-  addInput(input, container) {
-    super.addInput(input, container);
-    if (this.component.multiple) {
-      input.setAttribute('multiple', true);
-=======
   attach(element) {
     const superAttach = super.attach(element);
     this.loadRefs(element, {
@@ -873,7 +708,6 @@ export default class SelectComponent extends Field {
     const input = this.refs.selectContainer;
     if (!input) {
       return;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     this.addEventListener(input, this.inputInfo.changeEvent, () => this.updateValue(null, {
       modified: true
@@ -907,10 +741,6 @@ export default class SelectComponent extends Field {
       }
     }
 
-<<<<<<< HEAD
-    const searchField = this.component.searchField;
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const choicesOptions = {
       removeItemButton: this.component.disabled ? false : _.get(this.component, 'removeItemButton', true),
       itemSelectText: '',
@@ -927,15 +757,6 @@ export default class SelectComponent extends Field {
       shouldSort: false,
       position: (this.component.dropdown || 'auto'),
       searchEnabled: useSearch,
-<<<<<<< HEAD
-      searchChoices: !searchField,
-      searchFields: this.component.searchFields
-        || (searchField ? [`value.${searchField}`] : ['label']),
-      fuseOptions: Object.assign({
-        include: 'score',
-        threshold: _.get(this, 'component.searchThreshold', 0.3),
-      }, _.get(this, 'component.fuseOptions', {})),
-=======
       searchChoices: !this.component.searchField,
       searchFields: _.get(this, 'component.searchFields', ['label']),
       fuseOptions: Object.assign(
@@ -946,18 +767,13 @@ export default class SelectComponent extends Field {
           threshold: _.get(this, 'component.searchThreshold', 0.3),
         }
       ),
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       itemComparer: _.isEqual,
       resetScrollPosition: false,
       ...customOptions,
     };
 
     const tabIndex = input.tabIndex;
-<<<<<<< HEAD
-    this.addPlaceholder(input);
-=======
     this.addPlaceholder();
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     input.setAttribute('dir', this.i18next.dir());
     this.choices = new Choices(input, choicesOptions);
 
@@ -979,34 +795,6 @@ export default class SelectComponent extends Field {
       if (useSearch) {
         this.addEventListener(this.choices.containerOuter.element, 'focus', () => this.focusableElement.focus());
       }
-<<<<<<< HEAD
-    }
-
-    if (this.isInfiniteScrollProvided) {
-      this.scrollList = this.choices.choiceList.element;
-      this.onScroll = () => {
-        const isLoadingAvailable = !this.isScrollLoading
-          && this.additionalResourcesAvailable
-          && ((this.scrollList.scrollTop + this.scrollList.clientHeight) >= this.scrollList.scrollHeight);
-
-        if (isLoadingAvailable) {
-          this.isScrollLoading = true;
-          this.choices.setChoices([{
-            value: `${this.id}-loading`,
-            label: 'Loading...',
-            disabled: true,
-          }], 'value', 'label');
-          this.triggerUpdate(this.choices.input.element.value);
-        }
-      };
-      this.scrollList.addEventListener('scroll', this.onScroll);
-    }
-
-    this.addFocusBlurEvents(this.focusableElement);
-    this.focusableElement.setAttribute('tabIndex', tabIndex);
-
-    this.setInputStyles(this.choices.containerOuter.element);
-=======
     }
 
     if (this.isInfiniteScrollProvided) {
@@ -1030,7 +818,6 @@ export default class SelectComponent extends Field {
     }
 
     this.focusableElement.setAttribute('tabIndex', tabIndex);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     // If a search field is provided, then add an event listener to update items on search.
     if (this.component.searchField) {
@@ -1058,37 +845,16 @@ export default class SelectComponent extends Field {
       }
       this.update();
     });
-<<<<<<< HEAD
-    if (placeholderValue && this.choices._isSelectOneElement) {
-      this.addEventListener(input, 'removeItem', () => {
-        const items = this.choices._store.activeItems;
-        if (!items.length) {
-          this.choices._addItem({
-            value: placeholderValue,
-            label: placeholderValue,
-            choiceId: 0,
-            groupId: -1,
-            customProperties: null,
-            placeholder: true,
-            keyCode: null,
-          });
-        }
-=======
 
     if (placeholderValue && this.choices._isSelectOneElement) {
       this.addPlaceholderItem(placeholderValue);
 
       this.addEventListener(input, 'removeItem', () => {
         this.addPlaceholderItem(placeholderValue);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     }
 
     // Add value options.
-<<<<<<< HEAD
-    if (this.addValueOptions()) {
-      this.restoreValue();
-=======
     this.addValueOptions();
     this.setChoicesValue(this.dataValue);
 
@@ -1112,7 +878,6 @@ export default class SelectComponent extends Field {
             });
           });
       });
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // Force the disabled state with getters and setters.
@@ -1135,17 +900,6 @@ export default class SelectComponent extends Field {
     }
   }
 
-<<<<<<< HEAD
-  restoreValue() {
-    super.restoreValue();
-
-    if (this.choices) {
-      this.choices.setChoiceByValue(this.dataValue);
-    }
-  }
-
-=======
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /* eslint-enable max-statements */
 
   update() {
@@ -1180,16 +934,6 @@ export default class SelectComponent extends Field {
 
   set visible(value) {
     // If we go from hidden to visible, trigger a refresh.
-<<<<<<< HEAD
-    const triggerUpdate = show && (this._visible !== show);
-    show = super.show(show);
-    if (triggerUpdate) {
-      this.triggerUpdate();
-    }
-    return show;
-  }
-
-=======
     if (value && (!this._visible !== !value)) {
       this.triggerUpdate();
     }
@@ -1200,7 +944,6 @@ export default class SelectComponent extends Field {
     return super.visible;
   }
 
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /**
    * @param {*} value
    * @param {Array} items
@@ -1211,11 +954,7 @@ export default class SelectComponent extends Field {
     }
     const notFoundValuesToAdd = [];
     const added = values.reduce((defaultAdded, value) => {
-<<<<<<< HEAD
-      if (!value) {
-=======
       if (!value || _.isEmpty(value)) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         return defaultAdded;
       }
       let found = false;
@@ -1263,11 +1002,7 @@ export default class SelectComponent extends Field {
     return added;
   }
 
-<<<<<<< HEAD
-  getView(data) {
-=======
   getValueAsString(data) {
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return (this.component.multiple && Array.isArray(data))
       ? data.map(this.asString.bind(this)).join(', ')
       : this.asString(data);
@@ -1313,18 +1048,10 @@ export default class SelectComponent extends Field {
     if (value === undefined || value === null) {
       value = '';
     }
-    // Choices will return undefined if nothing is selected. We really want '' to be empty.
-    if (value === undefined || value === null) {
-      value = this.emptyValue;
-    }
     return value;
   }
 
   redraw() {
-<<<<<<< HEAD
-    super.redraw();
-    this.triggerUpdate();
-=======
     const done = super.redraw();
     this.triggerUpdate();
     return done;
@@ -1366,20 +1093,13 @@ export default class SelectComponent extends Field {
         break;
     }
     return super.normalizeValue(value);
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   setValue(value, flags) {
     flags = flags || {};
     const previousValue = this.dataValue;
-<<<<<<< HEAD
-    if (this.component.multiple && !Array.isArray(value)) {
-      value = value ? [value] : [];
-    }
-=======
     const changed = this.updateValue(value, flags);
     value = this.dataValue;
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const hasPreviousValue = Array.isArray(previousValue) ? previousValue.length : previousValue;
     const hasValue = Array.isArray(value) ? value.length : value;
 
@@ -1432,11 +1152,7 @@ export default class SelectComponent extends Field {
       if (hasValue) {
         this.choices.removeActiveItems();
         // Add the currently selected choices if they don't already exist.
-<<<<<<< HEAD
-        const currentChoices = Array.isArray(this.dataValue) ? this.dataValue : [this.dataValue];
-=======
         const currentChoices = Array.isArray(value) ? value : [value];
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         if (!this.addCurrentChoices(currentChoices, this.selectOptions, true)) {
           this.choices.setChoices(this.selectOptions, 'value', 'label', true);
         }
@@ -1481,16 +1197,6 @@ export default class SelectComponent extends Field {
   }
 
   /**
-   * Deletes the value of the component.
-   */
-  deleteValue() {
-    this.setValue('', {
-      noUpdateEvent: true
-    });
-    _.unset(this.data, this.key);
-  }
-
-  /**
    * Check if a component is eligible for multiple validation
    *
    * @return {boolean}
@@ -1518,11 +1224,7 @@ export default class SelectComponent extends Field {
         }
         : {
           items: this.getCustomItems(),
-<<<<<<< HEAD
-          valueProperty: this.component.valueProperty,
-=======
           valueProperty: this.valueProperty,
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         };
 
       value = (this.component.multiple && Array.isArray(value))

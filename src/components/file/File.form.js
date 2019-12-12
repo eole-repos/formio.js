@@ -7,8 +7,6 @@ import FileEditValidation from './editForm/File.edit.validation';
 
 export default function(...extend) {
   return baseEditForm([
-<<<<<<< HEAD
-=======
     {
       key: 'display',
       components: FileEditDisplay
@@ -17,20 +15,15 @@ export default function(...extend) {
       key: 'data',
       components: FileEditData
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     {
       label: 'File',
       key: 'file',
       weight: 5,
       components: FileEditFile
-<<<<<<< HEAD
-    }
-=======
     },
     {
       key: 'validation',
       components: FileEditValidation
     },
->>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ], ...extend);
 }
