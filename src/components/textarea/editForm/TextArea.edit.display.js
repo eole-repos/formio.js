@@ -11,6 +11,10 @@ export default [
     ignore: true
   },
   {
+    key: 'mask',
+    ignore: true
+  },
+  {
     type: 'number',
     input: true,
     key: 'rows',
@@ -18,6 +22,14 @@ export default [
     weight: 210,
     tooltip: 'This allows control over how many rows are visible in the text area.',
     placeholder: 'Enter the amount of rows'
+  },
+  {
+    weight: 1350,
+    type: 'checkbox',
+    input: true,
+    key: 'spellcheck',
+    defaultValue: true,
+    label: 'Allow Spellcheck'
   },
   {
     type: 'select',
@@ -29,9 +41,15 @@ export default [
     data: {
       values: [
         { label: 'None', value: '' },
+<<<<<<< HEAD
         { label: 'Quill', value: 'quill' },
         { label: 'CKEditor', value: 'ckeditor' },
         { label: 'ACE', value: 'ace' }
+=======
+        { label: 'CKEditor', value: 'ckeditor' },
+        { label: 'ACE', value: 'ace' },
+        { label: 'Quill', value: 'quill' }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       ]
     },
     weight: 415
@@ -67,12 +85,15 @@ export default [
               'quill'
             ]
           },
+<<<<<<< HEAD
           {
             '==': [
               { var: 'data.editor' },
               ''
             ]
           }
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         ]
       }
     }
@@ -89,7 +110,11 @@ export default [
     dataSrc: 'custom',
     data: {
       custom() {
+<<<<<<< HEAD
         return _.map(Formio.providers.storage, (storage, key) => ({
+=======
+        return _.map(Formio.Providers.getProviders('storage'), (storage, key) => ({
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           label: storage.title,
           value: key
         }));
@@ -154,6 +179,37 @@ export default [
     }
   },
   {
+<<<<<<< HEAD
+=======
+    type: 'textfield',
+    key: 'fileKey',
+    input: true,
+    label: 'File form-data Key',
+    tooltip: 'Key name that you would like to modify for the file while calling API request.',
+    rows: 5,
+    weight: 415.6,
+    placeholder: 'Enter the key name of a file for form data.',
+    conditional: {
+      json: {
+        and: [
+          { '===': [
+            { var: 'data.editor' },
+            'quill'
+          ] },
+          { '===': [
+            { var: 'data.isUploadEnabled' },
+            true
+          ] },
+          { '===': [
+            { var: 'data.uploadStorage' },
+            'url'
+          ] },
+        ]
+      }
+    }
+  },
+  {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'select',
     input: true,
     key: 'as',
@@ -195,7 +251,11 @@ export default [
     key: 'wysiwyg',
     clearOnHide: false,
     customDefaultValue(value, component, row, data, instance) {
+<<<<<<< HEAD
       return instance.wysiwygDefault;
+=======
+      return instance ? instance.wysiwygDefault : '';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     },
     conditional: {
       json: {

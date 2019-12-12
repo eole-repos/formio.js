@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 import Choices from 'choices.js/public/assets/scripts/choices.js';
+=======
+import Choices from '../../utils/ChoicesWrapper';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import _ from 'lodash';
-import BaseComponent from '../base/Base';
 import Formio from '../../Formio';
+<<<<<<< HEAD
+=======
+import Field from '../_classes/field/Field';
+import Form from '../../Form';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import NativePromise from 'native-promise-only';
 
-export default class SelectComponent extends BaseComponent {
+export default class SelectComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'select',
       label: 'Select',
       key: 'select',
@@ -17,9 +25,17 @@ export default class SelectComponent extends BaseComponent {
         resource: '',
         custom: ''
       },
+<<<<<<< HEAD
       limit: 100,
       dataSrc: 'values',
       valueProperty: '',
+=======
+      clearOnRefresh: false,
+      limit: 100,
+      dataSrc: 'values',
+      valueProperty: '',
+      lazyLoad: true,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       filter: '',
       searchEnabled: true,
       searchField: '',
@@ -29,7 +45,15 @@ export default class SelectComponent extends BaseComponent {
       template: '<span>{{ item.label }}</span>',
       selectFields: '',
       searchThreshold: 0.3,
+<<<<<<< HEAD
       fuseOptions: {},
+=======
+      tableView: true,
+      fuseOptions: {
+        include: 'score',
+        threshold: 0.3,
+      },
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       customOptions: {}
     }, ...extend);
   }
@@ -38,15 +62,16 @@ export default class SelectComponent extends BaseComponent {
     return {
       title: 'Select',
       group: 'basic',
-      icon: 'fa fa-th-list',
+      icon: 'th-list',
       weight: 70,
       documentation: 'http://help.form.io/userguide/#select',
       schema: SelectComponent.schema()
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
+  init() {
+    super.init();
+    this.validators = this.validators.concat(['select']);
 
     // Trigger an update.
     this.triggerUpdate = _.debounce(this.updateItems.bind(this), 100);
@@ -84,18 +109,48 @@ export default class SelectComponent extends BaseComponent {
   }
 
   get emptyValue() {
+<<<<<<< HEAD
+=======
+    if (this.valueProperty) {
+      return '';
+    }
+    return {};
+  }
+
+  get valueProperty() {
+    if (this.component.valueProperty) {
+      return this.component.valueProperty;
+    }
+    // Force values datasource to use values without actually setting it on the component settings.
+    if (this.component.dataSrc === 'values') {
+      return 'value';
+    }
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return '';
   }
 
-  elementInfo() {
+  get inputInfo() {
     const info = super.elementInfo();
     info.type = 'select';
     info.changeEvent = 'change';
     return info;
   }
 
-  createWrapper() {
-    return false;
+  get isSelectResource() {
+    return this.component.dataSrc === 'resource';
+  }
+
+  get isSelectURL() {
+    return this.component.dataSrc === 'url';
+  }
+
+  get isInfiniteScrollProvided() {
+    return this.isSelectResource || this.isSelectURL;
+  }
+
+  get shouldDisabled() {
+    return super.shouldDisabled || this.parentDisabled;
   }
 
   get isSelectResource() {
@@ -139,6 +194,7 @@ export default class SelectComponent extends BaseComponent {
     }
   }
 
+<<<<<<< HEAD
   /**
    * @param {*} data
    * @param {boolean} [forceUseValue=false] - if true, return 'value' property of the data
@@ -184,37 +240,44 @@ export default class SelectComponent extends BaseComponent {
     }
   }
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /**
    * Adds an option to the select dropdown.
    *
    * @param value
    * @param label
    */
-  addOption(value, label, attr) {
+  addOption(value, label, attrs = {}, id) {
     const option = {
-      value: value,
+      value: _.isObject(value) ? value : String(value),
       label: label
     };
 
     if (value) {
       this.selectOptions.push(option);
+<<<<<<< HEAD
     }
     if (this.choices) {
       return;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
-    option.element = document.createElement('option');
-    if (this.dataValue === option.value) {
-      option.element.setAttribute('selected', 'selected');
-      option.element.selected = 'selected';
+    if (this.refs.selectContainer && (this.component.widget === 'html5')) {
+      // Add element to option so we can reference it later.
+      const div = document.createElement('div');
+      div.innerHTML = this.sanitize(this.renderTemplate('selectOption', {
+        selected: _.isEqual(this.dataValue, option.value),
+        option,
+        attrs,
+        id,
+        useId: (this.valueProperty === '') && _.isObject(value) && id,
+      })).trim();
+
+      option.element = div.firstChild;
+      this.refs.selectContainer.appendChild(option.element);
     }
-    option.element.innerHTML = label;
-    if (attr) {
-      _.each(attr, (value, key) => {
-        option.element.setAttribute(key, value);
-      });
-    }
-    this.selectInput.appendChild(option.element);
   }
 
   addValueOptions(items) {
@@ -226,7 +289,7 @@ export default class SelectComponent extends BaseComponent {
         return this.addCurrentChoices(currentChoices, items);
       }
       else if (!this.component.multiple) {
-        this.addPlaceholder(this.selectInput);
+        this.addPlaceholder();
       }
     }
     return false;
@@ -262,8 +325,17 @@ export default class SelectComponent extends BaseComponent {
       }
     }
 
+<<<<<<< HEAD
     if (!this.choices && this.selectInput) {
       this.selectInput.innerHTML = '';
+=======
+    if (!this.choices && this.refs.selectContainer) {
+      if (this.loading) {
+        // this.removeChildFrom(this.refs.input[0], this.selectContainer);
+      }
+
+      this.empty(this.refs.selectContainer);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // If they provided select values, then we need to get them instead.
@@ -316,13 +388,20 @@ export default class SelectComponent extends BaseComponent {
     }
 
     // Iterate through each of the items.
-    _.each(items, (item) => {
-      this.addOption(this.itemValue(item), this.itemTemplate(item));
+    _.each(items, (item, index) => {
+      this.addOption(this.itemValue(item), this.itemTemplate(item), {}, String(index));
     });
 
     if (this.choices) {
       this.choices.setChoices(this.selectOptions, 'value', 'label', true);
     }
+<<<<<<< HEAD
+=======
+    else if (this.loading) {
+      // Re-attach select input.
+      // this.appendTo(this.refs.input[0], this.selectContainer);
+    }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     // We are no longer loading.
     this.isScrollLoading = false;
@@ -330,11 +409,13 @@ export default class SelectComponent extends BaseComponent {
 
     // If a value is provided, then select it.
     if (this.dataValue) {
-      this.setValue(this.dataValue, true);
+      this.setValue(this.dataValue, {
+        noUpdateEvent: true
+      });
     }
     else {
       // If a default value is provided then select it.
-      const defaultValue = this.defaultValue;
+      const defaultValue = this.multiple ? this.defaultValue || [] : this.defaultValue;
       if (defaultValue) {
         this.setValue(defaultValue);
       }
@@ -368,8 +449,13 @@ export default class SelectComponent extends BaseComponent {
     const limit = this.component.limit || 100;
     const skip = this.isScrollLoading ? this.selectOptions.length : 0;
     const query = (this.component.dataSrc === 'url') ? {} : {
+<<<<<<< HEAD
       limit: limit,
       skip: skip
+=======
+      limit,
+      skip,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     };
 
     // Allow for url interpolation.
@@ -384,10 +470,14 @@ export default class SelectComponent extends BaseComponent {
     // Add search capability.
     if (this.component.searchField && search) {
       if (Array.isArray(search)) {
-        query[`${this.component.searchField}__in`] = search.join(',');
+        query[`${this.component.searchField}`] = search.join(',');
       }
       else {
+<<<<<<< HEAD
         query[`${this.component.searchField}__regex`] = search;
+=======
+        query[`${this.component.searchField}`] = search;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     }
 
@@ -431,7 +521,7 @@ export default class SelectComponent extends BaseComponent {
         this.itemsLoadedResolve();
         this.emit('componentError', {
           component: this.component,
-          message: err.toString()
+          message: err.toString(),
         });
         console.warn(`Unable to load resources for ${this.key}`);
       });
@@ -465,6 +555,7 @@ export default class SelectComponent extends BaseComponent {
     return this.evaluate(this.component.data.custom, {
       values: []
     }, 'values');
+<<<<<<< HEAD
   }
 
   updateCustomItems() {
@@ -500,6 +591,57 @@ export default class SelectComponent extends BaseComponent {
     return this.defaultDownloadedResources;
   }
 
+=======
+  }
+
+  updateCustomItems() {
+    this.setItems(this.getCustomItems() || []);
+  }
+
+  refresh() {
+    if (this.component.clearOnRefresh) {
+      this.setValue(this.emptyValue);
+    }
+
+    if (this.component.lazyLoad) {
+      this.activated = false;
+      this.loading = true;
+      this.setItems([]);
+    }
+
+    this.updateItems(null, true);
+  }
+
+  get additionalResourcesAvailable() {
+    return _.isNil(this.serverCount) || (this.serverCount > this.downloadedResources.length);
+  }
+
+  get serverCount() {
+    if (this.isFromSearch) {
+      return this.searchServerCount;
+    }
+
+    return this.defaultServerCount;
+  }
+
+  set serverCount(value) {
+    if (this.isFromSearch) {
+      this.searchServerCount = value;
+    }
+    else {
+      this.defaultServerCount = value;
+    }
+  }
+
+  get downloadedResources() {
+    if (this.isFromSearch) {
+      return this.searchDownloadedResources;
+    }
+
+    return this.defaultDownloadedResources;
+  }
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   set downloadedResources(value) {
     if (this.isFromSearch) {
       this.searchDownloadedResources = value;
@@ -525,7 +667,10 @@ export default class SelectComponent extends BaseComponent {
 
     switch (this.component.dataSrc) {
       case 'values':
+<<<<<<< HEAD
         this.component.valueProperty = this.originalComponent.valueProperty = 'value';
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         this.setItems(this.component.data.values);
         break;
       case 'json':
@@ -539,10 +684,15 @@ export default class SelectComponent extends BaseComponent {
         if (!this.component.data.resource || (!forceUpdate && !this.active)) {
           return;
         }
+
         let resourceUrl = this.options.formio ? this.options.formio.formsUrl : `${Formio.getProjectUrl()}/form`;
         resourceUrl += (`/${this.component.data.resource}/submission`);
 
+<<<<<<< HEAD
         if (this.additionalResourcesAvailable) {
+=======
+        if (forceUpdate || this.additionalResourcesAvailable) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           try {
             this.loadItems(resourceUrl, searchInput, this.requestHeaders);
           }
@@ -561,16 +711,22 @@ export default class SelectComponent extends BaseComponent {
           // If we are lazyLoading, wait until activated.
           return;
         }
-        let url = this.component.data.url;
+        let { url } = this.component.data;
         let method;
         let body;
 
+<<<<<<< HEAD
         if (url.substr(0, 1) === '/') {
           let baseUrl = Formio.getProjectUrl();
           if (!baseUrl) {
             baseUrl = Formio.getBaseUrl();
           }
           url = baseUrl + this.component.data.url;
+=======
+        if (url.startsWith('/')) {
+          const baseUrl = Formio.getProjectUrl() || Formio.getBaseUrl();
+          url = baseUrl + url;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         }
 
         if (!this.component.data.method) {
@@ -589,18 +745,62 @@ export default class SelectComponent extends BaseComponent {
         this.loadItems(url, searchInput, this.requestHeaders, options, method, body);
         break;
       }
+      case 'indexeddb': {
+        if (!window.indexedDB) {
+          window.alert("Your browser doesn't support current version of indexedDB");
+        }
+
+        if (this.component.indexeddb && this.component.indexeddb.database && this.component.indexeddb.table) {
+          const request = window.indexedDB.open(this.component.indexeddb.database);
+
+          request.onupgradeneeded = (event) => {
+            if (this.component.customOptions) {
+              const db = event.target.result;
+              const objectStore = db.createObjectStore(this.component.indexeddb.table, { keyPath: 'myKey', autoIncrement: true });
+              objectStore.transaction.oncomplete = () => {
+                const transaction = db.transaction(this.component.indexeddb.table, 'readwrite');
+                this.component.customOptions.forEach((item) => {
+                  transaction.objectStore(this.component.indexeddb.table).put(item);
+                });
+              };
+            }
+          };
+
+          request.onerror = () => {
+            window.alert(request.errorCode);
+          };
+
+          request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(this.component.indexeddb.table, 'readwrite');
+            const objectStore = transaction.objectStore(this.component.indexeddb.table);
+            new NativePromise((resolve) => {
+              const responseItems = [];
+              objectStore.getAll().onsuccess = (event) => {
+                event.target.result.forEach((item) => {
+                  responseItems.push(item);
+                });
+                resolve(responseItems);
+              };
+            }).then((items) => {
+              if (!_.isEmpty(this.component.indexeddb.filter)) {
+                items = _.filter(items, this.component.indexeddb.filter);
+              }
+              this.setItems(items);
+            });
+          };
+        }
+      }
     }
   }
   /* eslint-enable max-statements */
 
-  addPlaceholder(input) {
-    if (!this.component.placeholder || !input) {
+  addPlaceholder() {
+    if (!this.component.placeholder) {
       return;
     }
-    const placeholder = document.createElement('option');
-    placeholder.setAttribute('placeholder', true);
-    placeholder.appendChild(this.text(this.component.placeholder));
-    input.appendChild(placeholder);
+
+    this.addOption('', this.component.placeholder, { placeholder: true });
   }
 
   /**
@@ -614,37 +814,83 @@ export default class SelectComponent extends BaseComponent {
     if (this.choices) {
       this.choices.setChoices([{
         value: '',
-        label: `<i class="${this.iconClass('refresh')}" style="font-size:1.3em;"></i>`
+        label: `<i class="${this.iconClass('refresh')}" style="font-size:1.3em;"></i>`,
+        disabled: true,
       }], 'value', 'label', true);
     }
-    else {
+    else if (this.component.dataSrc === 'url' || this.component.dataSrc === 'resource') {
       this.addOption('', this.t('loading...'));
     }
     this.triggerUpdate();
   }
 
   get active() {
-    return !this.component.lazyLoad || this.activated;
+    return !this.component.lazyLoad || this.activated || this.options.readOnly;
+  }
+
+  render() {
+    const info = this.inputInfo;
+    info.attr = info.attr || {};
+    info.multiple = this.component.multiple;
+    return super.render(this.wrapElement(this.renderTemplate('select', {
+      input: info,
+      selectOptions: '',
+      index: null,
+    })));
+  }
+
+  wrapElement(element) {
+    return this.component.addResource
+      ? (
+        this.renderTemplate('resourceAdd', {
+          element
+        })
+      )
+      : element;
   }
 
   /* eslint-disable max-statements */
+<<<<<<< HEAD
   addInput(input, container) {
     super.addInput(input, container);
     if (this.component.multiple) {
       input.setAttribute('multiple', true);
+=======
+  attach(element) {
+    const superAttach = super.attach(element);
+    this.loadRefs(element, {
+      selectContainer: 'single',
+      addResource: 'single',
+      autocompleteInput: 'single'
+    });
+    //enable autocomplete for select
+    const autocompleteInput = this.refs.autocompleteInput;
+    if (autocompleteInput) {
+      this.addEventListener(autocompleteInput, 'change', (event) => {
+        this.setValue(event.target.value);
+      });
     }
+    const input = this.refs.selectContainer;
+    if (!input) {
+      return;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
+    }
+    this.addEventListener(input, this.inputInfo.changeEvent, () => this.updateValue(null, {
+      modified: true
+    }));
 
     if (this.component.widget === 'html5') {
       this.triggerUpdate();
       this.focusableElement = input;
       this.addEventListener(input, 'focus', () => this.update());
       this.addEventListener(input, 'keydown', (event) => {
-        const { keyCode } = event;
+        const { key } = event;
 
-        if ([8, 46].includes(keyCode)) {
-          this.setValue(null);
+        if (['Backspace', 'Delete'].includes(key)) {
+          this.setValue(this.emptyValue);
         }
       });
+
       return;
     }
 
@@ -661,13 +907,16 @@ export default class SelectComponent extends BaseComponent {
       }
     }
 
+<<<<<<< HEAD
     const searchField = this.component.searchField;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const choicesOptions = {
       removeItemButton: this.component.disabled ? false : _.get(this.component, 'removeItemButton', true),
       itemSelectText: '',
       classNames: {
         containerOuter: 'choices form-group formio-choices',
-        containerInner: 'form-control'
+        containerInner: this.transform('class', 'form-control ui fluid selection dropdown')
       },
       addItemText: false,
       placeholder: !!this.component.placeholder,
@@ -678,6 +927,7 @@ export default class SelectComponent extends BaseComponent {
       shouldSort: false,
       position: (this.component.dropdown || 'auto'),
       searchEnabled: useSearch,
+<<<<<<< HEAD
       searchChoices: !searchField,
       searchFields: this.component.searchFields
         || (searchField ? [`value.${searchField}`] : ['label']),
@@ -685,15 +935,40 @@ export default class SelectComponent extends BaseComponent {
         include: 'score',
         threshold: _.get(this, 'component.searchThreshold', 0.3),
       }, _.get(this, 'component.fuseOptions', {})),
+=======
+      searchChoices: !this.component.searchField,
+      searchFields: _.get(this, 'component.searchFields', ['label']),
+      fuseOptions: Object.assign(
+        {},
+        _.get(this, 'component.fuseOptions', {}),
+        {
+          include: 'score',
+          threshold: _.get(this, 'component.searchThreshold', 0.3),
+        }
+      ),
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       itemComparer: _.isEqual,
       resetScrollPosition: false,
       ...customOptions,
     };
 
     const tabIndex = input.tabIndex;
+<<<<<<< HEAD
     this.addPlaceholder(input);
+=======
+    this.addPlaceholder();
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     input.setAttribute('dir', this.i18next.dir());
     this.choices = new Choices(input, choicesOptions);
+
+    this.addEventListener(input, 'hideDropdown', () => {
+      this.choices.input.element.value = '';
+      this.updateItems(null, true);
+    });
+
+    if (this.selectOptions && this.selectOptions.length) {
+      this.choices.setChoices(this.selectOptions, 'value', 'label', true);
+    }
 
     if (this.component.multiple) {
       this.focusableElement = this.choices.input.element;
@@ -704,6 +979,7 @@ export default class SelectComponent extends BaseComponent {
       if (useSearch) {
         this.addEventListener(this.choices.containerOuter.element, 'focus', () => this.focusableElement.focus());
       }
+<<<<<<< HEAD
     }
 
     if (this.isInfiniteScrollProvided) {
@@ -730,6 +1006,31 @@ export default class SelectComponent extends BaseComponent {
     this.focusableElement.setAttribute('tabIndex', tabIndex);
 
     this.setInputStyles(this.choices.containerOuter.element);
+=======
+    }
+
+    if (this.isInfiniteScrollProvided) {
+      this.scrollList = this.choices.choiceList.element;
+      this.onScroll = () => {
+        const isLoadingAvailable = !this.isScrollLoading
+          && this.additionalResourcesAvailable
+          && ((this.scrollList.scrollTop + this.scrollList.clientHeight) >= this.scrollList.scrollHeight);
+
+        if (isLoadingAvailable) {
+          this.isScrollLoading = true;
+          this.choices.setChoices([{
+            value: `${this.id}-loading`,
+            label: 'Loading...',
+            disabled: true,
+          }], 'value', 'label');
+          this.triggerUpdate(this.choices.input.element.value);
+        }
+      };
+      this.addEventListener(this.scrollList, 'scroll', this.onScroll);
+    }
+
+    this.focusableElement.setAttribute('tabIndex', tabIndex);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
     // If a search field is provided, then add an event listener to update items on search.
     if (this.component.searchField) {
@@ -757,6 +1058,7 @@ export default class SelectComponent extends BaseComponent {
       }
       this.update();
     });
+<<<<<<< HEAD
     if (placeholderValue && this.choices._isSelectOneElement) {
       this.addEventListener(input, 'removeItem', () => {
         const items = this.choices._store.activeItems;
@@ -771,19 +1073,69 @@ export default class SelectComponent extends BaseComponent {
             keyCode: null,
           });
         }
+=======
+
+    if (placeholderValue && this.choices._isSelectOneElement) {
+      this.addPlaceholderItem(placeholderValue);
+
+      this.addEventListener(input, 'removeItem', () => {
+        this.addPlaceholderItem(placeholderValue);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       });
     }
 
     // Add value options.
+<<<<<<< HEAD
     if (this.addValueOptions()) {
       this.restoreValue();
+=======
+    this.addValueOptions();
+    this.setChoicesValue(this.dataValue);
+
+    if (this.isSelectResource && this.refs.addResource) {
+      this.addEventListener(this.refs.addResource, 'click', (event) => {
+        event.preventDefault();
+
+        const formioForm = this.ce('div');
+        const dialog = this.createModal(formioForm);
+
+        const projectUrl = _.get(this.root, 'formio.projectUrl', Formio.getBaseUrl());
+        const formUrl = `${projectUrl}/form/${this.component.data.resource}`;
+        new Form(formioForm, formUrl, {}).ready
+          .then((form) => {
+            form.on('submit', (submission) => {
+              if (this.component.multiple) {
+                submission = [...this.dataValue, submission];
+              }
+              this.setValue(submission);
+              dialog.close();
+            });
+          });
+      });
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // Force the disabled state with getters and setters.
-    this.disabled = this.disabled;
+    this.disabled = this.shouldDisabled;
     this.triggerUpdate();
+    return superAttach;
   }
 
+  addPlaceholderItem(placeholderValue) {
+    const items = this.choices._store.activeItems;
+    if (!items.length) {
+      this.choices._addItem({
+        value: placeholderValue,
+        label: placeholderValue,
+        choiceId: 0,
+        groupId: -1,
+        customProperties: null,
+        placeholder: true,
+        keyCode: null });
+    }
+  }
+
+<<<<<<< HEAD
   restoreValue() {
     super.restoreValue();
 
@@ -792,6 +1144,8 @@ export default class SelectComponent extends BaseComponent {
     }
   }
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /* eslint-enable max-statements */
 
   update() {
@@ -820,8 +1174,13 @@ export default class SelectComponent extends BaseComponent {
     }
   }
 
-  show(show) {
+  get disabled() {
+    return super.disabled;
+  }
+
+  set visible(value) {
     // If we go from hidden to visible, trigger a refresh.
+<<<<<<< HEAD
     const triggerUpdate = show && (this._visible !== show);
     show = super.show(show);
     if (triggerUpdate) {
@@ -830,6 +1189,18 @@ export default class SelectComponent extends BaseComponent {
     return show;
   }
 
+=======
+    if (value && (!this._visible !== !value)) {
+      this.triggerUpdate();
+    }
+    super.visible = value;
+  }
+
+  get visible() {
+    return super.visible;
+  }
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   /**
    * @param {*} value
    * @param {Array} items
@@ -840,7 +1211,11 @@ export default class SelectComponent extends BaseComponent {
     }
     const notFoundValuesToAdd = [];
     const added = values.reduce((defaultAdded, value) => {
+<<<<<<< HEAD
       if (!value) {
+=======
+      if (!value || _.isEmpty(value)) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         return defaultAdded;
       }
       let found = false;
@@ -888,17 +1263,23 @@ export default class SelectComponent extends BaseComponent {
     return added;
   }
 
+<<<<<<< HEAD
   getView(data) {
+=======
+  getValueAsString(data) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return (this.component.multiple && Array.isArray(data))
       ? data.map(this.asString.bind(this)).join(', ')
       : this.asString(data);
   }
 
   getValue() {
-    if (this.viewOnly || this.loading || !this.selectOptions.length) {
+    // If the widget isn't active.
+    if (this.viewOnly || this.loading || !this.selectOptions.length || !this.element) {
       return this.dataValue;
     }
-    let value = '';
+
+    let value = this.emptyValue;
     if (this.choices) {
       value = this.choices.getValue(true);
 
@@ -911,14 +1292,26 @@ export default class SelectComponent extends BaseComponent {
         value = this.emptyValue;
       }
     }
-    else {
-      const values = [];
-      _.each(this.selectOptions, (selectOption) => {
-        if (selectOption.element && selectOption.element.selected) {
-          values.push(selectOption.value);
+    else if (this.refs.selectContainer) {
+      value = this.refs.selectContainer.value;
+
+      if (this.valueProperty === '') {
+        if (value === '') {
+          return {};
         }
-      });
-      value = this.component.multiple ? values : values.shift();
+
+        const option = this.selectOptions[value];
+        if (option && _.isObject(option.value)) {
+          value = option.value;
+        }
+      }
+    }
+    else {
+      value = this.dataValue;
+    }
+    // Choices will return undefined if nothing is selected. We really want '' to be empty.
+    if (value === undefined || value === null) {
+      value = '';
     }
     // Choices will return undefined if nothing is selected. We really want '' to be empty.
     if (value === undefined || value === null) {
@@ -928,20 +1321,82 @@ export default class SelectComponent extends BaseComponent {
   }
 
   redraw() {
+<<<<<<< HEAD
     super.redraw();
     this.triggerUpdate();
+=======
+    const done = super.redraw();
+    this.triggerUpdate();
+    return done;
+  }
+
+  /**
+   * Normalize values coming into updateValue.
+   *
+   * @param value
+   * @return {*}
+   */
+  normalizeValue(value) {
+    const dataType = _.get(this.component, 'dataType', 'auto');
+    switch (dataType) {
+      case 'auto':
+        if (!isNaN(parseFloat(value)) && isFinite(value)) {
+          value = +value;
+        }
+        if (value === 'true') {
+          value = true;
+        }
+        if (value === 'false') {
+          value = false;
+        }
+        break;
+      case 'number':
+        value = +value;
+        break;
+      case 'string':
+        if (typeof value === 'object') {
+          value = JSON.stringify(value);
+        }
+        else {
+          value = value.toString();
+        }
+        break;
+      case 'boolean':
+        value = !!value;
+        break;
+    }
+    return super.normalizeValue(value);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   setValue(value, flags) {
-    flags = this.getFlags.apply(this, arguments);
+    flags = flags || {};
     const previousValue = this.dataValue;
+<<<<<<< HEAD
     if (this.component.multiple && !Array.isArray(value)) {
       value = value ? [value] : [];
     }
+=======
+    const changed = this.updateValue(value, flags);
+    value = this.dataValue;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const hasPreviousValue = Array.isArray(previousValue) ? previousValue.length : previousValue;
     const hasValue = Array.isArray(value) ? value.length : value;
-    const changed = this.hasChanged(value, previousValue);
-    this.dataValue = value;
+
+    // Undo typing when searching to set the value.
+    if (this.component.multiple && Array.isArray(value)) {
+      value = value.map(value => {
+        if (typeof value === 'boolean' || typeof value === 'number') {
+          return value.toString();
+        }
+        return value;
+      });
+    }
+    else {
+      if (typeof value === 'boolean' || typeof value === 'number') {
+        value = value.toString();
+      }
+    }
 
     // Do not set the value if we are loading... that will happen after it is done.
     if (this.loading) {
@@ -959,19 +1414,29 @@ export default class SelectComponent extends BaseComponent {
     ) {
       this.loading = true;
       this.lazyLoadInit = true;
-      this.triggerUpdate(this.dataValue, true);
+      this.triggerUpdate(value, true);
       return changed;
     }
 
     // Add the value options.
     this.addValueOptions();
+    this.setChoicesValue(value, hasPreviousValue);
+    return changed;
+  }
 
+  setChoicesValue(value, hasPreviousValue) {
+    const hasValue = Array.isArray(value) ? value.length : value;
+    hasPreviousValue = (hasPreviousValue === undefined) ? true : hasPreviousValue;
     if (this.choices) {
       // Now set the value.
       if (hasValue) {
         this.choices.removeActiveItems();
         // Add the currently selected choices if they don't already exist.
+<<<<<<< HEAD
         const currentChoices = Array.isArray(this.dataValue) ? this.dataValue : [this.dataValue];
+=======
+        const currentChoices = Array.isArray(value) ? value : [value];
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         if (!this.addCurrentChoices(currentChoices, this.selectOptions, true)) {
           this.choices.setChoices(this.selectOptions, 'value', 'label', true);
         }
@@ -986,7 +1451,7 @@ export default class SelectComponent extends BaseComponent {
         const values = Array.isArray(value) ? value : [value];
         _.each(this.selectOptions, (selectOption) => {
           _.each(values, (val) => {
-            if (_.isEqual(val, selectOption.value)) {
+            if (_.isEqual(val, selectOption.value) && selectOption.element) {
               selectOption.element.selected = true;
               selectOption.element.setAttribute('selected', 'selected');
               return false;
@@ -996,14 +1461,23 @@ export default class SelectComponent extends BaseComponent {
       }
       else {
         _.each(this.selectOptions, (selectOption) => {
-          selectOption.element.selected = false;
-          selectOption.element.removeAttribute('selected');
+          if (selectOption.element) {
+            selectOption.element.selected = false;
+            selectOption.element.removeAttribute('selected');
+          }
         });
       }
     }
+  }
 
-    this.updateOnChange(flags, changed);
-    return changed;
+  /**
+   * Deletes the value of the component.
+   */
+  deleteValue() {
+    this.setValue('', {
+      noUpdateEvent: true
+    });
+    _.unset(this.data, this.key);
   }
 
   /**
@@ -1027,7 +1501,7 @@ export default class SelectComponent extends BaseComponent {
   }
 
   /**
-   * Ouput this select dropdown as a string value.
+   * Output this select dropdown as a string value.
    * @return {*}
    */
   asString(value) {
@@ -1044,7 +1518,11 @@ export default class SelectComponent extends BaseComponent {
         }
         : {
           items: this.getCustomItems(),
+<<<<<<< HEAD
           valueProperty: this.component.valueProperty,
+=======
+          valueProperty: this.valueProperty,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         };
 
       value = (this.component.multiple && Array.isArray(value))
@@ -1069,12 +1547,8 @@ export default class SelectComponent extends BaseComponent {
       : '-';
   }
 
-  setupValueElement(element) {
-    element.innerHTML = this.asString();
-  }
-
-  destroy() {
-    super.destroy();
+  detach() {
+    super.detach();
     if (this.choices) {
       this.choices.destroyed = true;
       this.choices.destroy();
@@ -1083,6 +1557,33 @@ export default class SelectComponent extends BaseComponent {
   }
 
   focus() {
-    this.focusableElement.focus();
+    if (this.focusableElement) {
+      this.focusableElement.focus();
+    }
+  }
+
+  setCustomValidity(message, dirty, external) {
+    if (message) {
+      if (this.refs.messageContainer) {
+        this.empty(this.refs.messageContainer);
+      }
+      this.error = {
+        component: this.component,
+        message: message,
+        external: !!external,
+      };
+      this.emit('componentError', this.error);
+      if (this.refs.selectContainer) {
+        this.addMessage(message, dirty, [this.refs.selectContainer]);
+      }
+    }
+    else if (this.error && this.error.external === !!external) {
+      if (this.refs.messageContainer) {
+        this.empty(this.refs.messageContainer);
+      }
+      this.error = null;
+      this.removeClass(this.refs.selectContainer, 'is-invalid');
+      this.clearErrorClasses();
+    }
   }
 }

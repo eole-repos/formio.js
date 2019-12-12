@@ -1,20 +1,33 @@
+<<<<<<< HEAD
 import _ from 'lodash';
 import BaseComponent from '../base/Base';
 
 export default class TextFieldComponent extends BaseComponent {
+=======
+import Input from '../_classes/input/Input';
+import { conformToMask } from 'vanilla-text-mask';
+import * as FormioUtils from '../../utils/utils';
+
+export default class TextFieldComponent extends Input {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Input.schema({
       label: 'Text Field',
       key: 'textField',
       type: 'textfield',
       mask: false,
       inputType: 'text',
+      inputFormat: 'plain',
       inputMask: '',
+<<<<<<< HEAD
       widget: {
         format: 'yyyy-MM-dd hh:mm a',
         dateFormat: 'yyyy-MM-dd hh:mm a',
         saveAs: 'text'
       },
+=======
+      tableView: true,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       validate: {
         minLength: '',
         maxLength: '',
@@ -28,7 +41,7 @@ export default class TextFieldComponent extends BaseComponent {
   static get builderInfo() {
     return {
       title: 'Text Field',
-      icon: 'fa fa-terminal',
+      icon: 'terminal',
       group: 'basic',
       documentation: 'http://help.form.io/userguide/#textfield',
       weight: 0,
@@ -40,8 +53,8 @@ export default class TextFieldComponent extends BaseComponent {
     return TextFieldComponent.schema();
   }
 
-  elementInfo() {
-    const info = super.elementInfo();
+  get inputInfo() {
+    const info = super.inputInfo;
     info.type = 'input';
     if (this.component.hasOwnProperty('spellcheck')) {
       info.attr.spellcheck = this.component.spellcheck;
@@ -61,6 +74,7 @@ export default class TextFieldComponent extends BaseComponent {
     return '';
   }
 
+<<<<<<< HEAD
   createInput(container) {
     if (!this.isMultipleMasksField) {
       const inputGroup = super.createInput(container);
@@ -71,15 +85,33 @@ export default class TextFieldComponent extends BaseComponent {
     const attr = this.info.attr;
     attr.class += ' formio-multiple-mask-input';
     const textInput = this.ce('input', attr);
+=======
+  /**
+   * Returns the mask value object.
+   *
+   * @param value
+   * @param flags
+   * @return {*}
+   */
+  maskValue(value, flags) {
+    flags = flags || {};
 
-    const inputGroup = this.ce('div', {
-      class: 'input-group formio-multiple-mask-container'
-    });
-    this.addPrefix(textInput, inputGroup);
-    const maskInput = this.createMaskInput(textInput);
-    this.addTextInputs(textInput, maskInput, inputGroup);
-    this.addSuffix(textInput, inputGroup);
+    // Convert it into the correct format.
+    if (!value || (typeof value !== 'object')) {
+      value = {
+        value,
+        maskName: this.component.inputMasks[0].label
+      };
+    }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
+    // If no value is provided, then set the defaultValue.
+    if (!value.value) {
+      const defaultValue = flags.noDefault ? this.emptyValue : this.defaultValue;
+      value.value = Array.isArray(defaultValue) ? defaultValue[0] : defaultValue;
+    }
+
+<<<<<<< HEAD
     this.errorContainer = container;
     this.setInputStyles(inputGroup);
     this.addCounter(inputGroup);
@@ -159,13 +191,43 @@ export default class TextFieldComponent extends BaseComponent {
     if (this.charCount) {
       const value = this.component.wysiwyg ? this.removeTags(this.dataValue) : this.dataValue;
       this.setCounter('characters', this.charCount, value.length, this.maxCharCount);
-    }
+=======
+    return value;
   }
 
+  /**
+   * Normalize the value set in the data object.
+   *
+   * @param value
+   * @param flags
+   * @return {*}
+   */
+  normalizeValue(value, flags) {
+    if (!this.isMultipleMasksField) {
+      return super.normalizeValue(value);
+    }
+    if (Array.isArray(value)) {
+      return super.normalizeValue(value.map((val) => this.maskValue(val, flags)));
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
+    }
+    return super.normalizeValue(this.maskValue(value, flags));
+  }
+
+<<<<<<< HEAD
+=======
+  /**
+   * Sets the value at this index.
+   *
+   * @param index
+   * @param value
+   * @param flags
+   */
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   setValueAt(index, value, flags) {
     flags = flags || {};
     if (!this.isMultipleMasksField) {
       return super.setValueAt(index, value, flags);
+<<<<<<< HEAD
     }
     const defaultValue = flags.noDefault ? this.emptyValue : this.defaultValue;
     if (!value) {
@@ -177,58 +239,48 @@ export default class TextFieldComponent extends BaseComponent {
           maskName: this.component.inputMasks[0].label
         };
       }
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
-    //if value is a string, treat it as text value itself and use default mask or first mask in the list
-    const defaultMaskName = _.get(defaultValue, 'maskName', '');
-    if (typeof value === 'string') {
-      value = {
-        value: value,
-        maskName: defaultMaskName ? defaultMaskName : this.component.inputMasks[0].label
-      };
-    }
-    const maskName = value.maskName || '';
+    value = this.maskValue(value, flags);
     const textValue = value.value || '';
-    const textInput = this.inputs[index] ? this.inputs[index].text : undefined;
-    const maskInput = this.inputs[index] ? this.inputs[index].mask : undefined;
-    if (textInput && maskInput) {
-      maskInput.value = maskName;
-      textInput.value = textValue;
-      this.updateMask(textInput, maskName);
+    const textInput = this.refs.mask ? this.refs.mask[index] : null;
+    const maskInput = this.refs.select ? this.refs.select[index]: null;
+    const mask = this.getMaskPattern(value.maskName);
+    if (textInput && maskInput && mask) {
+      textInput.value = conformToMask(textValue, FormioUtils.getInputMask(mask)).conformedValue;
+      maskInput.value = value.maskName;
+    }
+    else {
+      return super.setValueAt(index, textValue, flags);
     }
   }
 
+  /**
+   * Returns the value at this index.
+   *
+   * @param index
+   * @return {*}
+   */
   getValueAt(index) {
     if (!this.isMultipleMasksField) {
       return super.getValueAt(index);
     }
-    const textField = this.inputs[index];
+    const textInput = this.refs.mask ? this.refs.mask[index] : null;
+    const maskInput = this.refs.select ? this.refs.select[index]: null;
     return {
-      value: textField && textField.text ? textField.text.value : undefined,
-      maskName: textField && textField.mask ? textField.mask.value : undefined
+      value: textInput ? textInput.value : undefined,
+      maskName: maskInput ? maskInput.value : undefined
     };
   }
 
-  performInputMapping(input) {
-    if (!this.isMultipleMasksField) {
-      return super.performInputMapping(input);
-    }
-    return input && input.text ? input.text : input;
-  }
-
-  buildInput(container, value, index) {
-    if (!this.isMultipleMasksField) {
-      return super.buildInput(container, value, index);
-    }
-    this.createInput(container);
-    this.setValueAt(index, value);
-  }
-
-  isEmpty(value) {
+  isEmpty(value = this.dataValue) {
     if (!this.isMultipleMasksField) {
       return super.isEmpty((value || '').toString().trim());
     }
     return super.isEmpty(value) || (this.component.multiple ? value.length === 0 : (!value.maskName || !value.value));
   }
+<<<<<<< HEAD
 
   createMaskInput(textInput) {
     const id = `${this.key}-mask`;
@@ -293,4 +345,6 @@ export default class TextFieldComponent extends BaseComponent {
     });
     return inputMask ? inputMask.mask : undefined;
   }
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

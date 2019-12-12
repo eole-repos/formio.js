@@ -9,6 +9,7 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 // Navbar ======================================================================
 
 .navbar {
+<<<<<<< HEAD
   font-size: 0.875em;
 }
 
@@ -26,6 +27,25 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 
   &.navbar-fixed-bottom {
     border-width: 1px 0 0 0;
+=======
+  font-size: $font-size-sm;
+
+  &.bg-dark {
+    background-color: $success !important;
+  }
+
+  &.bg-light {
+    background-color: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &.navbar-fixed-top {
+      border-width: 0 0 1px 0;
+    }
+
+    &.navbar-fixed-bottom {
+      border-width: 1px 0 0 0;
+    }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }
 
@@ -33,8 +53,11 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 
 .btn {
   border-radius: 1.078em;
+<<<<<<< HEAD
   font-family: $font-family-sans-serif;
   font-size: 0.875em;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   &-lg {
     border-radius: 2.688em;
@@ -42,6 +65,7 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 
   &-sm {
     border-radius: 0.844em;
+<<<<<<< HEAD
     font-size: 0.688em;
   }
 
@@ -50,6 +74,8 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
   &-warning,
   &-warning:hover {
     color: $white;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 }
 
@@ -64,7 +90,11 @@ blockquote {
 }
 
 footer {
+<<<<<<< HEAD
   font-size: 0.875em;
+=======
+  font-size: $font-size-sm;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 .lead {
@@ -76,7 +106,11 @@ footer {
 
 table,
 .table {
+<<<<<<< HEAD
   font-size: 0.875em;
+=======
+  font-size: $font-size-sm;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   &-primary,
   &-secondary,
@@ -210,19 +244,32 @@ table,
 .nav,
 .breadcrumb,
 .pagination {
+<<<<<<< HEAD
   font-size: 0.875em;
 }
 
 .dropdown-menu {
   font-size: 0.875em;
+=======
+  font-size: $font-size-sm;
+}
+
+.dropdown-menu {
+  font-size: $font-size-sm;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 // Indicators ==================================================================
 
 .alert {
+<<<<<<< HEAD
   border: none;
   color: $white;
   font-size: 0.875em;
+=======
+  color: $white;
+  font-size: $font-size-sm;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
   &, p {
     font-family: $font-family-sans-serif;
@@ -255,6 +302,7 @@ table,
 
 .badge {
   vertical-align: bottom;
+<<<<<<< HEAD
 
   &-secondary,
   &-warning {
@@ -264,6 +312,8 @@ table,
 
 .tooltip {
   font-size: 11px;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 // Progress bars ===============================================================
@@ -271,5 +321,9 @@ table,
 // Containers ==================================================================
 
 .list-group {
+<<<<<<< HEAD
   font-size: 0.875em;
+=======
+  font-size: $font-size-sm;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

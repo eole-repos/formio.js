@@ -1,4 +1,4 @@
-import UnknownComponent from './unknown/Unknown';
+import Component from './_classes/component/Component';
 import _ from 'lodash';
 
 export default class Components {
@@ -29,6 +29,7 @@ export default class Components {
     Components.components[name] = comp;
   }
 
+<<<<<<< HEAD
   /**
    * Ensure that all components have a key that is not used else-where in the form.
    * @param component
@@ -83,17 +84,16 @@ export default class Components {
   /* eslint-enable max-depth */
 
   static create(component, options, data, nobuild) {
+=======
+  static create(component, options, data) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     let comp = null;
     if (component.type && Components.components.hasOwnProperty(component.type)) {
       comp = new Components.components[component.type](component, options, data);
       Components.ensureKey(component, options);
     }
     else {
-      comp = new UnknownComponent(component, options, data);
-    }
-    if (!nobuild) {
-      comp.build();
-      comp.isBuilt = true;
+      comp = new Component(component, options, data);
     }
     return comp;
   }

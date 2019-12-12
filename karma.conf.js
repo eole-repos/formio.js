@@ -4,6 +4,11 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['mocha'],
+    client: {
+      mocha: {
+        timeout: 5000
+      }
+    },
     webpack: {
       mode: 'development',
       module: {
@@ -17,6 +22,15 @@ module.exports = function(config) {
             use: {
               loader: 'babel-loader',
               options: require('./babel.config.js')
+<<<<<<< HEAD
+=======
+            }
+          },
+          {
+            test: /\.html$/,
+            use: {
+              loader: 'raw-loader'
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
             }
           },
           {

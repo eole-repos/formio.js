@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+<<<<<<< HEAD
     machine: true
     environment:
       GIT_USER: 'eole-developer'
@@ -39,3 +40,26 @@ workflows:
      jobs: 
       - build
 
+=======
+    docker:
+      - image: circleci/node:8-browsers
+        environment:
+            CHROME_BIN: "/usr/bin/google-chrome"
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install npm
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Test
+          command: npm test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

@@ -1,5 +1,9 @@
 /*!
+<<<<<<< HEAD
  * Bootstrap Reboot v4.3.1 (https://getbootstrap.com/)
+=======
+ * Bootstrap Reboot v4.4.1 (https://getbootstrap.com/)
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -33,7 +37,11 @@ body {
   background-color: #fff;
 }
 
+<<<<<<< HEAD
 [tabindex="-1"]:focus {
+=======
+[tabindex="-1"]:focus:not(:focus-visible) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   outline: 0 !important;
 }
 
@@ -133,20 +141,31 @@ a:hover {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
 a:not([href]):not([tabindex]) {
+=======
+a:not([href]) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   color: inherit;
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+=======
+a:not([href]):hover {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   color: inherit;
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 a:not([href]):not([tabindex]):focus {
   outline: 0;
 }
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 pre,
 code,
 kbd,

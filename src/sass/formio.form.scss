@@ -3,12 +3,46 @@
   min-height: 80px;
 }
 
+.formio-error-wrapper,
+.formio-warning-wrapper {
+  padding: 1em;
+}
+
+.formio-error-wrapper {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.formio-warning-wrapper {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
 .formio-disabled-input .form-control.flatpickr-input {
   background-color: #eee;
 }
 
-.formio-component.has-error .invalid-feedback {
+.builder-component.has-error .invalid-feedback,
+.formio-component.has-error .invalid-feedback,
+.formio-component.alert-danger .invalid-feedback,
+.formio-component.has-message .invalid-feedback {
   display: block;
+  color: inherit;
+  margin-top: 4px;
+}
+
+.formio-errors {
+  .error {
+    color: #dc3545;
+  }
+  .warning {
+    color: #856404;
+  }
+  .info {
+    color: #004085;
+  }
 }
 
 .formio-wysiwyg-editor {
@@ -113,20 +147,34 @@
 }
 
 .formio-component-submit .submit-success::after {
+<<<<<<< HEAD
   font-family: 'Glyphicons Halflings';
   content: '\e013';
   position: relative;
   right: -4px;
   top: 1;
+=======
+  content: '\2713';
+  position: relative;
+  right: -4px;
+  top: 1px;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   line-height: 1;
 }
 
 .formio-component-submit .submit-fail::after {
+<<<<<<< HEAD
   font-family: 'Glyphicons Halflings';
   content: '\e014';
   position: relative;
   right: -4px;
   top: 1;
+=======
+  content: '\2717';
+  position: relative;
+  right: -4px;
+  top: 1px;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   line-height: 1;
 }
 
@@ -134,6 +182,7 @@
   opacity: 1;
 }
 
+<<<<<<< HEAD
 .formio-component-submit button.uploads-in-progress {
     pointer-events: none;
     cursor: not-allowed;
@@ -143,6 +192,8 @@
     box-shadow: none;
 }
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .form-control.flatpickr-input {
   background-color: #fff;
 }
@@ -151,12 +202,9 @@ td > .form-group {
   margin-bottom: 0;
 }
 
-.signature-pad {
-  position: relative;
-}
-
 .signature-pad-body {
   overflow: hidden;
+  position: relative;
 }
 
 .signature-pad-body img {
@@ -187,6 +235,13 @@ td > .form-group {
   right: 0;
 }
 
+<<<<<<< HEAD
+=======
+.formio-component-multiple .choices__input {
+  width: 100%;
+}
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .choices__list--dropdown .choices__item--selectable{
   padding-right: 0px;
 }
@@ -198,6 +253,11 @@ td > .form-group {
 .signature-pad-footer {
   text-align: center;
   color: #C3C3C3;
+}
+
+.formio-loader {
+  position: relative;
+  min-height: 60px;
 }
 
 .loader-wrapper {
@@ -503,7 +563,7 @@ body.formio-dialog-open {
   max-width: 100%;
   padding: 1em;
   position: relative;
-  width: 65%;
+  width: 80%;
 }
 
 .formio-dialog.formio-dialog-theme-default .formio-dialog-close {
@@ -513,6 +573,7 @@ body.formio-dialog-open {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 100;
 }
 
 .formio-clickable {
@@ -688,6 +749,14 @@ body.formio-dialog-open {
   z-index: 2;
 }
 
+<<<<<<< HEAD
+=======
+.formio-component-hidden,
+.formio-component-datasource {
+  margin-bottom: 0;
+}
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .checkbox-inline label,
 .radio-inline label {
   font-weight: 400;
@@ -748,6 +817,7 @@ body.formio-dialog-open {
   display: none;
 }
 
+<<<<<<< HEAD
 .has-error.alert-danger .form-group {
   color: #333;
 }
@@ -762,6 +832,11 @@ body.formio-dialog-open {
   vertical-align: top;
   margin-right: 4px;
   margin-top: 1px;
+=======
+.formio-collapse-icon {
+  cursor: pointer;
+  margin-right: 4px;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 [dir="rtl"] .formio-collapse-icon {
@@ -903,6 +978,7 @@ body.formio-dialog-open {
   }
 }
 
+<<<<<<< HEAD
 .formio-drag-column, .formio-remove-column {
   width:50px;
   white-space:nowrap;
@@ -1074,4 +1150,203 @@ body.formio-dialog-open {
 
 .formio-tagpad-form-title {
   font-size: 1.7em;
+=======
+.formio-component.alert-danger .help-block,
+.formio-component.alert-warning .help-block {
+  color: inherit;
+}
+
+.tree {
+  &__level {
+    &_even {
+      background-color: #f6f6f6;
+    }
+  }
+
+  &__node-content {
+    margin-bottom: 10px;
+  }
+
+  &__node-children {
+    margin: 0;
+  }
+}
+
+.formio-select-autocomplete-input {
+  /* we can't use display: none or visibility: hidden because autocomplete won't work on hidden field */
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.has-error > .help-block {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.no-top-border-table
+  > .table
+  > tbody
+  > tr:first-child
+  > td {
+  border-top: none;
+}
+
+.table > tbody > tr > td.cell-align {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    & > div {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    text-align: center;
+  }
+
+  &-right {
+    & > div {
+      margin-left: auto;
+    }
+
+    text-align: right;
+  }
+}
+.formio-component-textarea .alert .ck-editor__editable{
+  color: inherit;
+}
+
+div[data-oembed-url] {
+  width: 100%;
+}
+
+.radio label.label-position-left, .checkbox label.label-position-left,
+.radio label.label-position-top, .checkbox label.label-position-top,
+.radio label.label-position-bottom, .checkbox label.label-position-bottom {
+  padding-left: 0;
+}
+
+.radio label.label-position-top span, .checkbox label.label-position-top span,
+.radio label.label-position-bottom span, .checkbox label.label-position-bottom span {
+  display: block;
+}
+
+.radio label.label-position-top input[type="radio"], .checkbox label.label-position-top input[type="checkbox"],
+.radio label.label-position-bottom input[type="radio"], .checkbox label.label-position-bottom input[type="checkbox"] {
+  position: relative;
+  margin-left: 0;
+}
+
+.radio label.label-position-top input[type="radio"], .checkbox label.label-position-top input[type="checkbox"] {
+  margin-top: 4px;
+}
+
+.radio label.label-position-bottom input[type="radio"], .checkbox label.label-position-bottom input[type="checkbox"] {
+  margin-bottom: 8px;
+}
+
+.radio label.label-position-left input[type="radio"], .checkbox label.label-position-left input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+
+/* ckeditor5-image/theme/image.css */
+.formio-component-content .image {
+  display: table;
+  clear: both;
+  text-align: center;
+  margin: 1em auto
+}
+/* ckeditor5-image/theme/image.css */
+.formio-component-content .image > img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  min-width: 50px;
+}
+/* ckeditor5-image/theme/imagecaption.css */
+.formio-component-content .image > figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  word-break: break-word;
+  color: hsl(0, 0%, 20%);
+  background-color: hsl(0, 0%, 97%);
+  padding: .6em;
+  font-size: .75em;
+  outline-offset: -1px;
+}
+/* ckeditor5-image/theme/imageresize.css */
+.formio-component-content .image.image_resized {
+  max-width: 100%;
+  display: block;
+  box-sizing: border-box
+}
+/* ckeditor5-image/theme/imageresize.css */
+.formio-component-content .image.image_resized img {
+  width: 100%;
+}
+/* ckeditor5-image/theme/imageresize.css */
+.formio-component-content .image.image_resized > figcaption {
+  display: block;
+}
+/* ckeditor5-media-embed/theme/mediaembed.css */
+.formio-component-content .media {
+  clear: both;
+  margin: 1em 0;
+  display: block;
+  min-width: 15em;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+  max-width: 50%;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+  max-width: 50%;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+  max-width: 50%;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-side:not(.image_resized), .formio-component-content .image-style-align-left:not(.image_resized), .formio-component-content .image-style-align-center:not(.image_resized), .formio-component-content .image-style-align-right:not(.image_resized) {
+  max-width: 50%;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-side {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-align-left {
+  float: left;
+  margin-right: var(--ck-image-style-spacing);
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ckeditor5-image/theme/imagestyle.css */
+.formio-component-content .image-style-align-right {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}
+/* ckeditor5-block-quote/theme/blockquote.css */
+.formio-component-content blockquote {
+  overflow: hidden;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  border-left: solid 5px hsl(0, 0%, 80%);
+}
+/* ckeditor5-block-quote/theme/blockquote.css */
+.formio-component-content[dir="rtl"] blockquote {
+  border-left: 0;
+  border-right: solid 5px hsl(0, 0%, 80%);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

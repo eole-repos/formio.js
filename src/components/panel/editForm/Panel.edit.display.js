@@ -1,5 +1,28 @@
 export default [
   {
+<<<<<<< HEAD
+=======
+    key: 'labelPosition',
+    ignore: true
+  },
+  {
+    key: 'placeholder',
+    ignore: true
+  },
+  {
+    key: 'description',
+    ignore: true
+  },
+  {
+    key: 'hideLabel',
+    ignore: true
+  },
+  {
+    key: 'autofocus',
+    ignore: true
+  },
+  {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     key: 'label',
     hidden: true,
     calculateValue(context) {
@@ -7,6 +30,13 @@ export default [
     }
   },
   {
+<<<<<<< HEAD
+=======
+    key: 'tabindex',
+    hidden: true,
+  },
+  {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     weight: 1,
     type: 'textfield',
     input: true,
@@ -102,7 +132,11 @@ export default [
       }
     ],
     customConditional(context) {
+<<<<<<< HEAD
       return context.instance.root.editForm.display === 'wizard';
+=======
+      return context.instance.options.editForm.display === 'wizard';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   },
   {
@@ -122,6 +156,7 @@ export default [
     input: true,
     conditional: {
       json: { '===': [{ var: 'data.collapsible' }, true] }
+<<<<<<< HEAD
     }
   },
   {
@@ -133,6 +168,8 @@ export default [
     input: true,
     conditional: {
       json: { '===': [{ var: 'data.collapsed' }, true] }
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   }
 ];

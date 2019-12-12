@@ -7,6 +7,13 @@
 $web-font-path: "https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch" !default;
 @import url($web-font-path);
 
+<<<<<<< HEAD
+=======
+$border-radius-sketchy: 255px 25px 225px 25px/25px 225px 25px 255px;
+$border-radius-lg-sketchy: 555px 25px 15px 25px/25px 5px 35px 555px;
+$border-radius-sm-sketchy: 255px 25px 225px 25px/25px 225px 25px 255px;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Navbar ======================================================================
 
 .navbar {
@@ -38,8 +45,21 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch" !d
 // Buttons =====================================================================
 
 .btn {
+<<<<<<< HEAD
   border-radius: $border-radius;
   text-decoration: none;
+=======
+  border-radius: $border-radius-sketchy;
+  text-decoration: none;
+
+  &-lg {
+    border-radius: $border-radius-lg-sketchy;
+  }
+
+  &-sm {
+    border-radius: $border-radius-sm-sketchy;
+  }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 // Typography ==================================================================
@@ -120,15 +140,26 @@ table {
 // Forms =======================================================================
 
 input,
+<<<<<<< HEAD
 .form-control {
   border-radius: $border-radius;
+=======
+.form-control,
+.input-group-text,
+.custom-file-label {
+  border-radius: $border-radius-sketchy;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 textarea,
 textarea.form-control,
 select,
 select.form-control {
+<<<<<<< HEAD
   border-radius: $border-radius-lg !important;
+=======
+  border-radius: $border-radius-lg-sketchy !important;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 [type="checkbox"] {
@@ -230,6 +261,13 @@ select.form-control {
   }
 }
 
+<<<<<<< HEAD
+=======
+.nav-pills .nav-link, {
+  border-radius: $border-radius-sketchy;
+}
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 .nav-link,
 .page-link,
 .list-group-item,
@@ -245,6 +283,10 @@ select.form-control {
 
 .breadcrumb {
   border: 2px solid $gray-800;
+<<<<<<< HEAD
+=======
+  border-radius: $border-radius-sketchy;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 .pagination {
@@ -260,6 +302,11 @@ select.form-control {
 }
 
 .badge {
+<<<<<<< HEAD
+=======
+  border-radius: $border-radius-sm-sketchy;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   &-pill {
     border-radius: 7rem 8rem 8rem 8rem / 4rem 5rem 6rem 6rem;
   }
@@ -270,6 +317,11 @@ select.form-control {
 }
 
 .alert {
+<<<<<<< HEAD
+=======
+  border-radius: $border-radius-sketchy;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   &-dismissible {
     .close {
       color: transparent;
@@ -324,6 +376,13 @@ select.form-control {
 
 // Progress bars ===============================================================
 
+<<<<<<< HEAD
+=======
+.progress {
+  border-radius: $border-radius-sm-sketchy;
+}
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Containers ==================================================================
 
 .card {
@@ -355,6 +414,10 @@ select.form-control {
 
 .jumbotron {
   border: 2px solid $gray-800;
+<<<<<<< HEAD
+=======
+  border-radius: $border-radius-lg-sketchy;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }
 
 .modal {
@@ -392,6 +455,16 @@ select.form-control {
   }
 }
 
+<<<<<<< HEAD
+=======
+.tooltip {
+
+  &-inner {
+    border-radius: $border-radius-sm-sketchy;
+  }
+}
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 pre {
   border: 2px solid $gray-800;
   border-radius: 15px 5px 5px 25px/5px 25px 25px 5px;
@@ -409,3 +482,12 @@ pre {
     color: $gray-800;
   }
 }
+<<<<<<< HEAD
+=======
+
+.img {
+  &-thumbnail {
+    border-radius: $border-radius-sketchy;
+  }
+}
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

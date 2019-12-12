@@ -11,4 +11,11 @@ export default [
     key: 'defaultValue',
     ignore: true,
   },
+<<<<<<< HEAD
+=======
+  {
+    key: 'multiple',
+    ignore: true
+  },
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 ];

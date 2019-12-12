@@ -43,7 +43,11 @@ $yiq-contrasted-threshold:  175 !default;
 // Body
 
 $body-bg:       #060606 !default;
+<<<<<<< HEAD
 $body-color:    $gray-500 !default;
+=======
+$body-color:    $gray-400 !default;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Fonts
 
@@ -61,6 +65,10 @@ $headings-color:         $white !default;
 
 // Tables
 
+<<<<<<< HEAD
+=======
+$table-color:                   $white !default;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 $table-accent-bg:               rgba($white,.05) !default;
 $table-hover-bg:                rgba($white,.075) !default;
 
@@ -68,7 +76,10 @@ $table-border-color:            $gray-700 !default;
 
 $table-dark-bg:               $gray-500 !default;
 $table-dark-border-color:     darken($gray-500, 7.5%) !default;
+<<<<<<< HEAD
 $table-dark-color:            $body-bg !default;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
 // Buttons
 

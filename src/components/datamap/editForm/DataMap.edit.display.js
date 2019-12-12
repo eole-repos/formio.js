@@ -1,5 +1,16 @@
 export default [
   {
+<<<<<<< HEAD
+=======
+    key: 'placeholder',
+    ignore: true
+  },
+  {
+    key: 'tabindex',
+    ignore: true
+  },
+  {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'textfield',
     label: 'Label for Key column',
     key: 'keyLabel',

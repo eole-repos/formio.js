@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import BaseComponent from '../base/Base';
+import Field from '../_classes/field/Field';
 
-export default class RadioComponent extends BaseComponent {
+export default class RadioComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'radio',
       inputType: 'radio',
       label: 'Radio',
@@ -17,29 +17,40 @@ export default class RadioComponent extends BaseComponent {
     return {
       title: 'Radio',
       group: 'basic',
-      icon: 'fa fa-dot-circle-o',
+      icon: 'dot-circle-o',
       weight: 80,
       documentation: 'http://help.form.io/userguide/#radio',
       schema: RadioComponent.schema()
     };
   }
 
+  constructor(component, options, data) {
+    super(component, options, data);
+    this.previousValue = this.dataValue || null;
+  }
+
   get defaultSchema() {
     return RadioComponent.schema();
   }
 
+<<<<<<< HEAD
   get emptyValue() {
     return '';
   }
 
   elementInfo() {
+=======
+  get inputInfo() {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const info = super.elementInfo();
     info.type = 'input';
     info.changeEvent = 'click';
     info.attr.class = 'form-check-input';
+    info.attr.name = info.attr.name += `[${this.id}]`;
     return info;
   }
 
+<<<<<<< HEAD
   createInput(container) {
     const inputGroup = this.ce('div', {
       class: 'form-group'
@@ -107,73 +118,72 @@ export default class RadioComponent extends BaseComponent {
     const inputType = this.component.inputType;
     const wrapperClass = (this.component.inline ? `form-check-inline ${inputType}-inline` : inputType);
     return wrapperClass;
+=======
+  get emptyValue() {
+    return '';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  optionsLabelOnTheTopOrLeft() {
-    return ['top', 'left'].includes(this.component.optionsLabelPosition);
+  get isRadio() {
+    return this.component.inputType === 'radio';
   }
 
-  optionsLabelOnTheTopOrBottom() {
-    return ['top', 'bottom'].includes(this.component.optionsLabelPosition);
+  render() {
+    return super.render(this.renderTemplate('radio', {
+      input: this.inputInfo,
+      inline: this.component.inline,
+      values: this.component.values,
+      value: this.dataValue,
+      row: this.row,
+    }));
   }
 
-  setInputLabelStyle(label) {
-    if (this.component.optionsLabelPosition === 'left') {
-      _.assign(label.style, {
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
-    }
+  attach(element) {
+    this.loadRefs(element, { input: 'multiple', wrapper: 'multiple' });
+    this.refs.input.forEach((input, index) => {
+      this.addEventListener(input, this.inputInfo.changeEvent, () => this.updateValue(null, {
+        modified: true,
+      }));
+      this.addShortcut(input, this.component.values[index].shortcut);
 
-    if (this.optionsLabelOnTheTopOrBottom()) {
-      _.assign(label.style, {
-        display: 'block',
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
-    }
+      if (this.isRadio) {
+        input.checked = (this.dataValue === input.value);
+        this.addEventListener(input, 'keyup', (event) => {
+          if (event.key === ' ' && this.dataValue === input.value) {
+            event.preventDefault();
+
+            this.updateValue(null, {
+              modified: true,
+            });
+          }
+        });
+      }
+    });
+    return super.attach(element);
   }
 
-  setInputStyle(input) {
-    if (this.component.optionsLabelPosition === 'left') {
-      _.assign(input.style, {
-        position: 'initial',
-        marginLeft: '7px'
-      });
-    }
-
-    if (this.optionsLabelOnTheTopOrBottom()) {
-      _.assign(input.style, {
-        width: '100%',
-        position: 'initial',
-        marginLeft: 0
+  detach(element) {
+    if (element && this.refs.input) {
+      this.refs.input.forEach((input, index) => {
+        this.removeShortcut(input, this.component.values[index].shortcut);
       });
     }
   }
 
   getValue() {
-    if (this.viewOnly) {
+    if (this.viewOnly || !this.refs.input || !this.refs.input.length) {
       return this.dataValue;
     }
-    let value = '';
-    _.each(this.inputs, (input) => {
+    let value = this.dataValue;
+    this.refs.input.forEach((input) => {
       if (input.checked) {
         value = input.value;
-        if (value === 'true') {
-          value = true;
-        }
-        else if (value === 'false') {
-          value = false;
-        }
-        else if (!isNaN(parseInt(value, 10)) && isFinite(value)) {
-          value = parseInt(value, 10);
-        }
       }
     });
     return value;
   }
 
-  getView(value) {
+  getValueAsString(value) {
     if (!value) {
       return '';
     }
@@ -183,10 +193,11 @@ export default class RadioComponent extends BaseComponent {
 
     const option = _.find(this.component.values, (v) => v.value === value);
 
-    return _.get(option, 'label');
+    return _.get(option, 'label', '');
   }
 
   setValueAt(index, value) {
+<<<<<<< HEAD
     if (this.inputs && this.inputs[index] && value !== null && value !== undefined) {
       const inputValue = this.inputs[index].value;
       this.inputs[index].checked = (inputValue === value.toString());
@@ -201,13 +212,30 @@ export default class RadioComponent extends BaseComponent {
   updateValue(flags, value) {
     const changed = super.updateValue(flags, value);
     if (changed) {
+=======
+    if (this.refs.input && this.refs.input[index] && value !== null && value !== undefined) {
+      const inputValue = this.refs.input[index].value;
+      this.refs.input[index].checked = (inputValue === value.toString());
+    }
+  }
+
+  updateValue(value, flags) {
+    const changed = super.updateValue(value, flags);
+    if (changed && this.refs.wrapper) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       //add/remove selected option class
       const value = this.dataValue;
       const optionSelectedClass = 'radio-selected';
 
+<<<<<<< HEAD
       _.each(this.wrappers, (wrapper, index) => {
         const input = this.inputs[index];
         if (input.value.toString() === value.toString()) {
+=======
+      this.refs.wrapper.forEach((wrapper, index) => {
+        const input = this.refs.input[index];
+        if (input && input.value.toString() === value.toString()) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
           //add class to container when selected
           this.addClass(wrapper, optionSelectedClass);
         }
@@ -216,6 +244,61 @@ export default class RadioComponent extends BaseComponent {
         }
       });
     }
+
+    if (!flags || !flags.modified || !this.isRadio) {
+      return changed;
+    }
+
+    // If they clicked on the radio that is currently selected, it needs to reset the value.
+    this.currentValue = this.dataValue;
+    const shouldResetValue = !(flags && flags.noUpdateEvent)
+      && this.previousValue === this.currentValue;
+    if (shouldResetValue) {
+      this.resetValue();
+      this.triggerChange();
+    }
+    this.previousValue = this.dataValue;
     return changed;
   }
+<<<<<<< HEAD
+=======
+
+  /**
+   * Normalize values coming into updateValue.
+   *
+   * @param value
+   * @return {*}
+   */
+  normalizeValue(value) {
+    const dataType = _.get(this.component, 'dataType', 'auto');
+    switch (dataType) {
+      case 'auto':
+        if (!isNaN(parseFloat(value)) && isFinite(value)) {
+          value = +value;
+        }
+        if (value === 'true') {
+          value = true;
+        }
+        if (value === 'false') {
+          value = false;
+        }
+        break;
+      case 'number':
+        value = +value;
+        break;
+      case 'string':
+        if (typeof value === 'object') {
+          value = JSON.stringify(value);
+        }
+        else {
+          value = value.toString();
+        }
+        break;
+      case 'boolean':
+        value = !(!value || value.toString() === 'false');
+        break;
+    }
+    return super.normalizeValue(value);
+  }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

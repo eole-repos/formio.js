@@ -1,23 +1,38 @@
 /* globals OktaAuth */
+<<<<<<< HEAD
 
 // Keep lodash off the global scope.
 import _ from 'lodash';
 _.noConflict();
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Intentionally use native-promise-only here... Other promise libraries (es6-promise)
 // duck-punch the global Promise definition which messes up Angular 2 since it
 // also duck-punches the global Promise definition. For now, keep native-promise-only.
 import NativePromise from 'native-promise-only';
 import fetchPonyfill from 'fetch-ponyfill';
+<<<<<<< HEAD
 import 'custom-event-polyfill';
 import EventEmitter from './EventEmitter';
 import cookies from 'browser-cookies';
 import copy from 'shallow-copy';
 import * as providers from './providers';
+=======
+import EventEmitter from './EventEmitter';
+import cookies from 'browser-cookies';
+import Providers from './providers';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import _intersection from 'lodash/intersection';
 import _get from 'lodash/get';
 import _cloneDeep from 'lodash/cloneDeep';
 import _defaults from 'lodash/defaults';
+<<<<<<< HEAD
+=======
+import { eachComponent } from './utils/utils';
+import './polyfills';
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 const { fetch, Headers } = fetchPonyfill({
   Promise: NativePromise
 });
@@ -25,6 +40,18 @@ const { fetch, Headers } = fetchPonyfill({
 const isBoolean = (val) => typeof val === typeof true;
 const isNil = (val) => val === null || val === undefined;
 const isObject = (val) => val && typeof val === 'object';
+
+function cloneResponse(response) {
+  const copy = _cloneDeep(response);
+
+  if (Array.isArray(response)) {
+    copy.skip = response.skip;
+    copy.limit = response.limit;
+    copy.serverCount = response.serverCount;
+  }
+
+  return copy;
+}
 
 /**
  * The Formio interface class.
@@ -316,6 +343,7 @@ export default class Formio {
         return this.loadFormRevision(this.vId, query, opts)
           .then((revisionForm) => {
             currentForm.components = revisionForm.components;
+            currentForm.settings = revisionForm.settings;
             // Using object.assign so we don't cross polinate multiple form loads.
             return Object.assign({}, currentForm);
           })
@@ -497,7 +525,11 @@ export default class Formio {
     });
   }
 
+<<<<<<< HEAD
   uploadFile(storage, file, fileName, dir, progressCallback, url, options) {
+=======
+  uploadFile(storage, file, fileName, dir, progressCallback, url, options, fileKey) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const requestArgs = {
       provider: storage,
       method: 'upload',
@@ -505,14 +537,22 @@ export default class Formio {
       fileName,
       dir
     };
+    fileKey = fileKey || 'file';
     const request = Formio.pluginWait('preRequest', requestArgs)
       .then(() => {
         return Formio.pluginGet('fileRequest', requestArgs)
           .then((result) => {
             if (storage && isNil(result)) {
+<<<<<<< HEAD
               if (Formio.providers.storage.hasOwnProperty(storage)) {
                 const provider = new Formio.providers.storage[storage](this);
                 return provider.uploadFile(file, fileName, dir, progressCallback, url, options);
+=======
+              const Provider = Providers.getProvider('storage', storage);
+              if (Provider) {
+                const provider = new Provider(this);
+                return provider.uploadFile(file, fileName, dir, progressCallback, url, options, fileKey);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
               }
               else {
                 throw ('Storage provider not found');
@@ -525,7 +565,7 @@ export default class Formio {
     return Formio.pluginAlter('wrapFileRequestPromise', request, requestArgs);
   }
 
-  downloadFile(file) {
+  downloadFile(file, options) {
     const requestArgs = {
       method: 'download',
       file: file
@@ -536,9 +576,10 @@ export default class Formio {
         return Formio.pluginGet('fileRequest', requestArgs)
           .then((result) => {
             if (file.storage && isNil(result)) {
-              if (Formio.providers.storage.hasOwnProperty(file.storage)) {
-                const provider = new Formio.providers.storage[file.storage](this);
-                return provider.downloadFile(file);
+              const Provider = Providers.getProvider('storage', file.storage);
+              if (Provider) {
+                const provider = new Provider(this);
+                return provider.downloadFile(file, options);
               }
               else {
                 throw ('Storage provider not found');
@@ -564,10 +605,18 @@ export default class Formio {
     return NativePromise.all([
       (form !== undefined) ? NativePromise.resolve(form) : this.loadForm(),
       (user !== undefined) ? NativePromise.resolve(user) : this.currentUser(),
+<<<<<<< HEAD
+=======
+      (submission !== undefined || !this.submissionId) ? NativePromise.resolve(submission) : this.loadSubmission(),
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       this.accessInfo()
     ]).then((results) => {
       const form = results.shift();
       const user = results.shift() || { _id: false, roles: [] };
+<<<<<<< HEAD
+=======
+      const submission = results.shift();
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       const access = results.shift();
       const permMap = {
         create: 'create',
@@ -607,9 +656,45 @@ export default class Formio {
           if (['create', 'read', 'update', 'delete'].includes(perm)) {
             if (_intersection(permission.roles, user.roles).length) {
               perms[permMap[perm]] = (scope === 'all') || (!submission || (user._id === submission.owner));
+<<<<<<< HEAD
+=======
             }
           }
         }
+      }
+      // check for Group Permissions
+      if (submission) {
+        // we would anyway need to loop through components for create permission, so we'll do that for all of them
+        eachComponent(form.components, (component, path) => {
+          if (component && component.defaultPermission) {
+            // we assume that there might be only single value of group component
+            const value = _get(submission.data, path);
+            if (
+              value && value._id && // group id is present
+              user.roles.indexOf(value._id) > -1 // user has group id in his roles
+            ) {
+              if (component.defaultPermission === 'read') {
+                perms[permMap.read] = true;
+              }
+              if (component.defaultPermission === 'create') {
+                perms[permMap.create] = true;
+                perms[permMap.read] = true;
+              }
+              if (component.defaultPermission === 'write') {
+                perms[permMap.create] = true;
+                perms[permMap.read] = true;
+                perms[permMap.update] = true;
+              }
+              if (component.defaultPermission === 'admin') {
+                perms[permMap.create] = true;
+                perms[permMap.read] = true;
+                perms[permMap.update] = true;
+                perms[permMap.delete] = true;
+              }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
+            }
+          }
+        });
       }
       return perms;
     });
@@ -752,8 +837,13 @@ export default class Formio {
     const cacheKey = btoa(url);
 
     // Get the cached promise to save multiple loads.
+<<<<<<< HEAD
     if (!Formio.ignoreCache && !opts.ignoreCache && method === 'GET' && Formio.cache.hasOwnProperty(cacheKey)) {
       return NativePromise.resolve(_cloneDeep(Formio.cache[cacheKey]));
+=======
+    if (!opts.ignoreCache && method === 'GET' && Formio.cache.hasOwnProperty(cacheKey)) {
+      return NativePromise.resolve(cloneResponse(Formio.cache[cacheKey]));
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     // Set up and fetch request
@@ -871,8 +961,8 @@ export default class Formio {
 
           // Return the result with the headers.
           return {
-            result: result,
-            headers: headers
+            result,
+            headers,
           };
         });
       })
@@ -882,6 +972,7 @@ export default class Formio {
         }
 
         // Cache the response.
+<<<<<<< HEAD
         if (!Formio.ignoreCache && (method === 'GET')) {
           Formio.cache[cacheKey] = _cloneDeep(result);
         }
@@ -900,6 +991,13 @@ export default class Formio {
         }
 
         return resultCopy;
+=======
+        if (method === 'GET') {
+          Formio.cache[cacheKey] = result;
+        }
+
+        return cloneResponse(result);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       })
       .catch((err) => {
         if (err === 'Bad Token') {
@@ -919,6 +1017,7 @@ export default class Formio {
       });
 
     return result;
+<<<<<<< HEAD
   }
 
   // Needed to maintain reverse compatability...
@@ -940,19 +1039,54 @@ export default class Formio {
   }
 
   static setToken(token = '', opts) {
+=======
+  }
+
+  // Needed to maintain reverse compatability...
+  static get token() {
+    if (!Formio.tokens) {
+      Formio.tokens = {};
+    }
+
+    return Formio.tokens.formioToken ? Formio.tokens.formioToken : '';
+  }
+
+  // Needed to maintain reverse compatability...
+  static set token(token) {
+    if (!Formio.tokens) {
+      Formio.tokens = {};
+    }
+
+    return Formio.tokens.formioToken = token || '';
+  }
+
+  static setToken(token = '', opts) {
+    token = token || '';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     opts = (typeof opts === 'string') ? { namespace: opts } : opts || {};
     var tokenName = `${opts.namespace || Formio.namespace || 'formio'}Token`;
     if (!Formio.tokens) {
       Formio.tokens = {};
     }
 
+<<<<<<< HEAD
     if (Formio.tokens[tokenName] === token) {
+=======
+    if (Formio.tokens[tokenName] && Formio.tokens[tokenName] === token) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       return;
     }
 
     Formio.tokens[tokenName] = token;
     if (!token) {
+<<<<<<< HEAD
       Formio.setUser(null, opts);
+=======
+      if (!opts.fromUser) {
+        opts.fromToken = true;
+        Formio.setUser(null, opts);
+      }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       // iOS in private browse mode will throw an error but we can't detect ahead of time that we are in private mode.
       try {
         return localStorage.removeItem(tokenName);
@@ -994,7 +1128,14 @@ export default class Formio {
   static setUser(user, opts = {}) {
     var userName = `${opts.namespace || Formio.namespace || 'formio'}User`;
     if (!user) {
+<<<<<<< HEAD
       Formio.setToken(null, opts);
+=======
+      if (!opts.fromToken) {
+        opts.fromUser = true;
+        Formio.setToken(null, opts);
+      }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
       // Emit an event on the cleared user.
       Formio.events.emit('formio.user', null);
@@ -1170,6 +1311,10 @@ export default class Formio {
         options
       });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     const token = Formio.getToken(options);
     if ((!options || !options.external) && !token) {
       return Formio.pluginAlter('wrapStaticRequestPromise', NativePromise.resolve(null), {
@@ -1240,10 +1385,17 @@ export default class Formio {
       const retVal = Formio.setToken(query.saml);
       let uri = window.location.toString();
       uri = uri.substring(0, uri.indexOf('?'));
+<<<<<<< HEAD
+=======
+      if (window.location.hash) {
+        uri += window.location.hash;
+      }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       window.history.replaceState({}, document.title, uri);
       return retVal;
     }
 
+<<<<<<< HEAD
     if (options.forceAuth) {
       Formio.setUser(null);
     }
@@ -1252,6 +1404,8 @@ export default class Formio {
       return false;
     }
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     // Set the relay if not provided.
     if (!options.relay) {
       options.relay = window.location.href;
@@ -1259,7 +1413,11 @@ export default class Formio {
 
     // go to the saml sso endpoint for this project.
     const authUrl = Formio.authUrl || Formio.projectUrl;
+<<<<<<< HEAD
     window.location.href = `${authUrl}/saml/sso?relay=${encodeURIComponent(options.relay)}`;
+=======
+    window.location.href = `${authUrl}/saml/sso?relay=${encodeURI(options.relay)}`;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     return false;
   }
 
@@ -1368,10 +1526,16 @@ export default class Formio {
 
           // Add the script to the top page.
           const script = document.createElement(elementType);
-          for (const attr in attrs) {
-            script.setAttribute(attr, attrs[attr]);
+          if (script.setAttribute) {
+            for (const attr in attrs) {
+              script.setAttribute(attr, attrs[attr]);
+            }
           }
-          document.getElementsByTagName('head')[0].appendChild(script);
+
+          const head = document.getElementsByTagName('head')[0];
+          if (head) {
+            head.appendChild(script);
+          }
         });
 
         // if no callback is provided, then check periodically for the script.
@@ -1413,7 +1577,8 @@ Formio.authUrl = '';
 Formio.projectUrlSet = false;
 Formio.plugins = [];
 Formio.cache = {};
-Formio.providers = providers;
+Formio.Providers = Providers;
+Formio.version = '---VERSION---';
 Formio.events = new EventEmitter({
   wildcard: false,
   maxListeners: 0

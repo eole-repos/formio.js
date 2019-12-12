@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import BaseComponent from '../base/Base';
+import Field from '../_classes/field/Field';
 
-export default class CheckBoxComponent extends BaseComponent {
+export default class CheckBoxComponent extends Field {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Field.schema({
       type: 'checkbox',
       inputType: 'checkbox',
       label: 'Checkbox',
@@ -19,7 +19,7 @@ export default class CheckBoxComponent extends BaseComponent {
     return {
       title: 'Checkbox',
       group: 'basic',
-      icon: 'fa fa-check-square',
+      icon: 'check-square',
       documentation: 'http://help.form.io/userguide/#checkbox',
       weight: 50,
       schema: CheckBoxComponent.schema()
@@ -31,6 +31,7 @@ export default class CheckBoxComponent extends BaseComponent {
   }
 
   get defaultValue() {
+<<<<<<< HEAD
     return this.isRadioCheckbox ? '' : (this.component.defaultValue || false).toString() === 'true';
   }
 
@@ -61,9 +62,27 @@ export default class CheckBoxComponent extends BaseComponent {
     const selectedRadios = this.getRadioGroupItems().filter(c => c.input.checked);
 
     return _.get(selectedRadios, '[0].component.value');
+=======
+    return this.component.name ? '' : (this.component.defaultValue || false).toString() === 'true';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  elementInfo() {
+  get labelClass() {
+    let className = '';
+    if (this.isInputComponent
+      && !this.options.inputsOnly
+      && this.component.validate
+      && this.component.validate.required) {
+      className += ' field-required';
+    }
+    return `${className}`;
+  }
+
+  get hasSetValue() {
+    return this.hasValue();
+  }
+
+  get inputInfo() {
     const info = super.elementInfo();
     info.type = 'input';
     info.changeEvent = 'click';
@@ -73,9 +92,12 @@ export default class CheckBoxComponent extends BaseComponent {
       info.attr.name = `data[${this.component.name}][${this.root.id}]`;
     }
     info.attr.value = this.component.value ? this.component.value : 0;
+    info.label = this.t(this.component.label);
+    info.labelClass = this.labelClass;
     return info;
   }
 
+<<<<<<< HEAD
   build() {
     // Refresh element info.
     this.info = this.elementInfo();
@@ -100,12 +122,23 @@ export default class CheckBoxComponent extends BaseComponent {
     }
     this.autofocus();
     this.attachLogic();
+=======
+  get labelInfo() {
+    return {
+      hidden: true
+    };
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  get emptyValue() {
-    return false;
+  render() {
+    return super.render(this.renderTemplate('checkbox', {
+      input: this.inputInfo,
+      checked: this.dataValue,
+      tooltip: this.interpolate(this.t(this.component.tooltip) || '').replace(/(?:\r\n|\r|\n)/g, '<br />')
+    }));
   }
 
+<<<<<<< HEAD
   isEmpty(value) {
     return super.isEmpty(value) || value === false;
   }
@@ -136,45 +169,31 @@ export default class CheckBoxComponent extends BaseComponent {
 
   labelOnTheTopOrBottom() {
     return ['top', 'bottom'].includes(this.component.labelPosition);
+=======
+  attach(element) {
+    this.loadRefs(element, { input: 'multiple' });
+    this.input = this.refs.input[0];
+    if (this.refs.input) {
+      this.addEventListener(this.input, this.inputInfo.changeEvent, () => this.updateValue(null, {
+        modified: true
+      }));
+      this.addShortcut(this.input);
+    }
+    return super.attach(element);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  setInputLabelStyle(label) {
-    if (this.component.labelPosition === 'left') {
-      _.assign(label.style, {
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
-    }
-
-    if (this.labelOnTheTopOrBottom()) {
-      _.assign(label.style, {
-        display: 'block',
-        textAlign: 'center',
-        paddingLeft: 0,
-      });
-    }
-  }
-
-  setInputStyle(input) {
-    if (!input) {
-      return;
-    }
-    if (this.component.labelPosition === 'left') {
-      _.assign(input.style, {
-        position: 'initial',
-        marginLeft: '7px'
-      });
-    }
-
-    if (this.labelOnTheTopOrBottom()) {
-      _.assign(input.style, {
-        width: '100%',
-        position: 'initial',
-        marginLeft: 0
-      });
+  detach(element) {
+    if (element && this.input) {
+      this.removeShortcut(this.input);
     }
   }
 
+  get emptyValue() {
+    return false;
+  }
+
+<<<<<<< HEAD
   createLabel(container, input) {
     const isLabelHidden = this.labelIsHidden();
     let className = 'control-label form-check-label';
@@ -235,6 +254,26 @@ export default class CheckBoxComponent extends BaseComponent {
     const setValue = (super.dataValue = value);
 
     if (this.isRadioCheckbox) {
+=======
+  isEmpty(value = this.dataValue) {
+    return super.isEmpty(value) || value === false;
+  }
+
+  /**
+   *
+   * @param value {*}
+   * @returns {*}
+   */
+  set dataValue(value) {
+    const setValue = (super.dataValue = value);
+    if (
+      !this.key ||
+      (!this.visible && this.component.clearOnHide && !this.rootPristine)
+    ) {
+      return setValue;
+    }
+    if (this.component.name) {
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       _.set(this.data, this.component.key, setValue === this.component.value);
 
       this.setCheckedState(setValue);
@@ -256,6 +295,7 @@ export default class CheckBoxComponent extends BaseComponent {
   }
 
   getValueAt(index) {
+<<<<<<< HEAD
     if (this.isRadioCheckbox) {
       return this.inputs[index].checked ? this.component.value : '';
     }
@@ -265,6 +305,22 @@ export default class CheckBoxComponent extends BaseComponent {
 
   getValue() {
     return super.getValue();
+=======
+    if (this.component.name) {
+      return this.refs.input[index].checked ? this.component.value : '';
+    }
+    return !!this.refs.input[index].checked;
+  }
+
+  getValue() {
+    const value = super.getValue();
+    if (this.component.name) {
+      return value ? this.setCheckedState(value) : this.setCheckedState(this.dataValue);
+    }
+    else {
+      return (value === '') ? this.dataValue : !!value;
+    }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   setCheckedState(value) {
@@ -297,6 +353,7 @@ export default class CheckBoxComponent extends BaseComponent {
   }
 
   setValue(value, flags) {
+<<<<<<< HEAD
     flags = this.getFlags.apply(this, arguments);
 
     if (this.isRadioCheckbox && !value) {
@@ -305,11 +362,22 @@ export default class CheckBoxComponent extends BaseComponent {
 
     this.setCheckedState(value);
     return this.updateValue(flags, value);
+=======
+    flags = flags || {};
+    if (
+      this.setCheckedState(value) !== undefined ||
+      (!this.input && value !== undefined && !this.component.clearOnHide)
+    ) {
+      return this.updateValue(value, flags);
+    }
+    return false;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  getView(value) {
+  getValueAsString(value) {
     return value ? 'Yes' : 'No';
   }
+<<<<<<< HEAD
 
   destroy() {
     super.destroy();
@@ -351,4 +419,6 @@ export default class CheckBoxComponent extends BaseComponent {
     }
     return changed;
   }
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 }

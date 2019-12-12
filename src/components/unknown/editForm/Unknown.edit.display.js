@@ -21,6 +21,7 @@ export default [
     key: 'componentJson',
     label: 'Custom Element JSON',
     tooltip: 'Enter the JSON for this custom element.'
+<<<<<<< HEAD
   },
   {
     key: 'label',
@@ -109,5 +110,7 @@ export default [
   {
     key: 'alwaysEnabled',
     ignore: true
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 ];

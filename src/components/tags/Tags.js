@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import BaseComponent from '../base/Base';
 import Choices from 'choices.js/public/assets/scripts/choices.js';
 import _ from 'lodash';
+=======
+import Input from '../_classes/input/Input';
+import Choices from 'choices.js/public/assets/scripts/choices.js';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 
-export default class TagsComponent extends BaseComponent {
+export default class TagsComponent extends Input {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Input.schema({
       type: 'tags',
       label: 'Tags',
       key: 'tags',
@@ -17,48 +22,76 @@ export default class TagsComponent extends BaseComponent {
   static get builderInfo() {
     return {
       title: 'Tags',
-      icon: 'fa fa-tags',
+      icon: 'tags',
       group: 'advanced',
       documentation: 'http://help.form.io/userguide/#tags',
-      weight: 50,
+      weight: 30,
       schema: TagsComponent.schema()
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
-    this.component.delimeter = this.component.delimeter || ',';
+  init() {
+    super.init();
+  }
+
+  get emptyValue() {
+    return (this.component.storeas === 'string') ? '' : [];
   }
 
   get defaultSchema() {
     return TagsComponent.schema();
   }
 
-  elementInfo() {
-    const info = super.elementInfo();
+  get inputInfo() {
+    const info = super.inputInfo;
     info.type = 'input';
     info.attr.type = 'text';
     info.changeEvent = 'change';
     return info;
   }
 
-  addInput(input, container) {
-    super.addInput(input, container);
-    if (!input) {
+  get delimiter() {
+    return this.component.delimeter || ',';
+  }
+
+  attachElement(element, index) {
+    super.attachElement(element, index);
+    if (!element) {
       return;
     }
+<<<<<<< HEAD
     input.setAttribute('dir', this.i18next.dir());
     this.choices = new Choices(input, {
       delimiter: (this.component.delimeter || ','),
+=======
+    element.setAttribute('dir', this.i18next.dir());
+    this.choices = new Choices(element, {
+      delimiter: this.delimiter,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       editItems: true,
       maxItemCount: this.component.maxTags,
       removeItemButton: true,
+      duplicateItemsAllowed: false,
     });
+    this.choices.itemList.element.tabIndex = element.tabIndex;
+    this.addEventListener(this.choices.input.element, 'blur', () => {
+      const value = this.choices.input.value;
+      if (value) {
+        this.choices.setValue([value]);
+        this.choices.clearInput();
+        this.choices.hideDropdown(true);
+      }
+    });
+<<<<<<< HEAD
     this.choices.itemList.element.tabIndex = input.tabIndex;
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
-  setValue(value) {
+  detach() {
+    super.detach();
     if (this.choices) {
+<<<<<<< HEAD
       if (this.component.storeas === 'string' && (typeof value === 'string')) {
         value = value.split(',');
       }
@@ -69,15 +102,37 @@ export default class TagsComponent extends BaseComponent {
       if (value) {
         this.choices.setValue(value);
       }
+=======
+      this.choices.destroyed = true;
+      this.choices.destroy();
+      this.choices = null;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
   }
 
-  getValue() {
-    if (this.choices) {
-      const value = this.choices.getValue(true);
-      return (this.component.storeas === 'string') ? value.join(this.component.delimeter) : value;
+  normalizeValue(value) {
+    if (this.component.storeas === 'string' && Array.isArray(value)) {
+      return value.join(this.delimiter);
     }
-    return null;
+    else if (this.component.storeas === 'array' && typeof value === 'string') {
+      return value.split(this.delimiter).filter(result => result);
+    }
+    return value;
+  }
+
+  setValue(value) {
+    const changed = super.setValue(value);
+    if (this.choices) {
+      let dataValue = this.dataValue;
+      this.choices.removeActiveItems();
+      if (dataValue) {
+        if (typeof dataValue === 'string') {
+          dataValue = dataValue.split(this.delimiter).filter(result => result);
+        }
+        this.choices.setValue(Array.isArray(dataValue) ? dataValue : [dataValue]);
+      }
+    }
+    return changed;
   }
 
   set disabled(disabled) {
@@ -93,12 +148,7 @@ export default class TagsComponent extends BaseComponent {
     }
   }
 
-  destroy() {
-    super.destroy();
-    if (this.choices) {
-      this.choices.destroyed = true;
-      this.choices.destroy();
-      this.choices = null;
-    }
+  get disabled() {
+    return super.disabled;
   }
 }

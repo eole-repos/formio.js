@@ -45,6 +45,11 @@ $body-color:                $gray-800 !default;
 
 // Fonts
 
+<<<<<<< HEAD
+=======
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 $font-size-base:              1.063rem !default;
 
 $headings-font-weight:        700 !default;
@@ -58,6 +63,14 @@ $table-border-color:          rgba(0,0,0,0.1) !default;
 $input-btn-padding-y:         0.5rem !default;
 $input-btn-padding-x:         1.1rem !default;
 
+<<<<<<< HEAD
+=======
+$btn-font-family:             $font-family-sans-serif !default;
+$btn-font-size:               0.875rem !default;
+
+$btn-font-size-sm:            0.688rem !default;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Forms
 
 $input-border-color:                    rgba(0,0,0,.1) !default;
@@ -72,8 +85,22 @@ $navbar-dark-hover-color:           $white !default;
 $navbar-light-hover-color:          $body-color !default;
 $navbar-light-active-color:         $body-color !default;
 
+<<<<<<< HEAD
+=======
+// Tooltips
+
+$tooltip-font-size:                 11px !default;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 // Badges
 
 $badge-font-weight:                 normal !default;
 $badge-padding-y:                   0.6em !default;
 $badge-padding-x:                   1.2em !default;
+<<<<<<< HEAD
+=======
+
+// Alerts
+
+$alert-border-width:                0 !default;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

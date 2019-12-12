@@ -1,5 +1,9 @@
 <div class="row">
+<<<<<<< HEAD
   {% util.eachComponent(components, function(component) { %}
+=======
+  {% ctx.util.eachComponent(ctx.components, function(component) { %}
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     {% if (!component.hasOwnProperty('tableView') || component.tableView) { %}
       <div class="col-sm-2">{{ component.label }}</div>
     {% } %}

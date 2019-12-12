@@ -1,12 +1,12 @@
 import { maskInput, conformToMask } from 'vanilla-text-mask';
 import _ from 'lodash';
 import { createNumberMask } from 'text-mask-addons';
-import BaseComponent from '../base/Base';
+import Input from '../_classes/input/Input';
 import { getNumberSeparators, getNumberDecimalLimit } from '../../utils/utils';
 
-export default class NumberComponent extends BaseComponent {
+export default class NumberComponent extends Input {
   static schema(...extend) {
-    return BaseComponent.schema({
+    return Input.schema({
       type: 'number',
       label: 'Number',
       key: 'number',
@@ -22,16 +22,16 @@ export default class NumberComponent extends BaseComponent {
   static get builderInfo() {
     return {
       title: 'Number',
-      icon: 'fa fa-hashtag',
+      icon: 'hashtag',
       group: 'basic',
       documentation: 'http://help.form.io/userguide/#number',
-      weight: 10,
+      weight: 30,
       schema: NumberComponent.schema()
     };
   }
 
-  constructor(component, options, data) {
-    super(component, options, data);
+  constructor(...args) {
+    super(...args);
     this.validators = this.validators.concat(['min', 'max']);
 
     const separators = getNumberSeparators(this.options.language);
@@ -58,7 +58,20 @@ export default class NumberComponent extends BaseComponent {
       this.decimalSeparator = override.decimalSeparator;
       this.delimiter = override.delimiter;
     }
+<<<<<<< HEAD
     this.numberMask = createNumberMask({
+=======
+    this.numberMask = this.createNumberMask();
+  }
+
+  /**
+   * Creates the number mask for normal numbers.
+   *
+   * @return {*}
+   */
+  createNumberMask() {
+    return createNumberMask({
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       prefix: '',
       suffix: '',
       requireDecimal: _.get(this.component, 'requireDecimal', false),
@@ -96,37 +109,49 @@ export default class NumberComponent extends BaseComponent {
   }
 
   setInputMask(input) {
+<<<<<<< HEAD
     input.setAttribute('pattern', '\\d*');
 
+=======
+    let numberPattern = '[0-9';
+    numberPattern += this.decimalSeparator ? `\\${this.decimalSeparator}` : '';
+    numberPattern += this.delimiter ? `\\${this.delimiter}` : '';
+    numberPattern += ']*';
+    input.setAttribute('pattern', numberPattern);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     input.mask = maskInput({
       inputElement: input,
       mask: this.numberMask
     });
   }
 
-  elementInfo() {
-    const info = super.elementInfo();
-    info.attr.type = 'text';
+  get inputInfo() {
+    const info = super.inputInfo;
+    if (this.component.mask) {
+      info.attr.type = 'password';
+    }
+    else {
+      info.attr.type = 'text';
+    }
     info.attr.inputmode = 'numeric';
     info.changeEvent = 'input';
     return info;
   }
 
   getValueAt(index) {
-    if (!this.inputs.length || !this.inputs[index]) {
+    if (!this.refs.input.length || !this.refs.input[index]) {
       return null;
     }
 
-    const val = this.inputs[index].value;
-
-    if (!val) {
-      return undefined;
-    }
-
-    return this.parseNumber(val);
+    const val = this.refs.input[index].value;
+    return val ? this.parseNumber(val) : null;
   }
 
-  clearInput(input) {
+  setValueAt(index, value, flags) {
+    return super.setValueAt(index, this.formatValue(this.parseValue(value)), flags);
+  }
+
+  parseValue(input) {
     let value = parseFloat(input);
 
     if (!_.isNaN(value)) {
@@ -144,18 +169,18 @@ export default class NumberComponent extends BaseComponent {
       return `${value}${this.decimalSeparator}${_.repeat('0', this.decimalLimit)}`;
     }
     else if (this.component.requireDecimal && value && value.includes(this.decimalSeparator)) {
+<<<<<<< HEAD
       return `${value}${_.repeat('0', this.decimalLimit - value.split(this.decimalSeparator)[1].length)})}`;
+=======
+      return `${value}${_.repeat('0', this.decimalLimit - value.split(this.decimalSeparator)[1].length)}`;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
 
     return value;
   }
 
-  setValueAt(index, value) {
-    return super.setValueAt(index, this.formatValue(this.clearInput(value)));
-  }
-
   focus() {
-    const input = this.inputs[0];
+    const input = this.refs.input[0];
     if (input) {
       input.focus();
       input.setSelectionRange(0, input.value.length);
@@ -163,6 +188,7 @@ export default class NumberComponent extends BaseComponent {
   }
 
   getMaskedValue(value) {
+<<<<<<< HEAD
     return conformToMask(value.toString(), this.numberMask).conformedValue;
   }
 
@@ -192,6 +218,16 @@ export default class NumberComponent extends BaseComponent {
       return widget.getView(value);
     }
 
+=======
+    return conformToMask(value === null ? '0' : value.toString(), this.numberMask).conformedValue;
+  }
+
+  getValueAsString(value) {
+    if (!value && value !== 0) {
+      return '';
+    }
+    value = this.getWidgetValueAsString(value);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     if (Array.isArray(value)) {
       return value.map(this.getMaskedValue).join(', ');
     }

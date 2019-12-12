@@ -7,6 +7,10 @@ import moment from 'moment-timezone/moment-timezone';
 import jtz from 'jstimezonedetect';
 import { lodashOperators } from './jsonlogic/operators';
 import NativePromise from 'native-promise-only';
+<<<<<<< HEAD
+=======
+import dompurify from 'dompurify';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 import { getValue } from './formUtils';
 import Evaluator from './Evaluator';
 const interpolate = Evaluator.interpolate;
@@ -14,6 +18,12 @@ const { fetch } = fetchPonyfill({
   Promise: NativePromise
 });
 
+<<<<<<< HEAD
+=======
+import BuilderUtils from './builder';
+export { BuilderUtils };
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 export * from './formUtils';
 
 // Configure JsonLogic
@@ -51,6 +61,7 @@ export function evaluate(func, args, ret, tokenize) {
     args.form = _.get(args.instance, 'root._form', {});
   }
 
+<<<<<<< HEAD
   // Deeply cloning the form is expensive - only do it if it looks like the function needs it
   if (func.toString().includes('form')) {
     args.form = _.cloneDeep(args.form);
@@ -60,6 +71,11 @@ export function evaluate(func, args, ret, tokenize) {
   }
 
   const componentKey = args.component.key;
+=======
+  const originalArgs = args;
+  const componentKey = component.key;
+
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   if (typeof func === 'string') {
     if (ret) {
       func += `;return ${ret}`;
@@ -91,9 +107,34 @@ export function evaluate(func, args, ret, tokenize) {
       func = false;
     }
   }
+
   if (typeof func === 'function') {
     try {
+<<<<<<< HEAD
       returnVal = Array.isArray(args) ? func(...args) : func(args);
+=======
+      if (typeof window === 'object') {
+        returnVal = Array.isArray(args) ? func(...args) : func(args);
+      }
+      else {
+        // Need to assume we're server side and limit ourselves to a sandbox VM
+        const vm = require('vm');
+        const sandbox = vm.createContext({ ...originalArgs, result: null });
+
+        // Build the arg string
+        let argStr = _.keys(originalArgs).join();
+
+        if (!Array.isArray(args)) {
+          argStr = `{${argStr}}`;
+        }
+
+        // Execute the script
+        const script = new vm.Script(`result = ${func.toString()}(${argStr});`);
+        script.runInContext(sandbox, { timeout: 250 });
+
+        returnVal = sandbox.result;
+      }
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     }
     catch (err) {
       returnVal = null;
@@ -264,7 +305,7 @@ export function checkJsonConditional(component, json, row, data, form, onError) 
       data,
       row,
       form,
-      _
+      _,
     });
   }
   catch (err) {
@@ -290,10 +331,10 @@ export function checkCondition(component, row, data, form, instance) {
     return checkCustomConditional(component, component.customConditional, row, data, form, 'show', true, instance);
   }
   else if (component.conditional && component.conditional.when) {
-    return checkSimpleConditional(component, component.conditional, row, data, true);
+    return checkSimpleConditional(component, component.conditional, row, data);
   }
   else if (component.conditional && component.conditional.json) {
-    return checkJsonConditional(component, component.conditional.json, row, data, form, instance);
+    return checkJsonConditional(component, component.conditional.json, row, data, form, true);
   }
 
   // Default to show.
@@ -322,33 +363,55 @@ export function checkTrigger(component, trigger, row, data, form, instance) {
   return false;
 }
 
-export function setActionProperty(component, action, row, data, result, instance) {
+export function setActionProperty(component, action, result, row, data, instance) {
+  const property = action.property.value;
+
   switch (action.property.type) {
-    case 'boolean':
-      if (_.get(component, action.property.value, false).toString() !== action.state.toString()) {
-        _.set(component, action.property.value, action.state.toString() === 'true');
+    case 'boolean': {
+      const currentValue = _.get(component, property, false).toString();
+      const newValue = action.state.toString();
+
+      if (currentValue !== newValue) {
+        _.set(component, property, newValue === 'true');
       }
+
       break;
+    }
     case 'string': {
       const evalData = {
         data,
         row,
         component,
-        result
+        result,
       };
       const textValue = action.property.component ? action[action.property.component] : action.text;
+<<<<<<< HEAD
       const newValue = (instance && instance.interpolate) ?
         instance.interpolate(textValue, evalData) :
         Evaluator.interpolate(textValue, evalData);
       if (newValue !== _.get(component, action.property.value, '')) {
         _.set(component, action.property.value, newValue);
+=======
+      const currentValue = _.get(component, property, '');
+      const newValue = (instance && instance.interpolate)
+        ? instance.interpolate(textValue, evalData)
+        : Evaluator.interpolate(textValue, evalData);
+
+      if (newValue !== currentValue) {
+        _.set(component, property, newValue);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
+
       break;
     }
   }
+
+<<<<<<< HEAD
+=======
   return component;
 }
 
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 /**
  * Make a filename guaranteed to be unique.
  * @param name
@@ -515,7 +578,11 @@ export function loadZones(timezone) {
     return moment.zonesPromise;
   }
   return moment.zonesPromise = fetch(
+<<<<<<< HEAD
     'https://formio.github.io/formio.js/resources/latest.json',
+=======
+    'https://cdn.form.io/moment-timezone/data/packed/latest.json',
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   ).then(resp => resp.json().then(zones => {
     moment.tz.load(zones);
     moment.zonesLoaded = true;
@@ -659,7 +726,7 @@ export function convertFormatToFlatpickr(format) {
 
     // Hours, minutes, seconds
     .replace('HH', 'H')
-    .replace('hh', 'h')
+    .replace('hh', 'G')
     .replace('mm', 'i')
     .replace('ss', 'S')
     .replace(/a/g, 'K');
@@ -672,7 +739,7 @@ export function convertFormatToFlatpickr(format) {
  */
 export function convertFormatToMoment(format) {
   return format
-    // Year conversion.
+  // Year conversion.
     .replace(/y/g, 'Y')
     // Day in month.
     .replace(/d/g, 'D')
@@ -684,11 +751,23 @@ export function convertFormatToMoment(format) {
 
 export function convertFormatToMask(format) {
   return format
+<<<<<<< HEAD
     // Short and long month replacement.
     .replace(/(MMM|MMMM)/g, 'MM')
     // Year conversion
     .replace(/[ydhmsHM]/g, '9')
     // AM/PM conversion
+=======
+  // Long month replacement.
+    .replace(/M{4}/g, 'MM')
+    // Initial short month conversion.
+    .replace(/M{3}/g, '***')
+    // Short month conversion if input as text.
+    .replace(/e/g, 'Q')
+    // Year conversion.
+    .replace(/[ydhmsHMG]/g, '9')
+    // AM/PM conversion.
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     .replace(/a/g, 'AA');
 }
 
@@ -732,6 +811,12 @@ export function matchInputMask(value, inputMask) {
   if (!inputMask) {
     return true;
   }
+
+  // If value is longer than mask, it isn't valid.
+  if (value.length > inputMask.length) {
+    return false;
+  }
+
   for (let i = 0; i < inputMask.length; i++) {
     const char = value[i];
     const charPart = inputMask[i];
@@ -760,6 +845,9 @@ export function getNumberSeparators(lang = 'en') {
 }
 
 export function getNumberDecimalLimit(component) {
+  if (_.has(component, 'decimalLimit')) {
+    return _.get(component, 'decimalLimit');
+  }
   // Determine the decimal limit. Defaults to 20 but can be overridden by validate.step or decimalLimit settings.
   let decimalLimit = 20;
   const step = _.get(component, 'validate.step', 'any');
@@ -775,11 +863,11 @@ export function getNumberDecimalLimit(component) {
 }
 
 export function getCurrencyAffixes({
-  currency = 'USD',
-  decimalLimit,
-  decimalSeparator,
-  lang,
-}) {
+   currency = 'USD',
+   decimalLimit,
+   decimalSeparator,
+   lang,
+ }) {
   // Get the prefix and suffix from the localized string.
   let regex = '(.*)?100';
   if (decimalLimit) {
@@ -885,7 +973,11 @@ export function delay(fn, delay = 0, ...args) {
  */
 export function iterateKey(key) {
   if (!key.match(/(\d+)$/)) {
+<<<<<<< HEAD
     return `${key}2`;
+=======
+    return `${key}1`;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   }
 
   return key.replace(/(\d+)$/, function(suffix) {
@@ -998,4 +1090,87 @@ export function observeOverload(callback, options = {}) {
   };
 }
 
+<<<<<<< HEAD
 export { Evaluator, interpolate };
+=======
+export function getContextComponents(context) {
+  const values = [];
+
+  context.utils.eachComponent(context.instance.options.editForm.components, (component) => {
+    if (component.key !== context.data.key) {
+      values.push({
+        label: component.label || component.key,
+        value: component.key,
+      });
+    }
+  });
+
+  return values;
+}
+
+/**
+ * Sanitize an html string.
+ *
+ * @param string
+ * @returns {*}
+ */
+export function sanitize(string, options) {
+  // Dompurify configuration
+  const sanitizeOptions = {
+    ADD_ATTR: ['ref', 'target'],
+    USE_PROFILES: { html: true }
+  };
+  // Add attrs
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.addAttr) && options.sanitizeConfig.addAttr.length > 0) {
+    options.sanitizeConfig.addAttr.forEach((attr) => {
+      sanitizeOptions.ADD_ATTR.push(attr);
+    });
+  }
+  // Add tags
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.addTags) && options.sanitizeConfig.addTags.length > 0) {
+    sanitizeOptions.ADD_TAGS = options.sanitizeConfig.addTags;
+  }
+  // Allow tags
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.allowedTags) && options.sanitizeConfig.allowedTags.length > 0) {
+    sanitizeOptions.ALLOWED_TAGS = options.sanitizeConfig.allowedTags;
+  }
+  // Allow attributes
+  if (options.sanitizeConfig && Array.isArray(options.sanitizeConfig.allowedAttrs) && options.sanitizeConfig.allowedAttrs.length > 0) {
+    sanitizeOptions.ALLOWED_ATTR = options.sanitizeConfig.allowedAttrs;
+  }
+  // Allowd URI Regex
+  if (options.sanitizeConfig && options.sanitizeConfig.allowedUriRegex) {
+    sanitizeOptions.ALLOWED_URI_REGEXP = options.sanitizeConfig.allowedUriRegex;
+  }
+  return dompurify.sanitize(string, sanitizeOptions);
+}
+
+/**
+ * Fast cloneDeep for JSON objects only.
+ */
+export function fastCloneDeep(obj) {
+  return obj ? JSON.parse(JSON.stringify(obj)) : obj;
+}
+
+export { Evaluator, interpolate };
+
+export function isInputComponent(componentJson) {
+  if (componentJson.input === false || componentJson.input === true) {
+    return componentJson.input;
+  }
+  switch (componentJson.type) {
+    case 'htmlelement':
+    case 'content':
+    case 'columns':
+    case 'fieldset':
+    case 'panel':
+    case 'table':
+    case 'tabs':
+    case 'well':
+    case 'button':
+      return false;
+    default:
+      return true;
+  }
+}
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e

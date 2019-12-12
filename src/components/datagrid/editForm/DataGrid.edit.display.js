@@ -1,5 +1,9 @@
 export default [
   {
+    key: 'placeholder',
+    ignore: true
+  },
+  {
     type: 'checkbox',
     label: 'Disable Adding / Removing Rows',
     key: 'disableAddingRemovingRows',
@@ -13,6 +17,16 @@ export default [
     calculateValue(context) {
       return context.data.enableRowGroups ? true : context.data.disableAddingRemovingRows;
     },
+<<<<<<< HEAD
+=======
+  },
+  {
+    type: 'checkbox',
+    label: 'Allow Reorder',
+    key: 'reorder',
+    weight: 407,
+    input: true,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
   },
   {
     type: 'textfield',
@@ -47,6 +61,7 @@ export default [
     }
   },
   {
+<<<<<<< HEAD
     type: 'select',
     label: 'Remove Button Placement',
     key: 'removePlacement',
@@ -65,6 +80,8 @@ export default [
     }
   },
   {
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     type: 'checkbox',
     label: 'Default Open Rows',
     key: 'defaultOpen',
@@ -98,6 +115,10 @@ export default [
     type: 'datagrid',
     input: true,
     key: 'rowGroups',
+<<<<<<< HEAD
+=======
+    reorder: true,
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     components: [
       {
         label: 'Label',

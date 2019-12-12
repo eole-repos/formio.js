@@ -1,6 +1,10 @@
 import _ from 'lodash';
 import Formio from '../src/Formio';
+<<<<<<< HEAD
 import fetchMock from 'fetch-mock/es5/client';
+=======
+import fetchMock from 'fetch-mock/es5/server';
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 Formio.fetch = fetchMock.fetchHandler;
 import Chance from 'chance';
 import esc from 'escape-string-regexp';

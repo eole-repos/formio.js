@@ -6,6 +6,11 @@ export default {
         complete: 'Submission Complete',
         error: 'Please fix the following errors before submitting.',
         required: '{{field}} is required',
+        unique: '{{field}} must be unique',
+        array: '{{field}} must be an array',
+        array_nonempty: '{{field}} must be a non-empty array', // eslint-disable-line camelcase
+        nonarray: '{{field}} must not be an array',
+        select: '{{field}} contains an invalid selection',
         pattern: '{{field}} does not match the pattern {{pattern}}',
         minLength: '{{field}} must be longer than {{length}} characters.',
         maxLength: '{{field}} must be shorter than {{length}} characters.',
@@ -13,8 +18,11 @@ export default {
         maxWords: '{{field}} must have less than {{length}} words.',
         min: '{{field}} cannot be less than {{min}}.',
         max: '{{field}} cannot be greater than {{max}}.',
+<<<<<<< HEAD
         minSelectedCount: 'You must select at least {{minCount}} items to continue.',
         maxSelectedCount: 'You can only select up to {{maxCount}} items to continue.',
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
         maxDate: '{{field}} should not contain date after {{- maxDate}}',
         minDate: '{{field}} should not contain date before {{- minDate}}',
         invalid_email: '{{field}} must be a valid email.', // eslint-disable-line camelcase

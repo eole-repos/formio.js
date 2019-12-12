@@ -1,5 +1,8 @@
 import NativePromise from 'native-promise-only';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
 const base64 = () => ({
   title: 'Base64',
   name: 'base64',

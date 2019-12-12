@@ -13,6 +13,7 @@ const Evaluator = {
       console.warn('No evaluations allowed for this renderer.');
       return _.noop;
     }
+<<<<<<< HEAD
     else {
       return new Function(...params, func);
     }
@@ -23,6 +24,16 @@ const Evaluator = {
     }
     hash = hash || stringHash(template);
     try {
+=======
+
+    return new Function(...params, func);
+  },
+  template(template, hash) {
+    hash = hash || stringHash(template);
+    try {
+      // Ensure we handle copied templates from the ejs files.
+      template = template.replace(/ctx\./g, '');
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       return (Evaluator.cache[hash] = _.template(template, Evaluator.templateSettings));
     }
     catch (err) {
@@ -31,10 +42,25 @@ const Evaluator = {
   },
   interpolate(rawTemplate, data) {
     if (typeof rawTemplate === 'function') {
+<<<<<<< HEAD
       return rawTemplate(data);
     }
 
     const hash = _.isNumber(rawTemplate) ? rawTemplate : stringHash(rawTemplate);
+=======
+      try {
+        return rawTemplate(data);
+      }
+      catch (err) {
+        console.warn('Error interpolating template', err, data);
+        return err.message;
+      }
+    }
+
+    rawTemplate = String(rawTemplate);
+
+    const hash = stringHash(rawTemplate);
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
     let template;
     if (Evaluator.cache[hash]) {
       template = Evaluator.cache[hash];
@@ -52,6 +78,10 @@ const Evaluator = {
       }
       catch (err) {
         console.warn('Error interpolating template', err, rawTemplate, data);
+<<<<<<< HEAD
+=======
+        return err.message;
+>>>>>>> 6b7f42f47594eba47919f99b6fb356c8392aae4e
       }
     }
     return template;
