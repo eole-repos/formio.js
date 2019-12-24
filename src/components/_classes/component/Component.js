@@ -105,7 +105,7 @@ export default class Component extends Element {
       /**
        * If this component should be rendering in modal.
        */
-      modalView: false,
+      modalEdit: false,
 
       /**
        * The input label provided to this component.
@@ -847,11 +847,17 @@ export default class Component extends Element {
   }
 
   setOpenModalElement() {
-    this.componentModal.setOpenModalElement(`<button lang='en' class='btn btn-primary btn-md' ref='openModal'>${this.label}</button>`);
+    const template = `
+      <label class="control-label">${this.component.label}</label><br>
+      <button lang='en' class='btn btn-light btn-md open-modal-button' ref='openModal'>Click to set value</button>
+    `;
+    this.componentModal.setOpenModalElement(template);
   }
 
   getModalPreviewTemplate() {
-    return `<button lang='en' class='btn btn-primary btn-md' ref='openModal'>${this.label}</button> <label>${this.getValueAsString(this.dataValue)}</label>`;
+    return `
+      <label class="control-label">${this.component.label}</label><br>
+      <button lang='en' class='btn btn-light btn-md open-modal-button' ref='openModal'>${this.getValueAsString(this.dataValue)}</button>`;
   }
 
   build(element) {
@@ -865,7 +871,7 @@ export default class Component extends Element {
     const isVisible = this.visible;
     this.rendered = true;
 
-    if (!this.builderMode && this.component.modalView) {
+    if (!this.builderMode && this.component.modalEdit) {
       return ComponentModal.render(this, {
         visible: isVisible,
         id: this.id,
@@ -886,7 +892,7 @@ export default class Component extends Element {
   }
 
   attach(element) {
-    if (!this.builderMode && this.component.modalView) {
+    if (!this.builderMode && this.component.modalEdit) {
       this.componentModal = new ComponentModal(this, element);
       this.setOpenModalElement();
     }
